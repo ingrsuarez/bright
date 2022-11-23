@@ -5,7 +5,7 @@
 #FOLDERS
 
 files/*
-
+app/Config/App.php
 
 # OS X
 .DS_Store
