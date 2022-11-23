@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/bright';
+    public $baseURL = 'http://bright.admesys.com';
 
     /**
      * --------------------------------------------------------------------------
