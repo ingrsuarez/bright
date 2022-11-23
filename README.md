@@ -1,6 +1,6 @@
-# CodeIgniter 4 Application Starter
+# This is an E.R.P. Software base system. This enterprise application platform will work as the central framework of your business. Our web-based ERP System for your company will manage all the business operations and enable business decisions to be smart and intuitive.
 
-## What is CodeIgniter?
+## Codeigniter framework 
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
 More information can be found at the [official site](http://codeigniter.com).
@@ -28,16 +28,6 @@ to your `app` folder. The affected files can be copied or merged from
 Copy `env` to `.env` and tailor for your app, specifically the baseURL
 and any database settings.
 
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
 
 ## Repository Management
 

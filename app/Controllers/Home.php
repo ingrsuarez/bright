@@ -1,11 +1,63 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Users_model;
 
 class Home extends BaseController
 {
     public function index()
     {
-        return view('welcome_message');
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $data['nombre'] = ucfirst($session->usuario);
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/aside',$data);
+            echo view('templates/footer');
+
+        }else{    
+            $user = new Users_model();
+            $name= $this->request->getPost('username');
+            $password = $this->request->getPost('password');
+           
+            if (empty($name))
+            {
+                $mensaje = "Por favor introduzca un nombre de usuario!";
+                $session->setFlashdata('message',$mensaje);
+                return redirect()->to('/login');
+
+            }
+            if (empty($password))
+            {
+                $mensaje = "Por favor introduzca una clave válida!";
+                $session->setFlashdata('message',$mensaje);
+                return redirect()->to('/login');
+
+            }
+            $user_data = $user->getUserPassword($name,$password);
+            if (!empty($user_data))
+            {
+              
+                $new_session = (array)$user_data[0];
+                $session->set($new_session);    
+                $data['nombre'] = ucfirst($session->usuario);
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/aside',$data);
+                echo view('templates/footer');
+            }else
+            {
+
+                $mensaje = "Por favor introduzca un usuario y contraseña correctos!";
+                $session->setFlashdata('message',$mensaje);
+                return redirect()->to('/login');
+            }            
+        }        
     }
+
+
+
+
+
 }

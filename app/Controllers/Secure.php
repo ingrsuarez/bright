@@ -4,21 +4,20 @@ namespace App\Controllers;
 
 class Secure extends BaseController
 {
+
     public function login()
     {
-        return view('templates/head') 
-        . view('secure/login');
+        $session = \Config\Services::session(); 
+        $data['message'] = $session->getFlashdata('message');
+        echo view('templates/head');    
+        echo view('secure/login',$data);
     }
-    public function view($page = 'login')
+
+    public function logout()
     {
-        if (! is_file(APPPATH . 'Views/secure/' . $page . '.php')) {
-            // Whoops, we don't have a page for that!
-            throw new \CodeIgniter\Exceptions\PageNotFoundException($page);
-        }
-
-        $data['title'] = ucfirst($page); // Capitalize the first letter
-
-        return view('secure/' . $page);
+        $session = \Config\Services::session();
+        $session->destroy();
+        return redirect()->to('/login');
     }
    
 }
