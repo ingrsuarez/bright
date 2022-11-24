@@ -17,7 +17,7 @@
 			</ul>
 			
 			<div class="sesion">
-				<form method="POST" action="<?php echo site_url('secure/logout'); ?>">
+				<form method="POST" action="<?php echo site_url('logout'); ?>">
 					<button class="logout" type="submit" name="button_logout"><i class="fa-solid fa-right-to-bracket"></i> Logout</button>
 				</form>
 			</div>
