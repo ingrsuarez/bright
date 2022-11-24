@@ -555,7 +555,7 @@ aside {
 	}
 
 	.listado__encabezado th {
-    background-color: #ffef96;
+    background-color: #feb236;
     padding-left: 30px;
     text-align: left;
 	}
@@ -570,6 +570,10 @@ aside {
     padding-left: 30px;
 	}
 
+	.listado tr:hover {
+		background-color: #18f7f0;
+		cursor: context-menu; 
+	}
 
 
 }
