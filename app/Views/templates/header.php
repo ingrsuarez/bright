@@ -2,13 +2,13 @@
 		
 	<header class="header">
 		<nav class="menu">
-			<ul class="menu__logo" ><img src="<?php echo base_url(); ?>/images/logo.png"></ul>
+			<ul class="menu__logo" ><img src="<?php echo base_url(); ?>/images/logo.jpg"></ul>
 			<ul class="menu__item" >
 				<li class="dropdown__item dropdown__item--active" id="home"><a href="<?php echo base_url(); ?>/home">INICIO</a></li> 
 				<li class="dropdown__item" id="compras">
 					<i class="fa-solid fa-bolt"></i><a href="<?php echo base_url(); ?>/equipos/" >  EQUIPOS</a>
 				</li>
-				<li class="dropdown__item" id="procedimientos">
+				<!-- <li class="dropdown__item" id="procedimientos">
 					<a href="<?php echo base_url(); ?>index.php/procedimientos/instructivos/">PROCEDIMIENTOS</a>
 					<ul class="inside__menu" id="procedimientos__inside">
 						<li class="inside__item">
@@ -21,8 +21,8 @@
 							<a href="#">Sistema</a>
 						</li>
 					</ul>
-				</li>
-				<li class="dropdown__item" id="registros">
+				</li> -->
+				<!-- <li class="dropdown__item" id="registros">
 					<a href="<?php echo base_url(); ?>index.php/registros/circulares/" >REGISTROS</a>
 					<ul class="inside__menu" id="servicios__inside">
 						<li class="inside__item">
@@ -35,9 +35,9 @@
 							<a href="#">Servicio 3</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 				<li class="dropdown__item" id="contacto">
-					<i class="fa-solid fa-people-group"></i><a href="<?php echo base_url(); ?>index.php/rrhh/panel/">RRHH</a>
+					<i class="fa-solid fa-people-group"></i><a href="<?php echo base_url(); ?>/rrhh/">RRHH</a>
 				</li>
 				<div class="dropdown__toggle" id="toggle">
 					<i class="fa-solid fa-bars"></i>

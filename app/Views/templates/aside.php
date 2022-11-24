@@ -7,7 +7,7 @@
 						
 						<ul class="inside__menu__horiz" id="horiz1__inside" style="opacity: 0">
 							<li class="inside__item__horiz">
-								<a href="<?php echo base_url(); ?>index.php/rrhh/calendario/"><i class="fas fa-business-time"></i> Licencias</a>
+								<a href="#"><i class="fas fa-business-time"></i> Licencias</a>
 							</li>
 							<li class="inside__item__horiz">
 								<a href="#"><i class="fas fa-user-graduate"></i> Competencias</a>
@@ -49,11 +49,6 @@
 					</li>
 
 				</ul>
-				<!-- <form  class="form-note" method="POST" id="form_note" action="
-					 <?php //echo site_url('pages/insert_task'); ?>index.php/pages/insert_task"> --> 
-					
-
-					<button class="btn btn-note" type="button" id="btn_note">Agregar Nota</button>
-				<!-- </form> -->
+				
 			</nav>
 		</aside>

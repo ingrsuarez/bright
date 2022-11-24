@@ -75,7 +75,8 @@ header {
 }
 
 .menu {
-	background: linear-gradient(230deg,#148f89,#1bbbb3); /* #021d49;*/
+/*	background: linear-gradient(230deg,#148f89,#1bbbb3); /* #021d49;*/
+	background-color: #330000;
 	display: flex;
 	flex-direction: row;
 	width: 100vw;
@@ -212,6 +213,21 @@ aside {
 	z-index: 100;
 }
 
+.container {
+	background-color: #fcfefe;
+	margin: 20px;
+	width: 100px;
+	min-width: 300px;
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px #555;
+}
+
+
+
+
+
+
+
 
 
 
@@ -227,7 +243,17 @@ aside {
 		background-size: 1250px;  
 	}
 
+	.container{
+		display: flex;
+    flex-direction: column;
+		margin-left: 220px;
+    margin-right: 10px;
+    width: 100%;
+    min-width: 300px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #555;
 
+	}
 	.login {
 		/*background: #1dcad3;*/
 
@@ -257,7 +283,10 @@ aside {
 		width: 50%;
 
 	}
+	.inside__menu{
 
+		top: 35px;
+	}
 
 	.menu__logo{
 		display: flex;
@@ -286,6 +315,8 @@ aside {
 		height: 50px;
 	}
 
+
+
 	.dropdown__item {
 	display: flex;
 
@@ -299,23 +330,56 @@ aside {
 		display: none;
 	}
 
+	.menu_sub {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
+    flex: 4;
+    box-shadow: 1px 3px 20px lightblue;
+    z-index: 0;
+	}
+	.dropdown__item2 {
+    display: flex;
+    color: #fefefe;
+    text-decoration: none;
+    min-width: 100px;
+    margin-top: 10px;
+    margin-left: 30px;
+    align-items: center;
+    align-content: center;
+    padding: 20px;
+    padding-top: 10px;
+	}
+
+	.dropdown__item2 a {
+    color: #222;
+    text-decoration: none;
+    font-weight: bold;
+    user-select: none;
+    text-shadow: 2px 5px 15px #060606;
+    letter-spacing: 2px;
+	}
+
 	/*#################### ASIDE BAR ############################*/
 
 	aside {
 		display: block;
 		position: fixed;
 		top: 50px;
-		background:  linear-gradient(150deg,#052555,#0b50b7); /*#148f89;*/
+		background:  linear-gradient(150deg,#0011ad,#37363f); /*#148f89;*/
 		color: #fefefe;
 		width: 15vw;
 		min-width: 200px;
 		max-width: 201px;
 		height: 100vh;
 		align-content: center;
-		padding-top: 20px;
+		padding-top: 30px;
 		padding-left: 10px;
 		padding-right: 2px;
-		z-index: 50;
+		z-index: 500;
 		overflow: hidden;
 
 	}
@@ -325,16 +389,16 @@ aside {
 		position: relative;
 		padding-top: 10px;
 		padding-bottom: 10px;
-	    padding-left: 30px;
-	    cursor: pointer;	
-	    transition = "1s";
-	    list-style: none;
-	    line-height: 1.8;
-	    font-size: 14px;
-	    text-decoration: none;
-	    display: none;
-	    overflow-wrap: normal;
-	    text-shadow: 3px 3px 5px #101;
+    padding-left: 30px;
+    cursor: pointer;	
+    transition = "1s";
+    list-style: none;
+    line-height: 1.8;
+    font-size: 14px;
+    text-decoration: none;
+    display: none;
+    overflow-wrap: normal;
+    text-shadow: 3px 3px 5px #101;
 	}
 
 	.fa-user {
@@ -394,6 +458,11 @@ aside {
 
 	/*##########################################################################*/
 	/*############################## MAIN BOARD ##################################*/
+	.main {
+    display: flex;
+    flex-direction: row;
+	}
+
 	.board {
 		padding-left: 220px;
 		padding-top: 60px;
@@ -408,6 +477,99 @@ aside {
 	.grid-item{
 
 	}
+
+	/*##########################################################################*/
+	/*############################## CONTAINERS ##################################*/
+
+	.register_title {
+    height: 40px;
+    background-color: #eb9500;
+    padding: 10px 0px 10px 30px;
+    margin-bottom: 10px;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+	}
+
+	.registros{
+		margin-top: 100px;
+		padding: 10px;
+		background: linear-gradient(to left, rgba(255,255,255,0.2), rgba(255,255,255,1)), url("../images/procedimientos-980x668.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.tabla{
+		margin-top: 100px;
+		padding: 10px;
+		background-color: #f2f2f2;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.column {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		min-height: 50px;
+	}
+
+	.icon {
+	  padding: 10px;
+	  background: #eb9500;
+	  color: white;
+	  min-width: 50px;
+	  text-align: center;
+	  border-top-left-radius: 5px;
+	  border-bottom-left-radius: 5px;
+	}
+
+	.btn{
+		border-radius: 15px;
+		border-style: none;
+		cursor: pointer;
+		font-size: 15px;
+	}
+
+	.btn-register{
+		background-color: #feb236;/*#9de000;*/
+		padding: 10px;
+		margin: 5px;
+		width: fit-content;
+		box-shadow: 5px 5px 5px #555;
+		text-decoration: none;
+		font-size: 14px;
+
+	}
+
+	/*##########################################################################*/
+	/*############################## TABLES ##################################*/
+
+	.listado {
+    position: relative;
+    top: 0;
+    padding-left: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+	}
+
+	.listado__encabezado th {
+    background-color: #ffef96;
+    padding-left: 30px;
+    text-align: left;
+	}
+	.listado__fecha {
+    width: 12%;
+	}
+	.right {
+    text-align: right;
+	}
+	.listado__row td {
+    text-align: left;
+    padding-left: 30px;
+	}
+
 
 
 }

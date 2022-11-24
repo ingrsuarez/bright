@@ -42,6 +42,12 @@ $routes->add('home', 'Home::index');
 
 $routes->get('login', 'Secure::login');
 $routes->add('logout', 'Secure::logout');
+
+$routes->get('equipos', 'Equipos::index');
+$routes->get('equipo/nuevo', 'Equipos::nuevo');
+$routes->get('equipos/listado', 'Equipos::listado');
+$routes->post('equipo/ingresar', 'Equipos::ingresar');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
