@@ -8,34 +8,7 @@
 				<li class="dropdown__item" id="compras">
 					<i class="fa-solid fa-bolt"></i><a href="<?php echo base_url(); ?>/equipos/" >  EQUIPOS</a>
 				</li>
-				<!-- <li class="dropdown__item" id="procedimientos">
-					<a href="<?php echo base_url(); ?>index.php/procedimientos/instructivos/">PROCEDIMIENTOS</a>
-					<ul class="inside__menu" id="procedimientos__inside">
-						<li class="inside__item">
-							<a href="#">Pre-analítica</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Analítica</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Sistema</a>
-						</li>
-					</ul>
-				</li> -->
-				<!-- <li class="dropdown__item" id="registros">
-					<a href="<?php echo base_url(); ?>index.php/registros/circulares/" >REGISTROS</a>
-					<ul class="inside__menu" id="servicios__inside">
-						<li class="inside__item">
-							<a href="#">Servicio 1</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Servicio 2</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Servicio 3</a>
-						</li>
-					</ul>
-				</li> -->
+				
 				<li class="dropdown__item" id="contacto">
 					<i class="fa-solid fa-people-group"></i><a href="<?php echo base_url(); ?>/rrhh/">RRHH</a>
 				</li>
@@ -50,4 +23,3 @@
 				</form>
 			</div>
 		</nav>
-	</header>

@@ -48,6 +48,9 @@ $routes->get('equipo/nuevo', 'Equipos::nuevo');
 $routes->get('equipos/listado', 'Equipos::listado');
 $routes->post('equipo/ingresar', 'Equipos::ingresar');
 
+$routes->get('rrhh', 'Rrhh::index');
+$routes->get('rrhh/nuevo', 'Rrhh::nuevo');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

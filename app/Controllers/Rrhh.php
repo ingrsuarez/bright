@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 use App\Models\Users_model;
-use App\Models\Equipos_model;
 
-class Equipos extends BaseController
+
+class Rrhh extends BaseController
 {
     
     public function index()
@@ -15,7 +15,7 @@ class Equipos extends BaseController
             $data['nombre'] = ucfirst($session->usuario);
             echo view('templates/head');
             echo view('templates/header');
-            echo view('templates/header_subEquipos');
+            echo view('templates/header_subRrhh');
             echo view('templates/aside',$data);
             echo view('templates/footer');
         }else{
@@ -35,9 +35,9 @@ class Equipos extends BaseController
             $data['nombre'] = ucfirst($session->usuario);
             echo view('templates/head');
             echo view('templates/header');
-            echo view('templates/header_subEquipos');
+            echo view('templates/header_subRrhh');
             echo view('templates/aside',$data);
-            echo view('equipos/nuevo_equipo');
+            echo view('rrhh/nuevo_personal');
             echo view('templates/footer');
         }else{
             $mensaje = "Por favor ingrese usuario y contraseña!";
@@ -80,8 +80,7 @@ class Equipos extends BaseController
             $listado = new Equipos_model();
             $array['equipos'] = $listado->getEquipments(); 
             echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subEquipos');
+            echo view('templates/header_sub');
             echo view('templates/aside',$data);
             echo view('equipos/listado_equipos',$array);
             echo view('templates/footer');
