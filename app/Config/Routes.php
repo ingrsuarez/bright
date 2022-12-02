@@ -48,8 +48,16 @@ $routes->get('equipo/nuevo', 'Equipos::nuevo');
 $routes->get('equipos/listado', 'Equipos::listado');
 $routes->post('equipo/ingresar', 'Equipos::ingresar');
 
+$routes->get('ventas', 'Ventas::index');
+$routes->get('ventas/nuevo_remito', 'Ventas::nuevo_remito');
+$routes->get('ventas/ingresarRemito', 'Ventas::ingresar_remito');
+$routes->get('ventas/nuevo_cliente', 'Ventas::nuevo_cliente');
+$routes->post('ventas/ingresar_cliente', 'Ventas::ingresar_cliente');
+
 $routes->get('rrhh', 'Rrhh::index');
 $routes->get('rrhh/nuevo', 'Rrhh::nuevo');
+$routes->post('rrhh/ingresar', 'Rrhh::ingresar');
+$routes->get('rrhh/nomina', 'Rrhh::listado');
 
 /*
  * --------------------------------------------------------------------

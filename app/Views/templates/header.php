@@ -8,7 +8,9 @@
 				<li class="dropdown__item" id="compras">
 					<i class="fa-solid fa-bolt"></i><a href="<?php echo base_url(); ?>/equipos/" >  EQUIPOS</a>
 				</li>
-				
+				<li class="dropdown__item" id="contacto">
+					<i class="fa-solid fa-money-check-dollar"></i><a href="<?php echo base_url(); ?>/ventas/">VENTAS</a>
+				</li>
 				<li class="dropdown__item" id="contacto">
 					<i class="fa-solid fa-people-group"></i><a href="<?php echo base_url(); ?>/rrhh/">RRHH</a>
 				</li>

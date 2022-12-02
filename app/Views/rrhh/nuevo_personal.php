@@ -5,9 +5,7 @@
 			<div class="register_title">
 				<h3><i class="fas fa-tasks"></i>  NUEVO PERSONAL: </h3>
 			</div>
-			<div class="input-container">
-				
-			</div>
+			
 		</div>
 		<div class="column">
 			<div class="input-container">
@@ -24,33 +22,41 @@
 		<div class="column">
 			<div class="input-container">
 				<i class="fa-solid fa-envelope icon"></i>
-				<input type="text" class="input-field" placeholder="Mail:" form="ingresoPersonal" id="serial" name="serial" required>
+				<input type="email" class="input-field" placeholder="Mail:" form="ingresoPersonal" id="mail" name="mail" required>
 
 				
 			</div>
 			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
+				<i class="fa-solid fa-phone icon"></i>
 				<input type="text" class="input-field" placeholder="Teléfono:" form="ingresoPersonal" id="telefono" name="telefono" required>
 			</div>
 		</div>
 		<div class="column">
 			<div class="input-container">
-				<i class="fa-solid fa-battery-three-quarters icon"></i>
-				<input type="text" class="input-field" placeholder="Capacidad:" form="ingresoPersonal" id="capacidad" name="capacidad" maxlength="300" required>
+				<i class="fa-solid fa-business-time icon"></i>
+				<input type="number" class="input-field" placeholder="Horas Semanales:" form="ingresoPersonal" id="horas" name="horas" maxlength="300" required>
 			</div>
 			<div class="input-container">
-				
+				<i class="fa-solid fa-cake-candles icon"></i>
+				<input type="date" class="input-field" placeholder="Fecha de nacimiento:" form="ingresoPersonal" id="fechaNacimiento" name="fechaNacimiento" required>
 			</div>
 
 		</div>
 		<div class="column">
 			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
-				<select class="select-field" id="ubicacion" name="ubicacion" required>
-					<option selected value=''> Ubicación... </option>
-					<option value='BASE'> BASE </option>
-					<option value='SERVICIO'> EN SERVICIO </option>
-				</select>
+				<i class="fa-solid fa-hashtag icon"></i>
+				<input type="text" class="input-field" placeholder="Cuil:" form="ingresoPersonal" id="cuil" name="cuil" maxlength="300">
+			</div>
+			<div class="input-container">
+				<i class="fa-solid fa-id-card icon"></i>
+				<input type="number" class="input-field" placeholder="DNI:" form="ingresoPersonal" id="dni" name="dni" required>
+			</div>
+
+		</div>
+		<div class="column">
+			<div class="input-container">
+				<i class="fa-solid fa-location-dot icon"></i>
+				<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoPersonal" id="domicilio" name="domicilio" maxlength="300" required>
 			</div>
 			<div class="input-container">
 				

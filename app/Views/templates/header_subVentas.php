@@ -5,52 +5,61 @@
 			<div class="menu__logo2" ><a href="#"><i class="fa-solid fa-oil-well"></i></a></div>
 			<ul class="menu__item" >
 				
-				<li class="dropdown__item2" id="inventario">
-					<a href="#" >NÓMINA</a>
-					<ul class="inside__menu" id="inventario__inside">
+				<li class="dropdown__item2" id="remito">
+					<a href="#" >REMITOS</a>
+					<ul class="inside__menu" id="remito__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/rrhh/nuevo/">Nuevo</a>
+							<a href="<?php echo base_url(); ?>/ventas/nuevo_remito/">Nuevo Remito</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/rrhh/nomina/">Listado de personal</a>
+							<a href="<?php echo base_url(); ?>/ventas/listado/">Listado de remitos</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 						<li class="inside__item">
-							<a href="#">Editar Personal</a>
+							<a href="#">Editar Remito</a>
 						</li>
 					</ul>
 				</li>
-				<li class="dropdown__item2" id="mantenimiento">
-					<a href="#" >LICENCIAS</a>
-					<ul class="inside__menu" id="mantenimiento__inside">
+				<li class="dropdown__item2" id="presupuesto">
+					<a href="#" >PRESUPUESTOS</a>
+					<ul class="inside__menu" id="presupuesto__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/nuevo_reporte/">Nueva licencia</a>
+							<a href="<?php echo base_url(); ?>index.php/ventas/nuevo_presupuesto/">Nuevo presupuesto</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/listado_reportes/">Licencias</a>
+							<a href="<?php echo base_url(); ?>index.php/registros/listado_reportes/">Listado de Ordenes</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/nueva_reunion/">Editar licencias</a>
+							<a href="<?php echo base_url(); ?>index.php/registros/nueva_reunion/">Estado equipos</a>
+						</li>
+						<li class="inside__item">
+							<hr class="dropdown__divider">
+						</li>
+						<li class="inside__item">
+							<a href="#"></a>
 						</li>
 					</ul>
 				</li>
-				<li class="dropdown__item2" id="orden_trabajo">
-					<a href="#">CAPACITACIONES</a>
-					<ul class="inside__menu" id="orden_trabajo__inside">
+				<li class="dropdown__item2" id="clientes">
+					<a href="#">CLIENTES</a>
+					<ul class="inside__menu" id="clientes__inside">
 						<li class="inside__item">
-							<a href="#">Nueva capacitación</a>
+							<a href="<?php echo base_url(); ?>/ventas/nuevo_cliente/">Nuevo cliente</a>
 						</li>
 						<li class="inside__item">
-							<a href="#">Listado de capacitaciones</a>
+							<a href="<?php echo base_url(); ?>index.php/registros/listado_ordenes/">Listado de Clientes</a>
 						</li>
 						<li class="inside__item">
-							<a href="#">Cerrar Orden</a>
+							<hr class="dropdown__divider">
+						</li>
+						<li class="inside__item">
+							<a href="#">Editar cliente</a>
 						</li>
 					</ul>
 				</li>
@@ -76,5 +85,5 @@
 			</ul>
 			<div class="menu__logo" ></div>
 		</nav>
-<script type = 'text/javascript' src = "<?php echo base_url();?>/js/menuEquiposJava.js"></script>	
+<script type = 'text/javascript' src = "<?php echo base_url();?>/js/menuVentasJava.js"></script>	
 </header>

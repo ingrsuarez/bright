@@ -53,19 +53,23 @@ class Rrhh extends BaseController
         if ($session->has('usuario'))
         {
             $today = date("Y-m-d H:i:s");
-            $equipo = new Equipos_model();
-            $nuevoEquipo = array('numero' => $this->request->getPost('numero') ,
-                                'serial' => $this->request->getPost('serial'),
-                                'capacidad' => $this->request->getPost('capacidad'),
-                                'ubicacion' => $this->request->getPost('ubicacion'),
-                                'fecha_inicio' => $today,
-                                'estado' => 'activo'
+            $usuario = new Users_model();
+            $nuevoUsuario = array('nombre' => $this->request->getPost('nombre'),
+                                'apellido' => $this->request->getPost('apellido'),
+                                'mail' => $this->request->getPost('mail'),
+                                'telefono' => $this->request->getPost('telefono'),
+                                'fecha_ingreso' => $today,
+                                'horas_semanales' => $this->request->getPost('horas'),
+                                'fecha_nacimiento' => $this->request->getPost('fechaNacimiento'),
+                                'cuil' => $this->request->getPost('cuil'),
+                                'dni' => $this->request->getPost('dni'),
+                                'domicilio' => $this->request->getPost('domicilio')
                                 );
-            $equipo->setNewEquipment($nuevoEquipo);
-            return redirect()->to('/equipos');
-
+            $usuario->setNewUser($nuevoUsuario);
+            return redirect()->to('/rrhh');
+            
         }else{
-        $mensaje = "Por favor ingrese usuario y contraseña!";
+        $mensaje = "Su sesión a expirado!";
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }
@@ -77,12 +81,13 @@ class Rrhh extends BaseController
         if ($session->has('usuario'))
         {
             $data['nombre'] = ucfirst($session->usuario);
-            $listado = new Equipos_model();
-            $array['equipos'] = $listado->getEquipments(); 
+            $nomina = new Users_model();
+            $array['usuarios'] = $nomina->getUsers(); 
             echo view('templates/head');
-            echo view('templates/header_sub');
+            echo view('templates/header');
+            echo view('templates/header_subRrhh');
             echo view('templates/aside',$data);
-            echo view('equipos/listado_equipos',$array);
+            echo view('rrhh/listado_usuarios',$array);
             echo view('templates/footer');
         }else{
             $mensaje = "Por favor ingrese usuario y contraseña!";
