@@ -144,6 +144,78 @@ class Ventas extends BaseController
         }
     }
 
+    public function editar_cliente($id = NULL)
+    {
+        if ($id < 1)
+        {
+           return redirect()->to('/ventas/editarCliente/1');
+
+        }
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            
+            $data['nombre'] = ucfirst($session->usuario);
+            $listado = new Clientes_model();
+            $array['clientes'] = $listado->getCustomer($id);
+            if ($array['equipos'] == NULL)
+            {
+            return redirect()->to('/equipos/editar/1');
+            }    
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/header_subEquipos');
+            echo view('templates/aside',$data);
+            echo view('equipos/editar_equipo',$array);
+            echo view('templates/footer');
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+
+    }
+
+    public function modificar($id = NULL)
+    {
+        
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            
+            $today = date("Y-m-d H:i:s");
+            $equipo = new Equipos_model();
+            $nuevoEquipo = array('id' => $id,
+                                'numero' => $this->request->getPost('numero') ,
+                                'serial' => $this->request->getPost('serial'),
+                                'capacidad' => $this->request->getPost('capacidad'),
+                                'ubicacion' => $this->request->getPost('ubicacion'),
+                                'marca' => $this->request->getPost('marca'),
+                                'estado' => 'activo'
+                                );
+            $equipo->update($id,$nuevoEquipo);
+            return redirect()->to('/equipos/editar/'.$id);
+
+        }else{
+        $mensaje = "Por favor ingrese nuevamente!";
+        $session->setFlashdata('message',$mensaje);
+        return redirect()->to('/login');
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
