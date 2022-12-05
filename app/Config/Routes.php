@@ -47,6 +47,9 @@ $routes->get('equipos', 'Equipos::index');
 $routes->get('equipo/nuevo', 'Equipos::nuevo');
 $routes->get('equipos/listado', 'Equipos::listado');
 $routes->post('equipo/ingresar', 'Equipos::ingresar');
+$routes->get('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
+$routes->post('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
+$routes->post('equipo/modificar/(:num)', 'Equipos::modificar/$1');
 
 $routes->get('ventas', 'Ventas::index');
 $routes->get('ventas/nuevo_remito', 'Ventas::nuevo_remito');

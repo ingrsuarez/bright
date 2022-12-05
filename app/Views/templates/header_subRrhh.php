@@ -26,17 +26,17 @@
 					<a href="#" >LICENCIAS</a>
 					<ul class="inside__menu" id="mantenimiento__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/nuevo_reporte/">Nueva licencia</a>
+							<a href="#">Nueva licencia</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/listado_reportes/">Licencias</a>
+							<a href="#/">Licencias</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/nueva_reunion/">Editar licencias</a>
+							<a href="#">Editar licencias</a>
 						</li>
 					</ul>
 				</li>
@@ -60,10 +60,10 @@
 					<a href="#">DOCUMENTOS</a>
 					<ul class="inside__menu" id="documentos__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/insertar_documento/">Subir documento</a>
+							<a href="#">Subir documento</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/listado_documentos/">Listado de documentos</a>
+							<a href="#">Listado de documentos</a>
 						</li>
 						<li class="inside__item">
 							<a href="#">Servicio 3</a>
