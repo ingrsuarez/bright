@@ -26,17 +26,17 @@
 					<a href="#" >PRESUPUESTOS</a>
 					<ul class="inside__menu" id="presupuesto__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/ventas/nuevo_presupuesto/">Nuevo presupuesto</a>
+							<a href="#">Nuevo presupuesto</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/listado_reportes/">Listado de Ordenes</a>
+							<a href="#">Listado de Ordenes</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/nueva_reunion/">Estado equipos</a>
+							<a href="#">Estado equipos</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
@@ -53,7 +53,7 @@
 							<a href="<?php echo base_url(); ?>/ventas/nuevo_cliente/">Nuevo cliente</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/listado_ordenes/">Listado de Clientes</a>
+							<a href="#">Listado de Clientes</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
@@ -69,13 +69,10 @@
 					<a href="#">DOCUMENTOS</a>
 					<ul class="inside__menu" id="documentos__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/insertar_documento/">Subir documento</a>
+							<a href="#">Subir documento</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>index.php/registros/listado_documentos/">Listado de documentos</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Servicio 3</a>
+							<a href="#">Listado de documentos</a>
 						</li>
 					</ul>
 				</li>

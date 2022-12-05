@@ -7,6 +7,7 @@
 				<tr class="listado__encabezado">
 				  <th class="listado__fecha" scope='col'>Número </th>
 				  <th class="listado__usuario" scope='col'>Capacidad </th>
+				  <th scope='col'>Marca</th>
 				  <th scope='col'>Ubicación</th>
 				  <th scope='col'>Estado</th>
 				</tr>
@@ -19,6 +20,7 @@
 				<tr class="listado__row">						
 					<td class="listado__fecha"> <?php echo $equipos[$i]->numero;?></td>
 					<td> <?php echo $equipos[$i]->capacidad;?></td>
+					<td> <?php echo ucfirst($equipos[$i]->marca);?></td>
 					<td> <?php echo $equipos[$i]->ubicacion;?></td>
 					<td> <?php echo $equipos[$i]->estado;?></td>						
 				</tr><?php

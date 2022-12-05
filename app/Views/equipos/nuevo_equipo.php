@@ -19,11 +19,21 @@
 
 			</div>
 		</div>
-		
 		<div class="column">
 			<div class="input-container">
 				<i class="far fa-address-card icon"></i>
-				<input type="text" class="input-field" placeholder="Serial:" form="ingresoEquipo" id="serial" name="serial" maxlength="300" required>
+				<input type="text" class="input-field" placeholder="Marca:" form="ingresoEquipo" id="marca" name="marca" maxlength="300" required>
+
+				
+			</div>
+			<div class="input-container">
+				
+			</div>
+		</div>
+		<div class="column">
+			<div class="input-container">
+				<i class="far fa-address-card icon"></i>
+				<input type="text" class="input-field" placeholder="Serial:" form="ingresoEquipo" id="serial" name="serial" maxlength="300">
 
 				
 			</div>
