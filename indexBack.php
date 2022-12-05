@@ -1,7 +1,7 @@
 <?php
 
 // Check PHP version.
-$minPhpVersion = '7.4'; // If you update this, don't forget to update `spark`.
+$minPhpVersion = '5'; // If you update this, don't forget to update `spark`.
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     $message = sprintf(
         'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
@@ -29,7 +29,7 @@ chdir(FCPATH);
 
 // Load our paths config file
 // This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . '../app/Config/Paths.php';
+require FCPATH . './app/Config/Paths.php';
 // ^^^ Change this line if you move your application folder
 
 $paths = new Config\Paths();
@@ -65,3 +65,4 @@ $app->setContext($context);
  */
 
 $app->run();
+?>
