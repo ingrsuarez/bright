@@ -18,7 +18,7 @@
 							<hr class="dropdown__divider">
 						</li>
 						<li class="inside__item">
-							<a href="#">Editar Personal</a>
+							<a href="<?php echo base_url(); ?>/rrhh/editar/1">Editar Personal</a>
 						</li>
 					</ul>
 				</li>

@@ -8,7 +8,8 @@ use CodeIgniter\Model;
 class Users_model extends Model
 {
     protected $table = 'usuarios_internos';
-    
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['nombre','apellido','mail','telefono','fecha_ingreso','horas_semanales','fecha_nacimiento','cuil','dni','domicilio'];
 
     public function getUserPassword($user_name,$password)
     {
@@ -32,6 +33,23 @@ class Users_model extends Model
         $db = \Config\Database::connect();  
         $query = $db->table('usuarios_internos')->get();
         $result = $query->getResult();
+        return $result;
+    }
+
+    public function getUser($id=0)
+    {
+
+        $db = \Config\Database::connect();  
+        $query = $db->table('usuarios_internos')->where('id', $id)->get();
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function getLastId()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT MAX(ID) as id FROM usuarios_internos LIMIT 1');
+        $result = $query->getRow();
         return $result;
     }
 }

@@ -53,7 +53,7 @@
 							<a href="<?php echo base_url(); ?>/ventas/nuevo_cliente/">Nuevo cliente</a>
 						</li>
 						<li class="inside__item">
-							<a href="#">Listado de Clientes</a>
+							<a href="<?php echo base_url(); ?>/ventas/listado_clientes/">Listado de Clientes</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
