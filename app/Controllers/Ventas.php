@@ -132,6 +132,7 @@ class Ventas extends BaseController
                                 'domicilio' => $this->request->getPost('domicilio'),
                                 'email' => $this->request->getPost('email'),
                                 'codigo_postal' => $this->request->getPost('postal'),
+                                'descuento' => $this->request->getPost('descuento'),
                                 'estado' => 'activo'
                                 );
             $cliente->setNewClient($nuevoCliente);
@@ -143,6 +144,31 @@ class Ventas extends BaseController
         return redirect()->to('/login');
         }
     }
+
+    public function listadoClientes()
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $data['nombre'] = ucfirst($session->usuario);
+            $listado = new Clientes_model();
+            $array['clientes'] = $listado->getClients(); 
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/header_subVentas');
+            echo view('templates/aside',$data);
+            echo view('ventas/listado_clientes',$array);
+            echo view('templates/footer');
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+
+    }
+
+
 
 }
 

@@ -56,11 +56,15 @@ $routes->get('ventas/nuevo_remito', 'Ventas::nuevo_remito');
 $routes->get('ventas/ingresarRemito', 'Ventas::ingresar_remito');
 $routes->get('ventas/nuevo_cliente', 'Ventas::nuevo_cliente');
 $routes->post('ventas/ingresar_cliente', 'Ventas::ingresar_cliente');
+$routes->get('ventas/listado_clientes', 'Ventas::listadoClientes');
 
 $routes->get('rrhh', 'Rrhh::index');
 $routes->get('rrhh/nuevo', 'Rrhh::nuevo');
 $routes->post('rrhh/ingresar', 'Rrhh::ingresar');
 $routes->get('rrhh/nomina', 'Rrhh::listado');
+$routes->get('rrhh/editar/(:num)', 'Rrhh::editar_personal/$1');
+$routes->post('rrhh/editar/(:num)', 'Rrhh::editar_personal/$1');
+$routes->post('rrhh/modificar/(:num)', 'Rrhh::modificar/$1');
 
 /*
  * --------------------------------------------------------------------

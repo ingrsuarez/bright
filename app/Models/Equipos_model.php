@@ -33,4 +33,13 @@ class Equipos_model extends Model
         $result = $query->getResult();
         return $result;
     }
+
+    public function getLastId()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT MAX(ID) as id FROM equipos LIMIT 1');
+        $result = $query->getRow();
+        return $result;
+    }
+
 }

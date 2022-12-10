@@ -1,7 +1,8 @@
 <?php
 
 // Check PHP version.
-$minPhpVersion = '5'; // If you update this, don't forget to update `spark`.
+$minPhpVersion = '7.4'; // If you update this, don't forget to update `spark`.
+
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     $message = sprintf(
         'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
@@ -65,4 +66,4 @@ $app->setContext($context);
  */
 
 $app->run();
-?>
+
