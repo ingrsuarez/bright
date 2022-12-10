@@ -78,7 +78,9 @@ $next = intval($equipos[0]->id)+1;
 $prev = intval($equipos[0]->id)-1;
 		?>				
 <form method="POST" action="<?php echo site_url('equipos/editar/'.$next); ?>" id="nextEquipo">
+	<input type="hidden" form="nextEquipo" id="next" name="next" value="up">
 </form>
 <form method="POST" action="<?php echo site_url('equipos/editar/'.$prev); ?>" id="prevEquipo">
+	<input type="hidden" form="prevEquipo" id="next" name="next" value="down">
 </form>
 

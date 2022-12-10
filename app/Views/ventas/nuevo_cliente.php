@@ -53,7 +53,8 @@
 				<input type="text" class="input-field" placeholder="Codigo postal:" form="ingresoCliente" id="postal" name="postal" maxlength="300">
 			</div>
 			<div class="input-container">
-				
+				<i class="fa-solid fa-percent icon"></i>
+				<input type="number" class="input-field" placeholder="Descuento:" form="ingresoCliente" id="descuento" name="descuento" maxlength="300">
 			</div>
 
 		</div>

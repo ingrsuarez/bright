@@ -19,7 +19,7 @@ class Equipos extends BaseController
             echo view('templates/aside',$data);
             echo view('templates/footer');
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
@@ -40,7 +40,7 @@ class Equipos extends BaseController
             echo view('equipos/nuevo_equipo');
             echo view('templates/footer');
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
@@ -66,7 +66,7 @@ class Equipos extends BaseController
             return redirect()->to('/equipos');
 
         }else{
-        $mensaje = "Por favor ingrese usuario y contraseña!";
+        $mensaje = "Su sesion ha expirado!";
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }
@@ -87,7 +87,7 @@ class Equipos extends BaseController
             echo view('equipos/listado_equipos',$array);
             echo view('templates/footer');
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
@@ -105,13 +105,30 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            
+            $next = $this->request->getPost('next'); 
             $data['nombre'] = ucfirst($session->usuario);
             $listado = new Equipos_model();
             $array['equipos'] = $listado->getEquipment($id);
             if ($array['equipos'] == NULL)
             {
-            return redirect()->to('/equipos/editar/1');
+                $lastId = $listado->getLastId();
+                if ($id < $lastId->id)
+                {   
+                    if ($next == 'down')
+                    {
+                        $id -= 1;
+                        $array['equipos'] = $listado->getEquipment($id);
+                    }else
+                    {
+                        $id += 1;
+                        $array['equipos'] = $listado->getEquipment($id);
+                    }
+
+                }else
+                {
+                   return redirect()->to('/equipos/editar/1'); 
+                }
+                
             }    
             echo view('templates/head');
             echo view('templates/header');
@@ -149,7 +166,7 @@ class Equipos extends BaseController
             return redirect()->to('/equipos/editar/'.$id);
 
         }else{
-        $mensaje = "Por favor ingrese nuevamente!";
+        $mensaje = "Su sesion ha expirado!";
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }
