@@ -1,7 +1,7 @@
 <?php
 
 require "FPDF/fpdf.php";
-$enlace = new mysqli("127.0.0.1", "u540644031_suarroda", "Ipac2021", "u540644031_bright", 3306);
+// $enlace = new mysqli("127.0.0.1", "u540644031_suarroda", "Ipac2021", "u540644031_bright", 3306);
 
 
 class PDF extends FPDF
