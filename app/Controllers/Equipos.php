@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\Users_model;
 use App\Models\Equipos_model;
+use App\Models\Clientes_model;
 
 class Equipos extends BaseController
 {
@@ -26,6 +27,8 @@ class Equipos extends BaseController
 
 
     }
+
+// -----------------INVENTARIO---------------------------//
 
     public function nuevo()
     {
@@ -55,12 +58,12 @@ class Equipos extends BaseController
             $today = date("Y-m-d H:i:s");
             $equipo = new Equipos_model();
             $nuevoEquipo = array('numero' => $this->request->getPost('numero') ,
-                                'serial' => $this->request->getPost('serial'),
+                                'horas' => $this->request->getPost('horas'),
                                 'capacidad' => $this->request->getPost('capacidad'),
                                 'ubicacion' => $this->request->getPost('ubicacion'),
                                 'marca' => $this->request->getPost('marca'),
                                 'fecha_inicio' => $today,
-                                'estado' => 'activo'
+                                'estado' => 'disponible'
                                 );
             $equipo->setNewEquipment($nuevoEquipo);
             return redirect()->to('/equipos');
@@ -117,11 +120,11 @@ class Equipos extends BaseController
                     if ($next == 'down')
                     {
                         $id -= 1;
-                        $array['equipos'] = $listado->getEquipment($id);
+                        return redirect()->to('/equipos/editar/'.$id);
                     }else
                     {
                         $id += 1;
-                        $array['equipos'] = $listado->getEquipment($id);
+                        return redirect()->to('/equipos/editar/'.$id);
                     }
 
                 }else
@@ -170,6 +173,35 @@ class Equipos extends BaseController
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }
+    }
+
+
+
+// -----------------ORDEN DE SERVICIO---------------------------//
+
+    public function nuevaOrden()
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $data['today'] = date("Y-m-d");
+            $data['nombre'] = ucfirst($session->usuario);
+            $listado = new Equipos_model();
+            $data['equipos'] = $listado->getAvailableEquipments(); 
+            $clientes = new Clientes_model();
+            $data['clientes'] = $clientes->getClients();  
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/header_subEquipos');
+            echo view('templates/aside',$data);
+            echo view('equipos/nueva_orden');
+            echo view('templates/footer');
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+        
     }
 
 }

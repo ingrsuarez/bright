@@ -492,11 +492,30 @@ aside {
 	}
 
 	.registros{
+		position: relative;
 		margin-top: 100px;
 		padding: 10px;
-		background: linear-gradient(to left, rgba(255,255,255,0.2), rgba(255,255,255,1)), url("../images/procedimientos-980x668.jpg");
+		background: linear-gradient(to left, rgba(255,255,255,0.4), rgba(255,255,255,1));
 		background-repeat: no-repeat;
 		background-size: cover;
+	}
+
+	.registros2 {
+		margin-top: 0px;
+		padding: 3px 0px 0px 0px;
+		background: linear-gradient(to left, rgba(255,255,255,0.8), rgba(255,255,255,1));
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.grid2x1 {
+		position: relative;
+		display: grid;
+	  grid-template-columns: 1fr;
+	  grid-template-rows: 1fr 1fr;
+	  column-gap: 5px;
+	  grid-row-gap: 4px;
+	  width: 75%;
 	}
 
 	.tabla{
@@ -508,6 +527,7 @@ aside {
 	}
 
 	.column {
+		position: relative;
 		display: flex;
 		flex-direction: row;
 		width: 100%;
@@ -547,11 +567,12 @@ aside {
 
 	.listado {
     position: relative;
-    top: 0;
+    top: 9px;
     padding-left: 10px;
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 10px;
+    padding-right: 10px;
 	}
 
 	.listado__encabezado th {
@@ -575,5 +596,24 @@ aside {
 		cursor: context-menu; 
 	}
 
+	.price {
+		text-align: right;
+		color: green;
+		border: none;
+		background-color: #eee;
+  	font-size: 18px;
+	}
+
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+  	-webkit-appearance: none;
+  	margin: 0;
+	}
+		.price:hover{
+		border:  blue;
+		-webkit-appearance: auto;
+
+	}
 
 }

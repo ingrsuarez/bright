@@ -33,7 +33,7 @@
 			
 			<div class="input-container">
 				<i class="far fa-address-card icon"></i>
-				<input type="text" class="input-field" placeholder="Serial:" form="editarEquipo" id="serial" name="serial" value="<?php echo $equipos[0]->serial;?>"maxlength="300">
+				<input type="text" class="input-field" placeholder="Horas:" form="editarEquipo" id="horas" name="horas" value="<?php echo ($equipos[0]->horas);?>" >
 
 				
 			</div>

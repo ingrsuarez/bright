@@ -50,10 +50,17 @@ $routes->post('equipo/ingresar', 'Equipos::ingresar');
 $routes->get('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
 $routes->post('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
 $routes->post('equipo/modificar/(:num)', 'Equipos::modificar/$1');
+$routes->get('equipo/nueva_orden', 'Equipos::nuevaOrden');
 
 $routes->get('ventas', 'Ventas::index');
 $routes->get('ventas/nuevo_remito', 'Ventas::nuevo_remito');
-$routes->get('ventas/ingresarRemito', 'Ventas::ingresar_remito');
+$routes->get('ventas/nuevo_remito/(:any)', 'Ventas::nuevo_remito/$1');
+$routes->post('ventas/nuevo_remito/(:any)', 'Ventas::nuevo_remito/$1');
+$routes->post('ventas/ingresarRemito', 'Ventas::ingresar_remito');
+// $routes->add('ventas/ingresarRemito', 'Ventas::ingresar_remito');
+$routes->post('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
+$routes->get('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
+
 $routes->get('ventas/nuevo_cliente', 'Ventas::nuevo_cliente');
 $routes->post('ventas/ingresar_cliente', 'Ventas::ingresar_cliente');
 $routes->get('ventas/listado_clientes', 'Ventas::listadoClientes');

@@ -34,17 +34,17 @@
 						<span id="horiz3"><a href="#"><i class="fas fa-external-link"></i> Accesos  </a><i class="fas fa-angle-right" style="padding-left: 10px;" id="flecha3"></i></span>
 						<ul class="inside__menu__horiz" id="horiz3__inside" style="opacity: 0">
 							<li class="inside__item__horiz">
-								<a href="http://www.colbionqn.com.ar/" target="_blank"><i class="fas fa-laptop-medical" style="padding-right: 10px;"></i> Colegio de bioquímicos</a>
+								<a href="#" target="_blank">#1 </a>
 							</li>
 							<li class="inside__item__horiz">
-								<a href="https://cbn.suap.com.ar/prestador.php/orden" target="_blank"><i class="fas fa-exchange-alt" style="padding-right: 10px;"></i> SUAP Laboratorio</a>
+								<a href="#" target="_blank"> #2</a>
 							</li>
-							<li class="inside__item__horiz">
+<!-- 							<li class="inside__item__horiz">
 								<a href="https://menu.traditum.com/View/Login.aspx" target="_blank"><i class="fas fa-link" style="padding-right: 10px;"></i> Medife</a>
 							</li>
 							<li class="inside__item__horiz">
 								<a href="https://www.experta.com.ar/art/que-hacer-en-caso-de-accidente/"><i class="fas fa-ambulance" style="padding-right: 10px;" target="_blank"></i> ART</a>
-							</li>
+							</li> -->
 						</ul>
 					</li>
 
