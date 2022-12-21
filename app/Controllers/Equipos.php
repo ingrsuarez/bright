@@ -162,8 +162,7 @@ class Equipos extends BaseController
                                 'serial' => $this->request->getPost('serial'),
                                 'capacidad' => $this->request->getPost('capacidad'),
                                 'ubicacion' => $this->request->getPost('ubicacion'),
-                                'marca' => $this->request->getPost('marca'),
-                                'estado' => 'activo'
+                                'marca' => $this->request->getPost('marca')
                                 );
             $equipo->update($id,$nuevoEquipo);
             return redirect()->to('/equipos/editar/'.$id);
