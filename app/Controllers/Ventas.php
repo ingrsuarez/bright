@@ -123,9 +123,9 @@ class Ventas extends BaseController
                 } 
                 echo "
                 <script>
-                    window.open('http://localhost/bright/ventas/pdfRemito/".$remito_id."', '_blank');
+                    window.open('https://bright.admesys.com/ventas/pdfRemito/".$remito_id."', '_blank');
                     alert('There are no fields to generate a report');
-                    window.open('http://localhost/bright/ventas/nuevo_remito/','_self');
+                    window.open('https://bright.admesys.com/ventas/nuevo_remito/','_self');
                 </script>
                 ";
         }else{
