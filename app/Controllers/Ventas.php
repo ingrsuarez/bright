@@ -84,50 +84,61 @@ class Ventas extends BaseController
             $data['equipos'] = $this->request->getPost('equipos');
             $data['horas'] = $this->request->getPost('horas');
             $data['capacidad'] = $this->request->getPost('capacidad');
-            $equipos_seleccionados = array_intersect($data['equipos'],$data['equipos_seleccionados']);
-            $horas = array_intersect_key($data['horas'],$equipos_seleccionados);
-            $capacidad = array_intersect_key($data['capacidad'],$equipos_seleccionados);
-            $remito = new Remitos_model();
-            $movimiento = new Movimientos_model();
-            $equipo = new Equipos_model();
-            $nuevoRemito = array('fecha' => $this->request->getPost('fecha'),
-                                'punto_venta' => '01',
-                                'usuario' => $session->id,
-                                'cliente' => $this->request->getPost('cliente'),
-                                'leyenda' => $this->request->getPost('leyenda'),
-                                'domicilio' => $this->request->getPost('domicilio'),
-                                'hora' => $this->request->getPost('hora'),
-                                'estado' => $this->request->getPost('tipo')
-                                );
-            
-            $remito_id = $remito->setNewRemito($nuevoRemito);
-            foreach ($equipos_seleccionados as $key => $value)
-                {
-                    $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
-                                'usuario' => $session->id,
-                                'equipo' => $value,
-                                'horas' => $horas[$key],
-                                'capacidad' => $capacidad[$key],
-                                'ubicacion' => $this->request->getPost('domicilio'),
-                                'remito' => $remito_id,
-                                'transporte' => $this->request->getPost('transporte'),
-                                'tipo' => $this->request->getPost('tipo')
-                                );
-                    $movimiento->setNewMovimiento($nuevoMovimiento);
-                    if($this->request->getPost('tipo') == 'salida'){
-                        $estado = 'servicio';
-                    }else{
-                        $estado = 'disponible';
-                    }
-                    $equipo->setEstado($value,$estado,$horas[$key]);                    
-                } 
-                echo "
+            if (!empty($data['equipos_seleccionados'])) 
+            {
+                $equipos_seleccionados = array_intersect($data['equipos'],$data['equipos_seleccionados']);
+                $horas = array_intersect_key($data['horas'],$equipos_seleccionados);
+                $capacidad = array_intersect_key($data['capacidad'],$equipos_seleccionados);
+                $remito = new Remitos_model();
+                $movimiento = new Movimientos_model();
+                $equipo = new Equipos_model();
+                $nuevoRemito = array('fecha' => $this->request->getPost('fecha'),
+                                    'punto_venta' => '01',
+                                    'usuario' => $session->id,
+                                    'cliente' => $this->request->getPost('cliente'),
+                                    'leyenda' => $this->request->getPost('leyenda'),
+                                    'domicilio' => $this->request->getPost('domicilio'),
+                                    'hora' => $this->request->getPost('hora'),
+                                    'estado' => $this->request->getPost('tipo')
+                                    );
+                
+                $remito_id = $remito->setNewRemito($nuevoRemito);
+                foreach ($equipos_seleccionados as $key => $value)
+                    {
+                        $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
+                                    'usuario' => $session->id,
+                                    'equipo' => $value,
+                                    'horas' => $horas[$key],
+                                    'capacidad' => $capacidad[$key],
+                                    'ubicacion' => $this->request->getPost('domicilio'),
+                                    'remito' => $remito_id,
+                                    'transporte' => $this->request->getPost('transporte'),
+                                    'tipo' => $this->request->getPost('tipo')
+                                    );
+                        $movimiento->setNewMovimiento($nuevoMovimiento);
+                        if($this->request->getPost('tipo') == 'salida'){
+                            $estado = 'servicio';
+                        }else{
+                            $estado = 'disponible';
+                        }
+                        $equipo->setEstado($value,$estado,$horas[$key]);                    
+                    } 
+                    echo "
                 <script>
                     window.open('https://bright.admesys.com/ventas/pdfRemito/".$remito_id."', '_blank');
-                    alert('There are no fields to generate a report');
+                    
                     window.open('https://bright.admesys.com/ventas/nuevo_remito/','_self');
                 </script>
                 ";
+                }else
+                {
+                    echo "<script> alert('Debe seleccionar un equipo');</script>";
+                    echo "<script> window.open('https://bright.admesys.com/ventas/nuevo_remito/','_self');
+                    </script>";
+                }
+                
+
+                
         }else{
         $mensaje = "Su sesion ha expirado!";
         $session->setFlashdata('message',$mensaje);

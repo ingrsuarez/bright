@@ -112,7 +112,7 @@ public $descripcion;
 		$this->SetDrawColor(0,0,0);
 		$this->Cell(0,0,'','B',0,'L');
 		$this->Ln(1);
-		$this->Cell(40,7,utf8_decode('Descripción:'),0,0,'L',false);
+		$this->Cell(40,7,utf8_decode('Observaciones:'),0,0,'L',false);
 		$this->SetFont('Times','',10);
 		$this->SetTextColor(47,79,79);
 		$this->Cell(40,7,utf8_decode($this->descripcion),0,0,'L',false);
@@ -128,6 +128,18 @@ public $descripcion;
 // Pie de página
 	function Footer()
 	{
+		$this->SetY(-40);
+		$this->SetLineWidth(0.4);
+		$this->SetDrawColor(0,0,0);
+		$this->Cell(30,0,'',0,0,'L');
+		$this->Cell(30,0,'','B',0,'L');
+		$this->Cell(60,0,'',0,0,'L');
+		$this->Cell(30,0,'','B',0,'L');
+		$this->Ln(5);
+		$this->Cell(25,0,'',0,0,'L');
+		$this->Cell(30,0,'Firma y aclaracion emisor.',0,0,'L');
+		$this->Cell(60,0,'',0,0,'L');
+		$this->Cell(30,0,'Firma y aclaracion transportista.',0,0,'L');
 		// Posición: a 1,5 cm del final
 		$this->SetY(-15);
 		// Arial italic 8
