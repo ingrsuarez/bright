@@ -35,13 +35,13 @@
 				
 				<div class="input-container">
 					<i class="fa-solid fa-location-dot icon"></i>
-					<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoRemito" id="domicilio" name="domicilio" maxlength="300" required>	
+					<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoRemito" id="domicilio" name="domicilio" maxlength="300">	
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-tag icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Leyenda:" form="ingresoRemito" id="leyenda" name="leyenda"></textarea>	
+					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="ingresoRemito" id="leyenda" name="leyenda"></textarea>	
 				</div>
 			</div>
 			<div class="column">
