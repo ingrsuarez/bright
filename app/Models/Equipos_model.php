@@ -72,4 +72,12 @@ class Equipos_model extends Model
 
     }
 
+    public function getAvailablePercentage($estado)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT SUM(estado='".$estado."')*100/count(*) as percentage FROM equipos");
+        $result = $query->getRow();
+        return intval($result->percentage);
+    }
+
 }

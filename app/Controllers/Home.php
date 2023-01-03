@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Users_model;
+use App\Models\Equipos_model;
 
 class Home extends BaseController
 {
@@ -11,9 +12,15 @@ class Home extends BaseController
         if ($session->has('usuario'))
         {
             $data['nombre'] = ucfirst($session->usuario);
+            $equipos = new Equipos_model();
+            $disponible = $equipos->getAvailablePercentage('disponible');
+            $servicio = $equipos->getAvailablePercentage('servicio');
+            $revision = $equipos->getAvailablePercentage('revision');
+            $graph['equipos'] = array($disponible,$servicio,$revision);
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/aside',$data);
+            echo view('templates/bar_graph',$graph);
             echo view('templates/footer');
 
         }else{    
