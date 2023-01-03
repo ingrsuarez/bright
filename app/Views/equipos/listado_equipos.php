@@ -23,8 +23,8 @@
 					<td> <?php echo $equipos[$i]->capacidad;?></td>
 					<td> <?php echo ucfirst($equipos[$i]->marca);?></td>
 					<td> <?php echo ucfirst($equipos[$i]->horas);?></td>
-					<td> <?php echo $equipos[$i]->ubicacion;?></td>
-					<td> <?php echo $equipos[$i]->estado;?></td>						
+					<td> <?php echo strtoupper($equipos[$i]->ubicacion);?></td>
+					<td> <?php echo strtoupper($equipos[$i]->estado);?></td>						
 				</tr><?php
 				$i++;
 				}

@@ -60,12 +60,12 @@ class Equipos_model extends Model
         return $result;
     }
 
-    public function setEstado($id = NULL, $estado = NULL, $horas = NULL)
+    public function setEstado($id = NULL, $estado = NULL, $horas = NULL, $ubicacion = NULL)
     {
         $data = [
                     'horas' => $horas,
                     'estado' => $estado,
-                    'ubicacion' => $estado
+                    'ubicacion' => $ubicacion
                 ];
         $db = \Config\Database::connect();
         $db->table('equipos')->where('id', $id)->update($data);

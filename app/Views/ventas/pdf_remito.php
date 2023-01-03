@@ -151,28 +151,8 @@ public $descripcion;
 
 }
 
-// if (array_key_exists('pdf',$_POST)) { //Generar PDF
-			
-	//Proveedor $idprov
-	
-
-	// //Listado de articulos a imprimir $ocitems
-	
-	//Imprimo un pagina por cada Orden de compra
-	// $querynoc = "SELECT * from ocpendientes WHERE numero = ".$ocitems;
-	// $resultadonoc = mysqli_query($enlace,$querynoc);
-	// $row = mysqli_fetch_assoc($resultadonoc);
-	
-	// $queryp = "SELECT * FROM `proveedores` WHERE `id` = '".$idprov."'";
-	// $resultadop = mysqli_query($enlace,$queryp);
-	// $filaprov = mysqli_fetch_assoc($resultadop);
-	//array datos del proveedor
 	
 	$cont = 0;
-	// $numero = date("Y-m-d");
-	// $fecha = substr($numero, 4, 2)."/".substr($numero, 2, 2)."/20".substr($numero, 0, 2);
-	// $fecha = 'fecha';
-	// $numero = '12';
 
 	$pdf = new PDF("P","mm","A4");
 	$pdf-> AliasNbPages();

@@ -52,10 +52,22 @@
 			
 			<div class="input-container">
 				<i class="far fa-address-card icon"></i>
-				<select class="select-field" id="ubicacion" name="ubicacion" required>
-					<option selected value="<?php echo $equipos[0]->ubicacion;?>"> <?php echo $equipos[0]->ubicacion;?> </option>
-					<option value='BASE'> BASE </option>
-					<option value='SERVICIO'> EN SERVICIO </option>
+				<select class="select-field" id="estado" name="estado" required>
+					<option selected value="<?php echo $equipos[0]->estado;?>"> <?php echo strtoupper($equipos[0]->estado);?> </option>
+					<?php if ($equipos[0]->estado <> "disponible"){
+						echo "<option value='disponible'> DISPONIBLE </option>";
+					}
+					
+						if ($equipos[0]->estado <> "servicio"){
+						echo "<option value='servicio'> EN SERVICIO </option>";
+					}
+					
+						if ($equipos[0]->estado <> "revision"){
+						echo "<option value='revision'> EN REVISIÓN </option>";
+					}
+					?>
+					
+					
 				</select>
 			</div>
 			

@@ -29,6 +29,15 @@ class Remitos_model extends Model
         return $result;
     }
 
+     public function getRemitosView()
+    {
+
+        $db = \Config\Database::connect();  
+        $query = $db->table('remitos_view')->orderBy('id', 'DESC')->get();
+        $result = $query->getResult();
+        return $result;
+    }
+
     public function getClient($numeroRemito)
     {
         $db = \Config\Database::connect();

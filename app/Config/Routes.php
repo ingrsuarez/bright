@@ -57,7 +57,7 @@ $routes->get('ventas/nuevo_remito', 'Ventas::nuevo_remito');
 $routes->get('ventas/nuevo_remito/(:any)', 'Ventas::nuevo_remito/$1');
 $routes->post('ventas/nuevo_remito/(:any)', 'Ventas::nuevo_remito/$1');
 $routes->post('ventas/ingresarRemito', 'Ventas::ingresar_remito');
-// $routes->add('ventas/ingresarRemito', 'Ventas::ingresar_remito');
+$routes->get('ventas/listado_remitos', 'Ventas::listadoRemitos');
 $routes->post('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 $routes->get('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 

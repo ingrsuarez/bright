@@ -105,12 +105,15 @@ class Ventas extends BaseController
                 $remito_id = $remito->setNewRemito($nuevoRemito);
                 foreach ($equipos_seleccionados as $key => $value)
                     {
+                        $cliente = $remito->getClient($remito_id);
+                        $ubicacion = $cliente->nombre;
                         $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
                                     'usuario' => $session->id,
                                     'equipo' => $value,
                                     'horas' => $horas[$key],
                                     'capacidad' => $capacidad[$key],
-                                    'ubicacion' => $this->request->getPost('domicilio'),
+                                    'ubicacion' => strtoupper($ubicacion),
+                                    'cliente' => strtoupper($this->request->getPost('cliente')),
                                     'remito' => $remito_id,
                                     'transporte' => $this->request->getPost('transporte'),
                                     'tipo' => $this->request->getPost('tipo')
@@ -119,19 +122,18 @@ class Ventas extends BaseController
                         if($this->request->getPost('tipo') == 'salida'){
                             $estado = 'servicio';
                         }else{
-                            $estado = 'disponible';
+                            $estado = 'revision';
+                            $ubicacion = 'base';
                         }
-                        $equipo->setEstado($value,$estado,$horas[$key]);                    
+
+                        $equipo->setEstado($value,$estado,$horas[$key],$ubicacion);                    
                     } 
-                    echo "
-                <script>
-                    window.open('https://bright.admesys.com/ventas/pdfRemito/".$remito_id."', '_blank');
-                    
-                    window.open('https://bright.admesys.com/ventas/nuevo_remito/','_self');
-                </script>
-                ";
+                    $data['remito_id'] = $remito_id;
+                    echo view('ventas/generar_remito',$data);
+                
                 }else
                 {
+                    
                     echo "<script> alert('Debe seleccionar un equipo');</script>";
                     echo "<script> window.open('https://bright.admesys.com/ventas/nuevo_remito/','_self');
                     </script>";
@@ -147,44 +149,36 @@ class Ventas extends BaseController
     }
 
 
+    public function listadoRemitos()
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $data['nombre'] = ucfirst($session->usuario);
+            $listadoRemitos = new Remitos_model();
+            $array['remitos'] = $listadoRemitos->getRemitosView(); 
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/header_subVentas');
+            echo view('templates/aside',$data);
+            echo view('ventas/listado_remitos',$array);
+            echo view('templates/footer');
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
 
+
+    }
 
     public function pdf_remito($numeroRemito)
     {
-        
-
         $remito = new Remitos_model();
         $data['cliente'] = $remito->getClient($numeroRemito);
         $data['remito'] = $remito->getRemito($numeroRemito);
         $data['movimientos'] = $remito->getMovimientos($numeroRemito);
-        // var_dump($data['movimientos']);
         echo view('ventas/pdf_remito',$data);
-        // if (!empty($data['idprov']))
-        // {
-        //     $data['numero'] = $this->input->post('ocselect');
-        //     $ocNumber = $this->input->post('ocselect');
-        //     if (!empty($ocNumber))
-        //     {
-        //         $data['items'] = $this->Compras_model->oc_items($ocNumber);//Fila
-        //         //Send selected proveedor
-        //         $data['filaprov'] = $this->Compras_model->select_proveedor($data['idprov']);
-        //         $this->load->view('compras/pdfoc',$data);
-        //     }else
-        //     {
-        //         //User didn´t select order! 
-        //         $mensaje = "Por favor seleccione una orden de compra!";
-        //         echo ("<script>
-        //         alert('".$mensaje."')</script>");
-        //         redirect('/compras/imprimirOC/', 'refresh');
-        //     }
-        // }else
-        // {
-        //     //User didn´t select supplier!  
-        //     $mensaje = "Por favor seleccione un proveedor!";
-        //     echo ("<script>
-        //     alert('".$mensaje."')</script>");
-        //     redirect('/compras/imprimirOC/', 'refresh');
-        // }
     }
 
 
@@ -286,6 +280,8 @@ class Ventas extends BaseController
 
 
     }
+
+
 
 
 

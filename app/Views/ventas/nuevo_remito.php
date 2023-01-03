@@ -80,6 +80,7 @@
 					<th class="listado__usuario" scope='col'>Capacidad </th>
 					<th scope='col'>Horas </th>
 					<th scope='col'>Marca</th>
+					<th scope='col'>Ubicacion</th>
 					<th scope='col'>Estado</th>
 				</tr>
 			</thead>
@@ -92,9 +93,10 @@
 					<td><input class='ingresoRemito' type='checkbox' id="<?php echo $equipos[$i]->id ?>" name='equipos_seleccionados[]' value="<?php echo $equipos[$i]->id ?>"><input type="hidden" name="equipos[]" value="<?php echo $equipos[$i]->id ?>"></td>					
 					<td class="listado__fecha"> <?php echo $equipos[$i]->numero;?></td>
 					<td><input type='hidden' name='capacidad[]'value="<?php echo $equipos[$i]->capacidad;?>"> <?php echo $equipos[$i]->capacidad;?></td>
-					<td> <input class="price" type="number" min="<?php echo $equipos[$i]->horas;?>" step="any" name="horas[]" value="<?php echo $equipos[$i]->horas;?>" style="width: 80px;"></td>
-					<td style="width: 150px;"> <?php echo ucfirst($equipos[$i]->marca);?></td>
-					<td style="width: 150px;"> <?php echo ucfirst($equipos[$i]->estado);?></td>				
+					<td><input class='price' type='number' value='<?php echo $equipos[$i]->horas;?>' step='any' name='horas[]' style='width: 80px;' readonly></td>
+					<td style="width: 150px;"> <?php echo $equipos[$i]->marca;?></td>
+					<td style="width: 150px;"> <?php echo strtoupper($equipos[$i]->ubicacion);?></td>
+					<td style="width: 150px;"> <?php echo strtoupper($equipos[$i]->estado);?></td>				
 				</tr><?php
 				$i++;
 				}
@@ -122,96 +124,50 @@
 								
 								var json = JSON.parse(result);
 								
-								json.forEach(function(value,label){
-									cont++;
-									$("#tablaEquipos>tbody").append("<tr class='listado__row'><td><input class='ingresoRemito' type='checkbox' id="
-										+json[label].id+" name='equipos_seleccionados[]' value="
-										+json[label].id+"><input type='hidden' name='equipos[]' value="
-										+json[label].id+"></td>"
-										+"<td scope='row' class = 'listado__fecha'>"+json[label].numero+"</td>"
-										+"<td>"+json[label].capacidad+"<input type='hidden' name='capacidad[]'value="+json[label].capacidad+"></td>"
-										+"<td><input class='price' type='number' min='"
-										+json[label].horas+"' step='any' name='horas[]' value='"
-										+json[label].horas+"' style='width: 80px;'></td>"
-										+"<td>"+ json[label].marca+"</td>"
-										+"<td>"+ json[label].estado+"</td>"
-										+"</tr>");
+								if (tipoRemito == "salida"){
+									json.forEach(function(value,label){
+										cont++;
+										$("#tablaEquipos>tbody").append("<tr class='listado__row'><td><input class='ingresoRemito' type='checkbox' id="
+											+json[label].id+" name='equipos_seleccionados[]' value="
+											+json[label].id+"><input type='hidden' name='equipos[]' value="
+											+json[label].id+"></td>"
+											+"<td scope='row' class = 'listado__fecha'>"+json[label].numero+"</td>"
+											+"<td>"+json[label].capacidad+"<input type='hidden' name='capacidad[]'value="+json[label].capacidad+"></td>"
+											+"<td><input class='price' type='number' min='"
+											+json[label].horas+"' step='any' name='horas[]' value='"
+											+json[label].horas+"' style='width: 80px;' readonly></td>"
+											+"<td>"+ json[label].marca+"</td>"
+											+"<td>"+ json[label].ubicacion.toUpperCase()+"</td>"
+											+"<td>"+ json[label].estado.toUpperCase()+"</td>"
+											+"</tr>");
 
-									
-								});
+										
+									});
+								}else{
+									json.forEach(function(value,label){
+										cont++;
+										$("#tablaEquipos>tbody").append("<tr class='listado__row'><td><input class='ingresoRemito' type='checkbox' id="
+											+json[label].id+" name='equipos_seleccionados[]' value="
+											+json[label].id+"><input type='hidden' name='equipos[]' value="
+											+json[label].id+"></td>"
+											+"<td scope='row' class = 'listado__fecha'>"+json[label].numero+"</td>"
+											+"<td>"+json[label].capacidad+"<input type='hidden' name='capacidad[]'value="+json[label].capacidad+"></td>"
+											+"<td><input class='price' type='number' min='"
+											+json[label].horas+"' step='any' name='horas[]' value='"
+											+json[label].horas+"' style='width: 80px;'></td>"
+											+"<td>"+ json[label].marca+"</td>"
+											+"<td>"+ json[label].ubicacion.toUpperCase()+"</td>"
+											+"<td>"+ json[label].estado.toUpperCase()+"</td>"
+											+"</tr>");	
+								
+									});
+								}		
 							});
+
 						});
-
-
 					});
 		</script> 
 
-	<!-- <div class="container registros">
-		<div class="column">
-			<div class="register_title">
-				<h3><i class="fas fa-tasks"></i>  NUEVO REMITO: </h3>
-			</div>
-			<div class="input-container">
-				
-			</div>
-		</div>
-		<div class="column">
-			<div class="input-container">
-				<i class="fa-solid fa-tag icon"></i>
-				<input type="text" class="input-field" placeholder="Número:" form="ingresoEquipo" id="numero" name="numero" maxlength="300" autofocus required>	
-			</div>
-			<div class="input-container">
-				
-
-			</div>
-		</div>
-		
-		<div class="column">
-			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
-				<input type="text" class="input-field" placeholder="Serial:" form="ingresoEquipo" id="serial" name="serial" maxlength="300" required>
-
-				
-			</div>
-			<div class="input-container">
-				
-			</div>
-		</div>
-		<div class="column">
-			<div class="input-container">
-				<i class="fa-solid fa-battery-three-quarters icon"></i>
-				<input type="text" class="input-field" placeholder="Capacidad:" form="ingresoEquipo" id="capacidad" name="capacidad" maxlength="300" required>
-			</div>
-			<div class="input-container">
-				
-			</div>
-
-		</div>
-		<div class="column">
-			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
-				<select class="select-field" id="ubicacion" name="ubicacion" required>
-					<option selected value=''> Ubicación... </option>
-					<option value='BASE'> BASE </option>
-					<option value='SERVICIO'> EN SERVICIO </option>
-				</select>
-			</div>
-			<div class="input-container">
-				
-			</div>
-
-		</div>
-		<div class="column">
-			<div class="input-container">
-				<i class="icon"></i>
-				<input type="submit" class="btn btn-register" form="ingresoEquipo" style="margin-left: 40px; width: 100px;" value="Ingresar">
-			</div>
-			<div class="input-container">
-				
-			</div>
-		</div>
-		
-	</div> -->
 </form>					
 
 

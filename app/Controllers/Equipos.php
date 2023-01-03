@@ -161,7 +161,7 @@ class Equipos extends BaseController
                                 'numero' => $this->request->getPost('numero') ,
                                 'serial' => $this->request->getPost('serial'),
                                 'capacidad' => $this->request->getPost('capacidad'),
-                                'ubicacion' => $this->request->getPost('ubicacion'),
+                                'estado' => $this->request->getPost('estado'),
                                 'marca' => $this->request->getPost('marca')
                                 );
             $equipo->update($id,$nuevoEquipo);
