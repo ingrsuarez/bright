@@ -13,7 +13,7 @@
             <div class="cont_board">
                 <div class="graf_board">
                     <div class="barra">
-                        <div class="sub_barra b<?php echo $equipos[0]?>">
+                        <div class="sub_barra2 b<?php echo $equipos[0]?>">
                             <div class="tag_g"><?php echo $equipos[0]?>%</div>
                             <div class="tag_leyenda">Disponible</div>
                         </div>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="barra">
-                        <div class="sub_barra b<?php echo $equipos[2]?>">
+                        <div class="sub_barra3 b<?php echo $equipos[2]?>">
                             <div class="tag_g"><?php echo $equipos[2]?>%</div>
                             <div class="tag_leyenda">Revision</div>
                         </div>
