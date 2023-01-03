@@ -32,8 +32,8 @@
 		</div>
 		<div class="column">
 			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
-				<input type="text" class="input-field" placeholder="Serial:" form="ingresoEquipo" id="serial" name="serial" maxlength="300">
+				<i class="fa-solid fa-clock icon"></i>
+				<input type="text" class="input-field" placeholder="Horas:" form="ingresoEquipo" id="horas" name="horas" maxlength="300">
 
 				
 			</div>

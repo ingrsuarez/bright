@@ -12,7 +12,7 @@
 							<a href="<?php echo base_url(); ?>/ventas/nuevo_remito/">Nuevo Remito</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/ventas/listado/">Listado de remitos</a>
+							<a href="<?php echo base_url(); ?>/ventas/listado_remitos/">Listado de remitos</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">

@@ -15,6 +15,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>/favicon.png">
 	<link rel="manifest" href="<?php echo base_url(); ?>/site.webmanifest">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>/css/header.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>/css/graph.css">
 
 
 	<title>BRIGHT</title>

@@ -4,6 +4,9 @@ namespace App\Controllers;
 use App\Models\Users_model;
 use App\Models\Equipos_model;
 use App\Models\Clientes_model;
+use App\Models\Remitos_model;
+use App\Models\Movimientos_model;
+
 
 class Ventas extends BaseController
 {
@@ -20,7 +23,7 @@ class Ventas extends BaseController
             echo view('templates/aside',$data);
             echo view('templates/footer');
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
@@ -28,25 +31,47 @@ class Ventas extends BaseController
 
     }
 
-    public function nuevo_remito()
+    public function nuevo_remito($param = NULL)
     {
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
-            echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subVentas');
-            echo view('templates/aside',$data);
-            echo view('ventas/nuevo_remito');
-            echo view('templates/footer');
+            $listado = new Equipos_model();
+            if ($param == NULL)
+            {
+                $data['today'] = date("Y-m-d");
+                $data['nombre'] = ucfirst($session->usuario);
+                
+                $data['equipos'] = $listado->getAvailableEquipments(); 
+                $clientes = new Clientes_model();
+                $data['clientes'] = $clientes->getClients();  
+                $data['hora'] = date('H:i');
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subVentas');
+                echo view('templates/aside',$data);
+                echo view('ventas/nuevo_remito');
+                echo view('templates/footer');
+            }elseif ($param == "salida")
+                {
+                    $tipoRemito = $this->request->getPost('tipoRemito');  
+                    if ($tipoRemito == 'salida'){
+                        $array['equipos'] = $listado->getAvailableEquipments();
+                    }elseif ($tipoRemito == 'retorno')
+                    {
+                        $array['equipos'] = $listado->getWorkingEquipments();
+                    }
+
+                    print_r(json_encode($array['equipos']));
+
+
+                }
+            
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
-
-
     }
 
     public function ingresar_remito()
@@ -54,24 +79,112 @@ class Ventas extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $today = date("Y-m-d H:i:s");
-            $equipo = new Equipos_model();
-            $nuevoEquipo = array('numero' => $this->request->getPost('numero') ,
-                                'serial' => $this->request->getPost('serial'),
-                                'capacidad' => $this->request->getPost('capacidad'),
-                                'ubicacion' => $this->request->getPost('ubicacion'),
-                                'fecha_inicio' => $today,
-                                'estado' => 'activo'
-                                );
-            $equipo->setNewEquipment($nuevoEquipo);
-            return redirect()->to('/equipos');
+            
+            $data['equipos_seleccionados'] = $this->request->getPost('equipos_seleccionados');
+            $data['equipos'] = $this->request->getPost('equipos');
+            $data['horas'] = $this->request->getPost('horas');
+            $data['capacidad'] = $this->request->getPost('capacidad');
+            if (!empty($data['equipos_seleccionados'])) 
+            {
+                $equipos_seleccionados = array_intersect($data['equipos'],$data['equipos_seleccionados']);
+                $horas = array_intersect_key($data['horas'],$equipos_seleccionados);
+                $capacidad = array_intersect_key($data['capacidad'],$equipos_seleccionados);
+                $remito = new Remitos_model();
+                $movimiento = new Movimientos_model();
+                $equipo = new Equipos_model();
+                $nuevoRemito = array('fecha' => $this->request->getPost('fecha'),
+                                    'punto_venta' => '01',
+                                    'usuario' => $session->id,
+                                    'cliente' => $this->request->getPost('cliente'),
+                                    'leyenda' => $this->request->getPost('leyenda'),
+                                    'domicilio' => $this->request->getPost('domicilio'),
+                                    'hora' => $this->request->getPost('hora'),
+                                    'estado' => $this->request->getPost('tipo')
+                                    );
+                
+                $remito_id = $remito->setNewRemito($nuevoRemito);
+                foreach ($equipos_seleccionados as $key => $value)
+                    {
+                        $cliente = $remito->getClient($remito_id);
+                        $ubicacion = $cliente->nombre;
+                        $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
+                                    'usuario' => $session->id,
+                                    'equipo' => $value,
+                                    'horas' => $horas[$key],
+                                    'capacidad' => $capacidad[$key],
+                                    'ubicacion' => strtoupper($ubicacion),
+                                    'cliente' => strtoupper($this->request->getPost('cliente')),
+                                    'remito' => $remito_id,
+                                    'transporte' => $this->request->getPost('transporte'),
+                                    'tipo' => $this->request->getPost('tipo')
+                                    );
+                        $movimiento->setNewMovimiento($nuevoMovimiento);
+                        if($this->request->getPost('tipo') == 'salida'){
+                            $estado = 'servicio';
+                        }else{
+                            $estado = 'revision';
+                            $ubicacion = 'base';
+                        }
 
+                        $equipo->setEstado($value,$estado,$horas[$key],$ubicacion);                    
+                    } 
+                    $data['remito_id'] = $remito_id;
+                    echo view('ventas/generar_remito',$data);
+                
+                }else
+                {
+                    
+                    echo "<script> alert('Debe seleccionar un equipo');</script>";
+                    echo "<script> window.open('https://bright.admesys.com/ventas/nuevo_remito/','_self');
+                    </script>";
+                }
+                
+
+                
         }else{
-        $mensaje = "Por favor ingrese usuario y contraseña!";
+        $mensaje = "Su sesion ha expirado!";
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }
     }
+
+
+    public function listadoRemitos()
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $data['nombre'] = ucfirst($session->usuario);
+            $listadoRemitos = new Remitos_model();
+            $array['remitos'] = $listadoRemitos->getRemitosView(); 
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/header_subVentas');
+            echo view('templates/aside',$data);
+            echo view('ventas/listado_remitos',$array);
+            echo view('templates/footer');
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+
+    }
+
+    public function pdf_remito($numeroRemito)
+    {
+        $remito = new Remitos_model();
+        $data['cliente'] = $remito->getClient($numeroRemito);
+        $data['remito'] = $remito->getRemito($numeroRemito);
+        $data['movimientos'] = $remito->getMovimientos($numeroRemito);
+        echo view('ventas/pdf_remito',$data);
+    }
+
+
+
+
+
 
     public function listado()
     {
@@ -88,7 +201,7 @@ class Ventas extends BaseController
             echo view('equipos/listado_equipos',$array);
             echo view('templates/footer');
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
@@ -109,7 +222,7 @@ class Ventas extends BaseController
             echo view('ventas/nuevo_cliente');
             echo view('templates/footer');
         }else{
-            $mensaje = "Por favor ingrese usuario y contraseña!";
+            $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
             return redirect()->to('/login');
         }
@@ -139,7 +252,7 @@ class Ventas extends BaseController
             return redirect()->to('/ventas/nuevo_cliente');
 
         }else{
-        $mensaje = "Por favor ingrese usuario y contraseña!";
+        $mensaje = "Su sesion ha expirado!";
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }
@@ -218,6 +331,8 @@ class Ventas extends BaseController
         return redirect()->to('/login');
         }
     }
+
+
 
 }
 

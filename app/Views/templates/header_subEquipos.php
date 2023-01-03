@@ -50,7 +50,7 @@
 					<a href="#">ORDEN DE SERVICIO</a>
 					<ul class="inside__menu" id="orden_trabajo__inside">
 						<li class="inside__item">
-							<a href="#">Nueva Orden</a>
+							<a href="<?php echo base_url(); ?>/equipo/nueva_orden">Nueva Orden</a>
 						</li>
 						<li class="inside__item">
 							<a href="#">Listado de Ordenes</a>
