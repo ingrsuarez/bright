@@ -18,6 +18,13 @@ class Equipos_model extends Model
         
     }
 
+    public function setNewOrder($data)
+    {
+        $db = \Config\Database::connect();
+        $db->table('ordenes_servicio')->insert($data);   
+        
+    }
+
     public function getEquipments()
     {
         $db = \Config\Database::connect();  
@@ -42,10 +49,36 @@ class Equipos_model extends Model
         return $result;
     }
 
+    public function getEquipmentMovements($id=1)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT * FROM `movimientos` WHERE equipo = ".$id." ORDER BY id DESC LIMIT 10");
+        $result = $query->getResult();
+        return $result;
+    }
+     
+
+    public function getLastRemitos($id=1)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT remitos.id, movimientos.equipo, remitos.estado FROM remitos INNER JOIN movimientos ON remitos.id = movimientos.remito WHERE remitos.estado = 'retorno' AND movimientos.equipo = ".$id." ORDER BY remitos.id DESC");
+        $result = $query->getResult();
+        return $result;
+    }
+
     public function getAvailableEquipments()
     {
         $db = \Config\Database::connect();  
         $query = $db->table('equipos')->where('estado','disponible')->get();
+
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function getInspectionEquipments()
+    {
+        $db = \Config\Database::connect();  
+        $query = $db->table('equipos')->where('estado','inspeccionar')->get();
 
         $result = $query->getResult();
         return $result;
@@ -66,6 +99,16 @@ class Equipos_model extends Model
                     'horas' => $horas,
                     'estado' => $estado,
                     'ubicacion' => $ubicacion
+                ];
+        $db = \Config\Database::connect();
+        $db->table('equipos')->where('id', $id)->update($data);
+
+    }
+
+    public function setEstadoOnly($id = NULL, $estado = NULL)
+    {
+        $data = [
+                    'estado' => $estado,
                 ];
         $db = \Config\Database::connect();
         $db->table('equipos')->where('id', $id)->update($data);

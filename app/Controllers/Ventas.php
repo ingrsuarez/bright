@@ -122,7 +122,7 @@ class Ventas extends BaseController
                         if($this->request->getPost('tipo') == 'salida'){
                             $estado = 'servicio';
                         }else{
-                            $estado = 'revision';
+                            $estado = 'inspeccionar';
                             $ubicacion = 'base';
                         }
 
@@ -281,6 +281,8 @@ class Ventas extends BaseController
             echo view('templates/header_subEquipos');
             echo view('templates/aside',$data);
             echo view('equipos/editar_equipo',$array);
+        }
+    }
 
     public function listadoClientes()
     {
@@ -326,7 +328,7 @@ class Ventas extends BaseController
             return redirect()->to('/equipos/editar/'.$id);
 
         }else{
-        $mensaje = "Por favor ingrese nuevamente!";
+        $mensaje = "Su sesion ha expirado!";
         $session->setFlashdata('message',$mensaje);
         return redirect()->to('/login');
         }

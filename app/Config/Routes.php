@@ -51,6 +51,10 @@ $routes->get('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
 $routes->post('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
 $routes->post('equipo/modificar/(:num)', 'Equipos::modificar/$1');
 $routes->get('equipo/nueva_orden', 'Equipos::nuevaOrden');
+$routes->post('equipo/nueva_orden/(:any)', 'Equipos::nuevaOrden/$1');
+$routes->get('equipo/nueva_orden/(:any)', 'Equipos::nuevaOrden/$1');
+$routes->get('equipos/listado_ordenes', 'Equipos::listadoOrdenes');
+
 
 $routes->get('ventas', 'Ventas::index');
 $routes->get('ventas/nuevo_remito', 'Ventas::nuevo_remito');

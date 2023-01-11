@@ -20,6 +20,15 @@ class Remitos_model extends Model
         
     }
 
+    public function setEstadoRemito($id,$estado)
+    {
+        $data = [
+                    'estado' => $estado,
+                ];
+        $db = \Config\Database::connect();
+        $db->table('remitos')->where('id', $id)->update($data);
+    }
+
     public function getRemitos()
     {
 

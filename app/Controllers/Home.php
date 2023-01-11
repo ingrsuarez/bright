@@ -15,7 +15,7 @@ class Home extends BaseController
             $equipos = new Equipos_model();
             $disponible = $equipos->getAvailablePercentage('disponible');
             $servicio = $equipos->getAvailablePercentage('servicio');
-            $revision = $equipos->getAvailablePercentage('revision');
+            $revision = $equipos->getAvailablePercentage('inspeccionar');
             $graph['equipos'] = array($disponible,$servicio,$revision);
             echo view('templates/head');
             echo view('templates/header');
@@ -49,14 +49,20 @@ class Home extends BaseController
                 $new_session = (array)$user_data[0];
                 $session->set($new_session);    
                 $data['nombre'] = ucfirst($session->usuario);
+                $equipos = new Equipos_model();
+                $disponible = $equipos->getAvailablePercentage('disponible');
+                $servicio = $equipos->getAvailablePercentage('servicio');
+                $revision = $equipos->getAvailablePercentage('revision');
+                $graph['equipos'] = array($disponible,$servicio,$revision);
                 echo view('templates/head');
                 echo view('templates/header');
                 echo view('templates/aside',$data);
+                echo view('templates/bar_graph',$graph);
                 echo view('templates/footer');
             }else
             {
 
-                $mensaje = "Por favor introduzca un usuario y contraseña correctos!";
+                $mensaje = "Su sesion ha expirado!";
                 $session->setFlashdata('message',$mensaje);
                 return redirect()->to('/login');
             }            

@@ -26,14 +26,14 @@
 					<a href="#" >MANTENIMIENTO</a>
 					<ul class="inside__menu" id="mantenimiento__inside">
 						<li class="inside__item">
-							<a href="#">Nueva Orden</a>
+							<a href="<?php echo base_url(); ?>/equipo/nueva_orden">Nueva Orden</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 
 						<li class="inside__item">
-							<a href="#">Listado de Ordenes</a>
+							<a href="<?php echo base_url(); ?>/equipos/listado_ordenes">Listado de Ordenes</a>
 						</li>
 						<li class="inside__item">
 							<a href="#">Estado equipos</a>
@@ -50,7 +50,7 @@
 					<a href="#">ORDEN DE SERVICIO</a>
 					<ul class="inside__menu" id="orden_trabajo__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/equipo/nueva_orden">Nueva Orden</a>
+							<a href="#">Nueva Orden</a>
 						</li>
 						<li class="inside__item">
 							<a href="#">Listado de Ordenes</a>

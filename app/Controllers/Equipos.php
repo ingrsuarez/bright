@@ -4,6 +4,8 @@ namespace App\Controllers;
 use App\Models\Users_model;
 use App\Models\Equipos_model;
 use App\Models\Clientes_model;
+use App\Models\Ordenes_model;
+use App\Models\Remitos_model;
 
 class Equipos extends BaseController
 {
@@ -176,25 +178,68 @@ class Equipos extends BaseController
 
 
 
-// -----------------ORDEN DE SERVICIO---------------------------//
+// -----------------ORDEN DE MANTENIMIENTO---------------------------//
 
-    public function nuevaOrden()
+    public function nuevaOrden($param = NULL)
     {
         $session = \Config\Services::session();
         if ($session->has('usuario'))
-        {
-            $data['today'] = date("Y-m-d");
-            $data['nombre'] = ucfirst($session->usuario);
-            $listado = new Equipos_model();
-            $data['equipos'] = $listado->getAvailableEquipments(); 
-            $clientes = new Clientes_model();
-            $data['clientes'] = $clientes->getClients();  
-            echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subEquipos');
-            echo view('templates/aside',$data);
-            echo view('equipos/nueva_orden');
-            echo view('templates/footer');
+        { 
+            if ($param == NULL)
+            { 
+                $data['message'] = $session->getFlashdata('message');
+                $data['today'] = date("Y-m-d");
+                $data['nombre'] = ucfirst($session->usuario);
+                $listado = new Equipos_model();
+                $data['equipos'] = $listado->getInspectionEquipments();
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subEquipos');
+                echo view('templates/aside',$data);
+                echo view('equipos/nueva_orden');
+                echo view('templates/footer');
+            }elseif($param == "equipo")
+            {
+                $numero_equipo = $this->request->getPost('idEquipo'); 
+                $data['remitos_url'] = site_url("/ventas/pdfRemito/");
+                $equipo = new Equipos_model();
+                $data['equipo'] = $equipo->getEquipmentMovements($numero_equipo);
+                $data['remitos'] = $equipo->getLastRemitos($numero_equipo);
+                
+                
+                print_r(json_encode($data));
+            }elseif($param == "guardar")
+            {
+                $button = $this->request->getPost('button');
+                $numeroRemito = $this->request->getPost('remitos');
+                $idEquipo = $this->request->getPost('equipo');
+                $remito = new Remitos_model();
+                $equipo = new Equipos_model();
+                if ($button == 'Guardar'){
+                    $estado = 'abierta';
+                }else
+                {
+                    $estado = 'cerrada';
+                    $remito->setEstadoRemito($numeroRemito,'facturar');
+                    $equipo->setEstadoOnly($idEquipo,'disponible');
+                }
+                
+                $nuevaOrden = array(
+                                'fecha' => $this->request->getPost('fecha') ,
+                                'equipo' => $this->request->getPost('equipo'),
+                                'descripcion' => $this->request->getPost('descripcion'),
+                                'repuestos' => $this->request->getPost('repuestos'),
+                                'usuario' => $session->id,                            
+                                'horas' => $this->request->getPost('horas'),
+                                'remito' => $numeroRemito,
+                                'estado' => $estado
+                                );
+                $orden = new Ordenes_model();
+                $orden->setNewOrder($nuevaOrden);
+                $mensaje = "La orden fue guardada correctamente!";
+                $session->setFlashdata('message',$mensaje);
+                return redirect()->to('/equipo/nueva_orden/');
+            }
         }else{
             $mensaje = "Su sesion ha expirado!";
             $session->setFlashdata('message',$mensaje);
@@ -202,6 +247,40 @@ class Equipos extends BaseController
         }
         
     }
+
+    public function listadoOrdenes()
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $data['nombre'] = ucfirst($session->usuario);
+            $listado = new Ordenes_model();
+            $array['ordenes'] = $listado->getOrders(); 
+            echo view('templates/head');
+            echo view('templates/header');
+            echo view('templates/header_subEquipos');
+            echo view('templates/aside',$data);
+            echo view('equipos/listado_ordenes',$array);
+            echo view('templates/footer');
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

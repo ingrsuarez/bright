@@ -65,6 +65,9 @@
 						if ($equipos[0]->estado <> "revision"){
 						echo "<option value='revision'> EN REVISIÓN </option>";
 					}
+					if ($equipos[0]->estado <> "inspeccionar"){
+						echo "<option value='inspeccionar'> A INSPECCIONAR </option>";
+					}
 					?>
 					
 					

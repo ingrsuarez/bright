@@ -1,5 +1,11 @@
-		
-	<form method="POST" action="<?php echo site_url('equipo/ingresar'); ?>" id="nuevaOrden">
+	<?php
+		if (!empty($message)){
+            echo ("<script>
+                alert('".$message."')</script>");
+		}
+
+	?>	
+	<form method="POST" action="<?php echo site_url('equipo/nueva_orden/guardar'); ?>" id="nuevaOrden">
 		<div class="grid2x1">
 		<div class="container registros">
 			<div class="column">
@@ -17,29 +23,54 @@
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-building-flag icon"></i>
-					<select name="cliente" id="cliente">
-						<option value="">Seleccione el cliente.....</option>
+					<select name="equipo" id="equipo">
+						<option value="">Seleccione el equipo.....</option>
 					  	<?php
-					  	$arrayLength = count($clientes);
+					  	$arrayLength = count($equipos);
 						$i = 0;
 						while ($i < $arrayLength) {?>
-							<option value='<?php echo $clientes[$i]->id;?>'><?php echo strtoupper($clientes[$i]->nombre);?></option>
+							<option value='<?php echo $equipos[$i]->id;?>'><?php echo "N°:".$equipos[$i]->numero." / ".$equipos[$i]->capacidad;?></option>
 					 	<?php
 						$i++;
 						}
 						?>	 
-						</select>
+						
 					</select>
 
 				</div>
 				
 
 			</div>
-
+			<div class="column">
+				<div class="input-container">
+					<i class="fa-solid fa-tag icon"></i>
+					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="nuevaOrden" id="descripcion" name="descripcion"></textarea>	
+				</div>
+			</div>
+			<div class="column">
+				<div class="input-container">
+					<i class="fa-solid fa-tag icon"></i>
+					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Repuestos:" form="nuevaOrden" id="repuestos" name="repuestos"></textarea>	
+				</div>
+			</div>
+			<div class="column">
+				<div class="input-container">
+					<i class="fa-solid fa-clock icon"></i>
+					<input type="number" name="horas" id="horas" step="1" min="" value="">	
+				</div>
+			
+				<div class="input-container">
+					<i class="fa-regular fa-clipboard icon"></i>
+					<select name="remitos" id="remitos" required>
+						<option value="">Seleccione remito.....</option>
+					</select>
+				</div>
+			</div>
 			<div class="column">
 				<div class="input-container">
 					<i class="icon"></i>
-					<input type="submit" class="btn btn-register" form="nuevaOrden" style="margin-left: 40px; width: 120px;" value="Generar orden">
+					<input type="submit" class="btn btn-register" form="nuevaOrden" style="margin-left: 40px; width: 120px;" name = "button" value="Guardar">
+					<input type="submit" class="btn btn-register" form="nuevaOrden" style="margin-left: 40px; width: 120px;" name = "button" value="Guardar y cerrar">
 				</div>
 				<div class="input-container">
 					
@@ -49,35 +80,19 @@
 		</div>
 
 		<div class="container registros2">
-			<table class='listado'>
+			<table class='listado' id="tablaEquipos">
 			<thead>
 				<tr class="listado__encabezado">
-					<th class="listado__fecha" style="width: 30px;">#</th>
-					<th class="listado__fecha" scope='col'>Número </th>
-					<th class="listado__usuario" scope='col'>Capacidad </th>
-					<th scope='col'>Marca</th>
-					<th scope='col'>Cantidad</th>
-					<th scope='col' style="width: 130px;">Precio unitario</th>
-					<th scope='col'>TOTAL:</th>
+					<th scope='col' style="width: 80px;">Fecha</th>
+					<th class="listado__fecha" scope='col'>Remito </th>
+					<th class="listado__usuario" scope='col'>Horas </th>
+					<th scope='col'>Cliente</th>
+					<th scope='col' style="width: 130px;">Transporte</th>
+					<th scope='col'>Estado</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php	
-			$arrayLength = count($equipos);
-			$i = 0;
-			while ($i < $arrayLength) {?>
-				<tr class="listado__row">	
-					<td><input class='form-check-input' type='checkbox' id="<?php echo $equipos[$i]->id ?>" name='OC_check[]' value="<?php echo $equipos[$i]->id ?>"></td>					
-					<td class="listado__fecha"> <?php echo $equipos[$i]->numero;?></td>
-					<td> <?php echo $equipos[$i]->capacidad;?></td>
-					<td style="width: 150px;"> <?php echo ucfirst($equipos[$i]->marca);?></td>
-					<td > <input class="price" type="number" min="1" step="1" name="cantidad" value="" style="width: 40px;"></td>
-					<td > <span class="price">$<input class="price" type="number" min="1" step="any" name="precio" value="" style="width: 80px;"></span></td>
-					<td style="width: 150px;"> <span class="price">$<input class="price" type="number" min="1" step="any" name="total" value="" style="width: 80px;" readonly></span></td>						
-				</tr><?php
-				$i++;
-				}
-				 ?>	  
+			
 			</tbody>
 		</table>
 		</div>
@@ -86,9 +101,44 @@
 
 
 	<script type="text/javascript">
-		const menu1 = document.getElementById("inventario");
+		$(document).ready(function(){
+			var equipo = document.getElementById("equipo");
+			var remitos = document.getElementById("remitos");
+			equipo.addEventListener('input',function(){
+				
+				var idEquipo = equipo.value;				
+				$("#tablaEquipos>tbody").empty();
+				$("#remitos").empty();
+				$.post("nueva_orden/equipo",{idEquipo: idEquipo},function(result){	
+								
+					var cont = 0;
+					var json = JSON.parse(result);
 
-		
+					remitosList = json.remitos;
+					console.log(remitosList);
+					remitosList.forEach(function(value,label){
+						$("#remitos").append("<option>"+value.id+"</option>");
+
+					});
+					equipos = json.equipo;
+					equipos.forEach(function(value,label){
+						// alert(equipos[label].fecha)
+						$("#tablaEquipos>tbody").append("<tr class='listado__row'>"
+							+"<td style='width: 120px;'>"+equipos[label].fecha+"</td>"
+							+"<td><a href='"+json.remitos_url+equipos[label].remito+"'>"+
+							equipos[label].remito+"</td>"
+							+"<td>"+equipos[label].horas+"</td>"
+							+"<td>"+ equipos[label].ubicacion+"</td>"
+							+"<td>"+ equipos[label].transporte+"</td>"
+							+"<td>"+ equipos[label].tipo+"</td>"
+							+"</tr>");
+
+						
+					});
+				})
+			});
+
+		});
 	</script>					
 	
 
