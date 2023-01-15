@@ -52,7 +52,7 @@ class Home extends BaseController
                 $equipos = new Equipos_model();
                 $disponible = $equipos->getAvailablePercentage('disponible');
                 $servicio = $equipos->getAvailablePercentage('servicio');
-                $revision = $equipos->getAvailablePercentage('revision');
+                $revision = $equipos->getAvailablePercentage('inspeccionar');
                 $graph['equipos'] = array($disponible,$servicio,$revision);
                 echo view('templates/head');
                 echo view('templates/header');
