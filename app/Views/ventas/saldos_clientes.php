@@ -29,18 +29,18 @@
 				</div>
 				
 				<div class="input-container">
-					<i class="fa-solid fa-building-flag icon"></i>
+<!-- 					<i class="fa-solid fa-building-flag icon"></i>
 					<select name="tipo" id="tipo" required>
 						<option value="salida">Salida</option>
 						<option value="retorno">Retorno</option>
-					</select>	
+					</select> -->	
 				</div>
 			</div>
 			<div class="column">
 				
 				<div class="input-container">
 					<!-- <i class="icon"></i> -->
-					<input type="submit" class="btn btn-register" form="ingresoRemito" style="margin-left: 40px; width: 120px;" value="Generar Remito">
+					<!-- <input type="submit" class="btn btn-register" form="ingresoRemito" style="margin-left: 40px; width: 120px;" value="Generar Remito"> -->
 				</div>
 				
 			</div>
