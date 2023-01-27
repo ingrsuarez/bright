@@ -26,4 +26,13 @@ class Clientes_model extends Model
         $result = $query->getResult();
         return $result;
     }
+
+    public function getCliente($id)
+    {
+
+        $db = \Config\Database::connect();  
+        $query = $db->table('clientes')->where('id', $id)->get();
+        $result = $query->getResult();
+        return $result;
+    }
 }

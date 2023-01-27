@@ -196,7 +196,7 @@ class Equipos extends BaseController
                 echo view('templates/header');
                 echo view('templates/header_subEquipos');
                 echo view('templates/aside',$data);
-                echo view('equipos/nueva_orden');
+                echo view('equipos/nueva_orden',$data);
                 echo view('templates/footer');
             }elseif($param == "equipo")
             {
@@ -223,12 +223,16 @@ class Equipos extends BaseController
                     $remito->setEstadoRemito($numeroRemito,'facturar');
                     $equipo->setEstadoOnly($idEquipo,'disponible');
                 }
-                
+                $remito = new Remitos_model();
+                $cargos = $this->request->getPost('cargos');
+                $remito->setCargosRemito($numeroRemito,$cargos);
+
                 $nuevaOrden = array(
                                 'fecha' => $this->request->getPost('fecha') ,
                                 'equipo' => $this->request->getPost('equipo'),
                                 'descripcion' => $this->request->getPost('descripcion'),
                                 'repuestos' => $this->request->getPost('repuestos'),
+                                'cargos_cliente' => $this->request->getPost('cargos'),
                                 'usuario' => $session->id,                            
                                 'horas' => $this->request->getPost('horas'),
                                 'remito' => $numeroRemito,

@@ -14,6 +14,7 @@ public $fecha;
 public $hora;
 public $transporte;
 public $descripcion;
+public $cargos;
 	
 // Cabecera de página
 	function Header()
@@ -112,10 +113,19 @@ public $descripcion;
 		$this->SetDrawColor(0,0,0);
 		$this->Cell(0,0,'','B',0,'L');
 		$this->Ln(1);
-		$this->Cell(40,7,utf8_decode('Observaciones:'),0,0,'L',false);
+		$this->Cell(30,7,utf8_decode('Observaciones:'),0,0,'L',false);
 		$this->SetFont('Times','',10);
 		$this->SetTextColor(47,79,79);
-		$this->Cell(40,7,utf8_decode($this->descripcion),0,0,'L',false);
+		$this->Cell(40,7,utf8_decode($this->descripcion),0,0,'L');
+		$this->Ln(15);
+
+		$this->Ln(1);
+		$this->SetTextColor(0,0,0);
+		$this->SetFont('Times','B',10);
+		$this->Cell(30,7,utf8_decode('Adicionales:'),0,0,'L',false);
+		$this->SetFont('Times','',10);
+		$this->SetTextColor(47,79,79);
+		$this->Cell(10,7,utf8_decode($this->cargos),0,0,'L',false);
 		$this->Ln(10);
 
 		$this->Ln(10);
@@ -166,6 +176,7 @@ public $descripcion;
 	}
 	
 	$pdf-> descripcion = $remito->leyenda;
+	$pdf-> cargos = $remito->cargos;
 	$pdf-> AddPage();
 	
 

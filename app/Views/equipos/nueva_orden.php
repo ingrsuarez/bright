@@ -22,7 +22,7 @@
 					
 				</div>
 				<div class="input-container">
-					<i class="fa-solid fa-building-flag icon"></i>
+					<i class="fa-solid fa-charging-station icon"></i>
 					<select name="equipo" id="equipo">
 						<option value="">Seleccione el equipo.....</option>
 					  	<?php
@@ -49,8 +49,14 @@
 			</div>
 			<div class="column">
 				<div class="input-container">
-					<i class="fa-solid fa-tag icon"></i>
+					<i class="fa-solid fa-gears icon"></i>
 					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Repuestos:" form="nuevaOrden" id="repuestos" name="repuestos"></textarea>	
+				</div>
+			</div>
+			<div class="column">
+				<div class="input-container">
+					<i class="fa-solid fa-file-invoice-dollar icon"></i>
+					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Cargos al Cliente:" form="nuevaOrden" id="cargos" name="cargos"></textarea>	
 				</div>
 			</div>
 			<div class="column">

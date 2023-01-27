@@ -581,7 +581,8 @@ aside {
     text-align: left;
 	}
 	.listado__fecha {
-    width: 12%;
+    width: 15%;
+    min-width: 90px;
 	}
 	.right {
     text-align: right;

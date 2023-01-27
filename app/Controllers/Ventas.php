@@ -16,11 +16,19 @@ class Ventas extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            
+            $remitos = new Remitos_model();
+            $inspeccion = $remitos->getRemitosPercentage('retorno');
+            $facturar = $remitos->getRemitosPercentage('facturar');
+            $facturado = $remitos->getRemitosPercentage('facturado');
+            $graph['remitos'] = array($inspeccion,$facturar,$facturado);
             $data['nombre'] = ucfirst($session->usuario);
+            
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subVentas');
             echo view('templates/aside',$data);
+            echo view('templates/remitos_graph.php',$graph);
             echo view('templates/footer');
         }else{
             $mensaje = "Su sesion ha expirado!";
@@ -107,6 +115,14 @@ class Ventas extends BaseController
                     {
                         $cliente = $remito->getClient($remito_id);
                         $ubicacion = $cliente->nombre;
+                        if($this->request->getPost('tipo') == 'salida'){
+                            $estado = 'servicio';
+                            $estadoMovimiento = 'salida';
+                        }else{
+                            $estado = 'inspeccionar';
+                            $ubicacion = 'base';
+                            $estadoMovimiento = 'mantenimiento';
+                        }
                         $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
                                     'usuario' => $session->id,
                                     'equipo' => $value,
@@ -116,15 +132,11 @@ class Ventas extends BaseController
                                     'cliente' => strtoupper($this->request->getPost('cliente')),
                                     'remito' => $remito_id,
                                     'transporte' => $this->request->getPost('transporte'),
-                                    'tipo' => $this->request->getPost('tipo')
+                                    'tipo' => $this->request->getPost('tipo'),
+                                    'estado' => $estadoMovimiento
                                     );
                         $movimiento->setNewMovimiento($nuevoMovimiento);
-                        if($this->request->getPost('tipo') == 'salida'){
-                            $estado = 'servicio';
-                        }else{
-                            $estado = 'inspeccionar';
-                            $ubicacion = 'base';
-                        }
+                        
 
                         $equipo->setEstado($value,$estado,$horas[$key],$ubicacion);                    
                     } 
@@ -208,6 +220,47 @@ class Ventas extends BaseController
 
 
     }
+
+
+    //-------------------------------------CLIENTES------------------------------------------//
+    public function saldosClientes($param="")
+    {
+         $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $listadoClientes = new Clientes_model();
+            $historialRemitos = new Remitos_model();
+            $equipos = new Equipos_model();
+            if (empty($param))
+            {
+                
+                $data['clientes'] = $listadoClientes->getClients();
+                $data['historial'] = $historialRemitos->getHistorialRemitos();
+                $data['equipos'] = $equipos->getEquipments();
+                $data['nombre'] = ucfirst($session->usuario);
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subVentas');
+                echo view('templates/aside',$data);
+                echo view('ventas/saldos_clientes');
+                echo view('templates/footer');  
+            }elseif($param == "saldo")
+            {
+                $idCliente = $this->request->getPost('idCliente');  
+    
+                $array['cliente'] = $historialRemitos->getSaldoCliente($idCliente);
+                print_r(json_encode($array['cliente'])); 
+            }
+            
+            
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+    }
+
 
     public function nuevo_cliente()
     {

@@ -91,7 +91,7 @@
 			while ($i < $arrayLength) {?>
 				<tr class="listado__row">	
 					<td><input class='ingresoRemito' type='checkbox' id="<?php echo $equipos[$i]->id ?>" name='equipos_seleccionados[]' value="<?php echo $equipos[$i]->id ?>"><input type="hidden" name="equipos[]" value="<?php echo $equipos[$i]->id ?>"></td>					
-					<td class="listado__fecha"> <?php echo $equipos[$i]->numero;?></td>
+					<td> <?php echo $equipos[$i]->numero;?></td>
 					<td><input type='hidden' name='capacidad[]'value="<?php echo $equipos[$i]->capacidad;?>"> <?php echo $equipos[$i]->capacidad;?></td>
 					<td><input class='price' type='number' value='<?php echo $equipos[$i]->horas;?>' step='any' name='horas[]' style='width: 80px;' readonly></td>
 					<td style="width: 150px;"> <?php echo $equipos[$i]->marca;?></td>
@@ -131,14 +131,14 @@
 											+json[label].id+" name='equipos_seleccionados[]' value="
 											+json[label].id+"><input type='hidden' name='equipos[]' value="
 											+json[label].id+"></td>"
-											+"<td scope='row' class = 'listado__fecha'>"+json[label].numero+"</td>"
+											+"<td>"+json[label].numero+"</td>"
 											+"<td>"+json[label].capacidad+"<input type='hidden' name='capacidad[]'value="+json[label].capacidad+"></td>"
 											+"<td><input class='price' type='number' min='"
 											+json[label].horas+"' step='any' name='horas[]' value='"
 											+json[label].horas+"' style='width: 80px;' readonly></td>"
-											+"<td>"+ json[label].marca+"</td>"
-											+"<td>"+ json[label].ubicacion.toUpperCase()+"</td>"
-											+"<td>"+ json[label].estado.toUpperCase()+"</td>"
+											+"<td style='width: 150px;'>"+ json[label].marca+"</td>"
+											+"<td style='width: 150px;'>"+ json[label].ubicacion.toUpperCase()+"</td>"
+											+"<td style='min-width: 130px;'>"+ json[label].estado.toUpperCase()+"</td>"
 											+"</tr>");
 
 										
@@ -150,14 +150,14 @@
 											+json[label].id+" name='equipos_seleccionados[]' value="
 											+json[label].id+"><input type='hidden' name='equipos[]' value="
 											+json[label].id+"></td>"
-											+"<td scope='row' class = 'listado__fecha'>"+json[label].numero+"</td>"
+											+"<td scope='row'	>"+json[label].numero+"</td>"
 											+"<td>"+json[label].capacidad+"<input type='hidden' name='capacidad[]'value="+json[label].capacidad+"></td>"
 											+"<td><input class='price' type='number' min='"
 											+json[label].horas+"' step='any' name='horas[]' value='"
 											+json[label].horas+"' style='width: 80px;'></td>"
-											+"<td>"+ json[label].marca+"</td>"
+											+"<td style='width: 150px;'>"+ json[label].marca+"</td>"
 											+"<td>"+ json[label].ubicacion.toUpperCase()+"</td>"
-											+"<td>"+ json[label].estado.toUpperCase()+"</td>"
+											+"<td style='min-width: 100px;'>"+ json[label].estado.toUpperCase()+"</td>"
 											+"</tr>");	
 								
 									});

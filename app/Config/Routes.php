@@ -65,6 +65,9 @@ $routes->get('ventas/listado_remitos', 'Ventas::listadoRemitos');
 $routes->post('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 $routes->get('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 
+$routes->get('ventas/saldos_clientes', 'Ventas::saldosClientes');
+$routes->post('ventas/saldos_clientes/(:any)', 'Ventas::saldosClientes/$1');
+$routes->get('ventas/saldos_clientes/(:any)', 'Ventas::saldosClientes/$1');
 $routes->get('ventas/nuevo_cliente', 'Ventas::nuevo_cliente');
 $routes->post('ventas/ingresar_cliente', 'Ventas::ingresar_cliente');
 $routes->get('ventas/listado_clientes', 'Ventas::listadoClientes');

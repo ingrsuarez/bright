@@ -50,13 +50,16 @@
 					<a href="#">CLIENTES</a>
 					<ul class="inside__menu" id="clientes__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/ventas/nuevo_cliente/">Nuevo cliente</a>
+							<a href="<?php echo base_url(); ?>/ventas/saldos_clientes/">Estados de cuenta</a>
 						</li>
 						<li class="inside__item">
 							<a href="<?php echo base_url(); ?>/ventas/listado_clientes/">Listado de Clientes</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
+						</li>
+						<li class="inside__item">
+							<a href="<?php echo base_url(); ?>/ventas/nuevo_cliente/">Nuevo cliente</a>
 						</li>
 						<li class="inside__item">
 							<a href="#">Editar cliente</a>

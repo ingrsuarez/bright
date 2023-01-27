@@ -9,7 +9,7 @@ class Remitos_model extends Model
 {
     protected $table = 'remitos';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['fecha','punto_venta','usuario','cliente','leyenda','domicilio','hora','estado'];
+    protected $allowedFields = ['fecha','punto_venta','usuario','cliente','leyenda','cargos','domicilio','hora','estado'];
 
     public function setNewRemito($data)
     {
@@ -29,6 +29,13 @@ class Remitos_model extends Model
         $db->table('remitos')->where('id', $id)->update($data);
     }
 
+    public function setCargosRemito($id,$cargos)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("UPDATE `remitos` SET `cargos` = CONCAT(`cargos`,' -".$cargos."') WHERE `id`=".$id);
+
+    }
+
     public function getRemitos()
     {
 
@@ -38,7 +45,7 @@ class Remitos_model extends Model
         return $result;
     }
 
-     public function getRemitosView()
+    public function getRemitosView()
     {
 
         $db = \Config\Database::connect();  
@@ -74,5 +81,31 @@ class Remitos_model extends Model
         $movimientos = $query->getResult();
         return $movimientos;
 
+    }
+
+    public function getHistorialRemitos()
+    {
+
+        $db = \Config\Database::connect();  
+        $query = $db->table('historial_remitos')->orderBy('remito', 'DESC')->groupBy('remito')->get();
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function getSaldoCliente($idCliente)
+    {
+
+        $db = \Config\Database::connect();  
+        $query = $db->table('historial_remitos')->where('id_cliente',$idCliente)->orderBy('fecha', 'DESC')->groupBy('remito')->get();
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function getRemitosPercentage($estado)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT SUM(estado='".$estado."')*100/count(*) as percentage FROM pendiente_remitos ");
+        $result = $query->getRow();
+        return intval($result->percentage);
     }
 }
