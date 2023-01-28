@@ -92,6 +92,7 @@ class Ventas extends BaseController
             $data['equipos'] = $this->request->getPost('equipos');
             $data['horas'] = $this->request->getPost('horas');
             $data['capacidad'] = $this->request->getPost('capacidad');
+
             if (!empty($data['equipos_seleccionados'])) 
             {
                 $equipos_seleccionados = array_intersect($data['equipos'],$data['equipos_seleccionados']);
@@ -115,17 +116,17 @@ class Ventas extends BaseController
                     {
                         $cliente = $remito->getClient($remito_id);
                         $ubicacion = $cliente->nombre;
+                        $numero_equipo = $equipo->getEquipmentNumber($value);
                         if($this->request->getPost('tipo') == 'salida'){
                             $estado = 'servicio';
-                            $estadoMovimiento = 'salida';
                         }else{
                             $estado = 'inspeccionar';
                             $ubicacion = 'base';
-                            $estadoMovimiento = 'mantenimiento';
                         }
                         $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
                                     'usuario' => $session->id,
                                     'equipo' => $value,
+                                    'numero_equipo' => $numero_equipo,
                                     'horas' => $horas[$key],
                                     'capacidad' => $capacidad[$key],
                                     'ubicacion' => strtoupper($ubicacion),
@@ -133,7 +134,7 @@ class Ventas extends BaseController
                                     'remito' => $remito_id,
                                     'transporte' => $this->request->getPost('transporte'),
                                     'tipo' => $this->request->getPost('tipo'),
-                                    'estado' => $estadoMovimiento
+                                    'estado' => $this->request->getPost('tipo')
                                     );
                         $movimiento->setNewMovimiento($nuevoMovimiento);
                         

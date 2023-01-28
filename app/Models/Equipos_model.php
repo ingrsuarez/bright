@@ -57,6 +57,13 @@ class Equipos_model extends Model
         return $result;
     }
      
+    public function getEquipmentNumber($id=1)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT `numero` FROM `equipos` WHERE id = ".$id." LIMIT 1");
+        $result = $query->getRow();
+        return $result->numero;
+    } 
 
     public function getLastRemitos($id=1)
     {

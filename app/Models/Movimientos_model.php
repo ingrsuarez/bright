@@ -9,7 +9,7 @@ class Movimientos_model extends Model
 {
     protected $table = 'movimientos';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['fecha','usuario','equipo','horas','capacidad','ubicacion','remito','transporte','tipo','estado'];
+    protected $allowedFields = ['fecha','usuario','equipo','numero_equipo','horas','capacidad','ubicacion','remito','transporte','tipo','estado'];
 
     public function setNewMovimiento($data)
     {

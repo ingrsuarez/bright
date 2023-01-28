@@ -199,68 +199,15 @@ public $cargos;
 	if (!empty($movimientos)){
 		foreach ($movimientos as $fila){
 
-			$pdf->Cell($w[0],6,"      ".$fila->equipo,0,0,'L',false);
+			$pdf->Cell($w[0],6,"      ".$fila->numero_equipo,0,0,'L',false);
 			$pdf->Cell($w[1],6,substr($fila->horas,0,40),0,0,'L',false);
 			$pdf->Cell($w[2],6,substr($fila->capacidad,0,40),0,0,'L',false);
 			$pdf->Cell($w[2],6,$fila->tipo,0,0,'L',false);
 			$pdf->Ln();
-			// $idoc = $movimientos;
-			// $queryup = "UPDATE `ordencompra` SET `estatus` = 'enviada' WHERE `ordencompra`.`id` = '".$idoc."'";
-			// mysqli_query($enlace,$queryup);
 							
 		}
 	}
 		
-	
-	
-	// $pdf->Output("OfficeForm.pdf", "I");
-
-
-
-
-
-/*session_start();
-$proveedor = "MERINO ALEJANDRO RUBEN";
-$numero = "132435";
-$domicilio = " TUPUNGATO 1085";
-$pdf = new PDF("P","mm","A4");
-$pdf-> AliasNbPages();
-$pdf-> prov = $proveedor; 
-$pdf-> num = $numero;
-$pdf-> domi = $domicilio;
-
-$pdf-> AddPage();
-
-
-$w = array(40, 110, 30);
-$h = array(40, 110, 35);
-$header = array('Cantidad',utf8_decode('Descripción'),utf8_decode('Código'));
-
-		
-	
-$query = "SELECT * FROM `ordencompra` WHERE `estatus` LIKE 'creada' AND `proveedor` = '".$_SESSION['pdfprov'][0]."'";
-$result = mysqli_query($enlace,$query);
-$pdf->SetFont('Arial','B',11);
-// Cabecera
-$pdf->Cell($h[0],7,$header[0],0,0,'L',false);
-$pdf->Cell($h[1],7,$header[1],0,0,'L',false);
-$pdf->Cell($h[3],7,$header[2],0,0,'L',false);
-$pdf->Ln(7);	
-$pdf->SetLineWidth(0.4);
-$pdf->SetDrawColor(0,0,0);
-$pdf->Cell(0,0,'','B',0,'L');
-$pdf->Ln(3);
-$pdf->SetFont('Arial','',10);
-foreach ($_SESSION['pdfocid'] as $idoc) {
-		$query = "SELECT * FROM `ordencompra` WHERE `id` = '".$idoc."'";
-		$result = mysqli_query($enlace,$query);
-		$fila = mysqli_fetch_array($result);
-		$pdf->Cell($w[0],6,"      ".$fila[5],0,0,'L',false);
-		$pdf->Cell($w[1],6,substr($fila[11],0,40),0,0,'L',false);
-		$pdf->Cell($w[2],6,'COD123',0,0,'L',false);
-		$pdf->Ln();
-		
-	}*/
 	
 $pdf->Output();	
 	
