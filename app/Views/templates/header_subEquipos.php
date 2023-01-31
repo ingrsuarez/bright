@@ -46,20 +46,6 @@
 						</li>
 					</ul>
 				</li>
-				<li class="dropdown__item2" id="orden_trabajo">
-					<a href="#">ORDEN DE SERVICIO</a>
-					<ul class="inside__menu" id="orden_trabajo__inside">
-						<li class="inside__item">
-							<a href="#">Nueva Orden</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Listado de Ordenes</a>
-						</li>
-						<li class="inside__item">
-							<a href="#">Cerrar Orden</a>
-						</li>
-					</ul>
-				</li>
 				
 				
 				<li class="dropdown__item2" id="documentos">

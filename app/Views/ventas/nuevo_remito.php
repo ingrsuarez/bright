@@ -32,7 +32,10 @@
 					</select>
 
 				</div>
+				<div class="column"></div>
 				
+			</div>
+			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-location-dot icon"></i>
 					<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoRemito" id="domicilio" name="domicilio" maxlength="300">	

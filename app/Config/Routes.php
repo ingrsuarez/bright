@@ -45,7 +45,10 @@ $routes->add('logout', 'Secure::logout');
 
 $routes->get('equipos', 'Equipos::index');
 $routes->get('equipo/nuevo', 'Equipos::nuevo');
+
+
 $routes->get('equipos/listado', 'Equipos::listado');
+$routes->get('equipo/ingresar', 'Equipos::ingresar');
 $routes->post('equipo/ingresar', 'Equipos::ingresar');
 $routes->get('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
 $routes->post('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');

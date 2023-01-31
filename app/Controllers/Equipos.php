@@ -68,7 +68,8 @@ class Equipos extends BaseController
                                 'estado' => 'disponible'
                                 );
             $equipo->setNewEquipment($nuevoEquipo);
-            return redirect()->to('/equipos');
+            unset($_POST);
+            return redirect()->to('/equipo/nuevo');
 
         }else{
         $mensaje = "Su sesion ha expirado!";
