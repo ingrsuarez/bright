@@ -18,7 +18,7 @@
 							<hr class="dropdown__divider">
 						</li>
 						<li class="inside__item">
-							<a href="#">Editar Remito</a>
+							<a href="<?php echo base_url(); ?>/ventas/listado_editarRemitos/">Editar Remito</a>
 						</li>
 					</ul>
 				</li>

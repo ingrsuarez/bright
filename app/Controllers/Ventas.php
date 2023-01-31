@@ -185,6 +185,8 @@ class Ventas extends BaseController
 
     }
 
+    
+
     public function pdf_remito($numeroRemito)
     {
         $remito = new Remitos_model();
@@ -222,6 +224,74 @@ class Ventas extends BaseController
 
     }
 
+    public function listadoEditarRemitos($numero = NULL)
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            if(empty($numero))
+            {
+                $data['nombre'] = ucfirst($session->usuario);
+                $listadoRemitos = new Remitos_model();
+                $array['remitos'] = $listadoRemitos->getRemitosView(); 
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subVentas');
+                echo view('templates/aside',$data);
+                echo view('ventas/listado_editarRemitos',$array);
+                echo view('templates/footer');
+            }else{
+                $listadoClientes = new Clientes_model();
+                $data['clientes'] = $listadoClientes->getClients();
+                $data['nombre'] = ucfirst($session->usuario);
+                $remito = new Remitos_model();
+                $data['remito'] = $remito->getRemito($numero); 
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subVentas');
+                echo view('templates/aside',$data);
+                echo view('ventas/editar_remito',$data);
+                echo view('templates/footer');    
+            }
+                
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+
+    }
+
+    public function editarRemito($numero)
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            if (!empty($_POST))
+            {
+                $remito = new Remitos_model();
+                $nuevoRemito = array('fecha' => $this->request->getPost('fecha'),
+                                        'punto_venta' => '01',
+                                        'usuario' => $session->id,
+                                        'cliente' => $this->request->getPost('cliente'),
+                                        'leyenda' => $this->request->getPost('leyenda'),
+                                        'domicilio' => $this->request->getPost('domicilio'),
+                                        'hora' => $this->request->getPost('hora'),
+                                        'cargos' => $this->request->getPost('cargos'),
+                                        'estado' => $this->request->getPost('tipo')
+                                        );
+                $remito->updateRemito($numero,$nuevoRemito);
+            }
+            return redirect()->to('/ventas');
+
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+
+    }
 
     //-------------------------------------CLIENTES------------------------------------------//
     public function saldosClientes($param="")

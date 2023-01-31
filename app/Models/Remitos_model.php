@@ -36,6 +36,14 @@ class Remitos_model extends Model
 
     }
 
+    public function updateRemito($id,$data)
+    {
+
+        $db = \Config\Database::connect();
+        $db->table('remitos')->where('id', $id)->update($data);
+
+    }
+
     public function getRemitos()
     {
 
@@ -68,7 +76,7 @@ class Remitos_model extends Model
     public function getRemito($numeroRemito)
     {
         $db = \Config\Database::connect();
-        $query   = $db->query("SELECT * FROM remitos WHERE id = '".$numeroRemito."'");
+        $query   = $db->query("SELECT * FROM remitos_view WHERE id = '".$numeroRemito."'");
         $remito = $query->getRow();
         return $remito;
 

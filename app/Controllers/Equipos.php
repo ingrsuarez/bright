@@ -224,7 +224,7 @@ class Equipos extends BaseController
                     $equipo->setEstadoOnly($idEquipo,'disponible');
                 }
                 $remito = new Remitos_model();
-                $cargos = $this->request->getPost('cargos');
+                $cargos = " ".$this->request->getPost('cargos');
                 $remito->setCargosRemito($numeroRemito,$cargos);
 
                 $nuevaOrden = array(

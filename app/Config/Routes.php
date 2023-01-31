@@ -62,6 +62,10 @@ $routes->get('ventas/nuevo_remito/(:any)', 'Ventas::nuevo_remito/$1');
 $routes->post('ventas/nuevo_remito/(:any)', 'Ventas::nuevo_remito/$1');
 $routes->post('ventas/ingresarRemito', 'Ventas::ingresar_remito');
 $routes->get('ventas/listado_remitos', 'Ventas::listadoRemitos');
+$routes->get('ventas/listado_editarRemitos', 'Ventas::listadoEditarRemitos');
+$routes->get('ventas/listado_editarRemitos/(:any)', 'Ventas::listadoEditarRemitos/$1');
+$routes->get('ventas/editar_remito/(:any)', 'Ventas::editarRemito/$1');
+$routes->post('ventas/editar_remito/(:any)', 'Ventas::editarRemito/$1');
 $routes->post('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 $routes->get('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 
