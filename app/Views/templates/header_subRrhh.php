@@ -20,6 +20,9 @@
 						<li class="inside__item">
 							<a href="<?php echo base_url(); ?>/rrhh/editar/1">Editar Personal</a>
 						</li>
+						<li class="inside__item">
+							<a href="<?php echo base_url(); ?>/rrhh/alta_personal/">Alta Personal</a>
+						</li>
 					</ul>
 				</li>
 				<li class="dropdown__item2" id="mantenimiento">

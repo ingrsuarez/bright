@@ -27,6 +27,13 @@ class Users_model extends Model
         
     }
 
+    public function updateUser($id,$data)
+    {
+        $db = \Config\Database::connect();
+        $db->table('usuarios_internos')->where('id', $id)->update($data);   
+        
+    }
+
     public function getUsers()
     {
 
@@ -45,11 +52,28 @@ class Users_model extends Model
         return $result;
     }
 
+    public function getUsersInactivos()
+    {
+
+        $db = \Config\Database::connect();  
+        $query = $db->table('usuarios_internos')->where('estado', 'inactivo')->get();
+        $result = $query->getResult();
+        return $result;
+    }
+
     public function getLastId()
     {
         $db = \Config\Database::connect();
         $query = $db->query('SELECT MAX(ID) as id FROM usuarios_internos LIMIT 1');
         $result = $query->getRow();
+        return $result;
+    }
+
+    public function getPuestos()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT * FROM puestos');
+        $result = $query->getResult();
         return $result;
     }
 }

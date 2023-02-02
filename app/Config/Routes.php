@@ -42,6 +42,7 @@ $routes->add('home', 'Home::index');
 
 $routes->get('login', 'Secure::login');
 $routes->add('logout', 'Secure::logout');
+$routes->get('activate/(:num)/(:any)', 'Secure::activate/$1/$2');
 
 $routes->get('equipos', 'Equipos::index');
 $routes->get('equipo/nuevo', 'Equipos::nuevo');
@@ -80,12 +81,16 @@ $routes->post('ventas/ingresar_cliente', 'Ventas::ingresar_cliente');
 $routes->get('ventas/listado_clientes', 'Ventas::listadoClientes');
 
 $routes->get('rrhh', 'Rrhh::index');
+$routes->get('rrhh/email1', 'Rrhh::email1');
 $routes->get('rrhh/nuevo', 'Rrhh::nuevo');
 $routes->post('rrhh/ingresar', 'Rrhh::ingresar');
 $routes->get('rrhh/nomina', 'Rrhh::listado');
 $routes->get('rrhh/editar/(:num)', 'Rrhh::editar_personal/$1');
 $routes->post('rrhh/editar/(:num)', 'Rrhh::editar_personal/$1');
 $routes->post('rrhh/modificar/(:num)', 'Rrhh::modificar/$1');
+$routes->get('rrhh/alta_personal', 'Rrhh::altaPersonal');
+$routes->post('rrhh/alta_personal/(:any)', 'Rrhh::altaPersonal/$1');
+
 
 /*
  * --------------------------------------------------------------------
