@@ -12,7 +12,7 @@ class Rrhh extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subRrhh');
@@ -32,7 +32,7 @@ class Rrhh extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subRrhh');
@@ -80,7 +80,7 @@ class Rrhh extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $nomina = new Users_model();
             $array['usuarios'] = $nomina->getUsers(); 
             echo view('templates/head');
@@ -110,7 +110,7 @@ class Rrhh extends BaseController
         if ($session->has('usuario'))
         {
             $data['message'] = $session->getFlashdata('message');
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Users_model();
             $array['personal'] = $listado->getUser($id);
             if ($array['personal'] == NULL)
@@ -182,7 +182,7 @@ class Rrhh extends BaseController
             $personal = new Users_model();
             if (empty($param))
             {     
-                $data['nombre'] = ucfirst($session->usuario);
+                $data['nombre'] = ucfirst($session->nombre);
                 $data['personal'] = $personal->getUsersInactivos();
                 $data['puestos'] = $personal->getPuestos();
                 echo view('templates/head');
@@ -210,7 +210,7 @@ class Rrhh extends BaseController
                                 'mail' => $emailTo,
                                 'puesto' => $puesto,
                                 'horas_semanales' => $horas,
-                                'estado' => 'activo');
+                                'estado' => 'activar');
                 $linkActivacion = hash('sha256',$usuario[0]->nombre.$emailTo);
                 $personal->updateUser($idPersonal,$data);
 

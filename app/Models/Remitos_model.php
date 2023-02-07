@@ -9,7 +9,7 @@ class Remitos_model extends Model
 {
     protected $table = 'remitos';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['fecha','punto_venta','usuario','cliente','leyenda','cargos','domicilio','hora','estado'];
+    protected $allowedFields = ['fecha','numero','punto_venta','usuario','cliente','leyenda','cargos','domicilio','hora','estado'];
 
     public function setNewRemito($data)
     {
@@ -82,6 +82,15 @@ class Remitos_model extends Model
 
     }
 
+    public function getLastRemito()
+    {
+        $db = \Config\Database::connect();
+        $query   = $db->query("SELECT MAX(remitos.numero) AS ultimo FROM `remitos`");
+        $remito = $query->getRow();
+        return $remito;
+
+    }
+
     public function getMovimientos($numeroRemito)
     {
         $db = \Config\Database::connect();
@@ -114,6 +123,8 @@ class Remitos_model extends Model
         $db = \Config\Database::connect();
         $query = $db->query("SELECT SUM(estado='".$estado."')*100/count(*) as percentage FROM pendiente_remitos ");
         $result = $query->getRow();
+        if(empty($result))
+            { return intval('0');}
         return intval($result->percentage);
     }
 }

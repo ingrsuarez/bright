@@ -26,4 +26,38 @@ class Ordenes_model extends Model
         $result = $query->getResult();
         return $result;
     }
+
+    public function getOrdersView()
+    {
+        $db = \Config\Database::connect();  
+        $query = $db->query("SELECT * FROM `ordenes_view`");
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function getOpenOrders()
+    {
+        $db = \Config\Database::connect();  
+        $query = $db->query("SELECT * FROM ordenes_view WHERE estado = 'abierta'");
+
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function getOrder($id)
+    {
+        $db = \Config\Database::connect();  
+        $query = $db->query("SELECT * FROM ordenes_view WHERE id = '".$id."'");
+
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function updateOrder($id,$data)
+    {
+
+        $db = \Config\Database::connect();
+        $db->table('ordenes_servicio')->where('id', $id)->update($data);
+
+    }
 }

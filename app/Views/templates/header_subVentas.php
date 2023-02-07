@@ -6,19 +6,19 @@
 			<ul class="menu__item" >
 				
 				<li class="dropdown__item2" id="remito">
-					<a href="#" >REMITOS</a>
+					<a href="#" >ORDEN DE SERVICIO</a>
 					<ul class="inside__menu" id="remito__inside">
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/ventas/nuevo_remito/">Nuevo Remito</a>
+							<a href="<?php echo base_url(); ?>/ventas/nuevo_remito/">Nueva Orden de Servicio</a>
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/ventas/listado_remitos/">Listado de remitos</a>
+							<a href="<?php echo base_url(); ?>/ventas/listado_remitos/">Listado de Ordenes</a>
 						</li>
 						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 						<li class="inside__item">
-							<a href="<?php echo base_url(); ?>/ventas/listado_editarRemitos/">Editar Remito</a>
+							<a href="<?php echo base_url(); ?>/ventas/listado_editarRemitos/">Editar Orden de Servicio</a>
 						</li>
 					</ul>
 				</li>

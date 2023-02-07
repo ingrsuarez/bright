@@ -43,11 +43,10 @@ $routes->add('home', 'Home::index');
 $routes->get('login', 'Secure::login');
 $routes->add('logout', 'Secure::logout');
 $routes->get('activate/(:num)/(:any)', 'Secure::activate/$1/$2');
+$routes->post('activate/(:num)/(:any)', 'Secure::activate/$1/$2');
 
 $routes->get('equipos', 'Equipos::index');
 $routes->get('equipo/nuevo', 'Equipos::nuevo');
-
-
 $routes->get('equipos/listado', 'Equipos::listado');
 $routes->get('equipo/ingresar', 'Equipos::ingresar');
 $routes->post('equipo/ingresar', 'Equipos::ingresar');
@@ -56,6 +55,9 @@ $routes->post('equipos/editar/(:num)', 'Equipos::editar_equipo/$1');
 $routes->post('equipo/modificar/(:num)', 'Equipos::modificar/$1');
 $routes->get('equipo/nueva_orden', 'Equipos::nuevaOrden');
 $routes->post('equipo/nueva_orden/(:any)', 'Equipos::nuevaOrden/$1');
+$routes->get('equipo/ordenes_abiertas', 'Equipos::ordenesAbiertas');
+$routes->get('equipo/ordenes_abiertas/(:any)', 'Equipos::ordenesAbiertas/$1');
+$routes->post('equipo/ordenes_abiertas/(:any)', 'Equipos::ordenesAbiertas/$1');
 $routes->get('equipo/nueva_orden/(:any)', 'Equipos::nuevaOrden/$1');
 $routes->get('equipos/listado_ordenes', 'Equipos::listadoOrdenes');
 

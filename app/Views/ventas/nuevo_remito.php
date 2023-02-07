@@ -4,7 +4,7 @@
 		<div class="container registros">
 			<div class="column">
 				<div class="register_title">
-					<h3><i class="fas fa-tasks"></i>  NUEVO REMITO: </h3>
+					<h3><i class="fas fa-tasks"></i>  NUEVA ORDEN DE SERVICIO: </h3>
 				</div>
 			</div>
 
@@ -36,6 +36,11 @@
 				
 			</div>
 			<div class="column">
+				
+				<div class="input-container">
+					<i class="fa-solid fa-hashtag icon"></i>
+					<input type="number" class="input-field" placeholder="Número:" form="ingresoRemito" id="numero" name="numero" value="<?php echo (1 + intval($ultimoRemito->ultimo));?>" required>	
+				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-location-dot icon"></i>
 					<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoRemito" id="domicilio" name="domicilio" maxlength="300">	

@@ -6,7 +6,7 @@
 
     <div class="board3">
         <div class="titulo_grafica">
-            <h3 class="t_grafica">Estado Remitos</h3>
+            <h3 class="t_grafica">Estado Ordenes</h3>
         </div>
         <div class="sub_board">
             <div class="sep_board"></div>

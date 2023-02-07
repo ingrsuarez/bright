@@ -29,6 +29,9 @@
 							<a href="<?php echo base_url(); ?>/equipo/nueva_orden">Nueva Orden</a>
 						</li>
 						<li class="inside__item">
+							<a href="<?php echo base_url(); ?>/equipo/ordenes_abiertas">Ordenes Abiertas</a>
+						</li>
+						<li class="inside__item">
 							<hr class="dropdown__divider">
 						</li>
 

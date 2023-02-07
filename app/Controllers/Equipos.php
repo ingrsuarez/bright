@@ -15,7 +15,7 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subEquipos');
@@ -37,7 +37,7 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subEquipos');
@@ -83,7 +83,7 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Equipos_model();
             $array['equipos'] = $listado->getEquipments(); 
             echo view('templates/head');
@@ -112,7 +112,7 @@ class Equipos extends BaseController
         if ($session->has('usuario'))
         {
             $next = $this->request->getPost('next'); 
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Equipos_model();
             $array['equipos'] = $listado->getEquipment($id);
             if ($array['equipos'] == NULL)
@@ -190,9 +190,9 @@ class Equipos extends BaseController
             { 
                 $data['message'] = $session->getFlashdata('message');
                 $data['today'] = date("Y-m-d");
-                $data['nombre'] = ucfirst($session->usuario);
+                $data['nombre'] = ucfirst($session->nombre);
                 $listado = new Equipos_model();
-                $data['equipos'] = $listado->getInspectionEquipments();
+                $data['equipos'] = $listado->getEquipments();
                 echo view('templates/head');
                 echo view('templates/header');
                 echo view('templates/header_subEquipos');
@@ -214,36 +214,187 @@ class Equipos extends BaseController
                 $button = $this->request->getPost('button');
                 $numeroRemito = $this->request->getPost('remitos');
                 $idEquipo = $this->request->getPost('equipo');
-                $remito = new Remitos_model();
                 $equipo = new Equipos_model();
-                if ($button == 'Guardar'){
-                    $estado = 'abierta';
-                }else
+                //----------Service done to an Available equipment----------------------- 
+                if(empty($numeroRemito))
                 {
-                    $estado = 'cerrada';
-                    $remito->setEstadoRemito($numeroRemito,'facturar');
-                    $equipo->setEstadoOnly($idEquipo,'disponible');
-                }
-                $remito = new Remitos_model();
-                $cargos = " ".$this->request->getPost('cargos');
-                $remito->setCargosRemito($numeroRemito,$cargos);
+                    if ($button == 'Guardar'){
+                        $estado = 'abierta';
+                        $equipo->setEstadoOnly($idEquipo,'mantenimiento');
+                    }else
+                    {
+                        $estado = 'cerrada';
+                        $equipo->setEstadoOnly($idEquipo,'disponible');
+                    }
+                    $nuevaOrden = array(
+                                    'fecha' => $this->request->getPost('fecha') ,
+                                    'equipo' => $this->request->getPost('equipo'),
+                                    'descripcion' => $this->request->getPost('descripcion'),
+                                    'repuestos' => $this->request->getPost('repuestos'),
+                                    'cargos_cliente' => '',
+                                    'usuario' => $session->id,                            
+                                    'horas' => $this->request->getPost('horas'),
+                                    'remito' => '',
+                                    'estado' => $estado
+                                    );
+                    $orden = new Ordenes_model();
+                    $orden->setNewOrder($nuevaOrden);
+                    $mensaje = "La orden fue guardada correctamente!";
+                    $session->setFlashdata('message',$mensaje);
+                    return redirect()->to('/equipo/nueva_orden/');
+                }else
+                //----------Service done to a returned equipment-----------------------
+                {
+                    $remito = new Remitos_model();
+                    if ($button == 'Guardar'){
+                        $estado = 'abierta';
+                    }else
+                    {
+                        $estado = 'cerrada';
+                        $remito->setEstadoRemito($numeroRemito,'facturar');
+                        $equipo->setEstadoOnly($idEquipo,'disponible');
+                    }
+                    $remito = new Remitos_model();
+                    $cargos = " ".$this->request->getPost('cargos');
+                    $remito->setCargosRemito($numeroRemito,$cargos);
 
-                $nuevaOrden = array(
-                                'fecha' => $this->request->getPost('fecha') ,
-                                'equipo' => $this->request->getPost('equipo'),
-                                'descripcion' => $this->request->getPost('descripcion'),
-                                'repuestos' => $this->request->getPost('repuestos'),
-                                'cargos_cliente' => $this->request->getPost('cargos'),
-                                'usuario' => $session->id,                            
-                                'horas' => $this->request->getPost('horas'),
-                                'remito' => $numeroRemito,
-                                'estado' => $estado
-                                );
+                    $nuevaOrden = array(
+                                    'fecha' => $this->request->getPost('fecha') ,
+                                    'equipo' => $this->request->getPost('equipo'),
+                                    'descripcion' => $this->request->getPost('descripcion'),
+                                    'repuestos' => $this->request->getPost('repuestos'),
+                                    'cargos_cliente' => $this->request->getPost('cargos'),
+                                    'usuario' => $session->id,                            
+                                    'horas' => $this->request->getPost('horas'),
+                                    'remito' => $numeroRemito,
+                                    'estado' => $estado
+                                    );
+                    $orden = new Ordenes_model();
+                    $orden->setNewOrder($nuevaOrden);
+                    $mensaje = "La orden fue guardada correctamente!";
+                    $session->setFlashdata('message',$mensaje);
+                    return redirect()->to('/equipo/nueva_orden/');
+                }
+            }
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+        
+    }
+
+    public function ordenesAbiertas($param = NULL)
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        { 
+            if ($param == NULL)
+            { 
+                $data['message'] = $session->getFlashdata('message');
+                $data['today'] = date("Y-m-d");
+                $data['nombre'] = ucfirst($session->nombre);
+                $listado = new Ordenes_model();
+                $data['ordenes'] = $listado->getOpenOrders();
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subEquipos');
+                echo view('templates/aside',$data);
+                echo view('equipos/ordenes_abiertas',$data);
+                echo view('templates/footer');
+            }elseif($param == "equipo")
+            {
+                $numero_orden = $this->request->getPost('idOrden'); 
+                $data['remitos_url'] = site_url("/ventas/pdfRemito/");
                 $orden = new Ordenes_model();
-                $orden->setNewOrder($nuevaOrden);
-                $mensaje = "La orden fue guardada correctamente!";
-                $session->setFlashdata('message',$mensaje);
-                return redirect()->to('/equipo/nueva_orden/');
+                $data['orden'] = $orden->getOrder($numero_orden);
+                $numero_equipo = $data['orden'][0]->id_equipo; 
+                $equipo = new Equipos_model();
+                $data['equipo'] = $equipo->getEquipmentMovements($numero_equipo);
+                $data['remitos'] = $equipo->getLastRemitos($numero_equipo);
+                
+                print_r(json_encode($data));
+            }elseif($param == "q")
+            {
+                $numero_orden = 4;//$this->request->getPost('id_orden'); 
+                $data['remitos_url'] = site_url("/ventas/pdfRemito/");
+                $orden = new Ordenes_model();
+                $data['orden'] = $orden->getOrder($numero_orden);
+                $numero_equipo = $data['orden'][0]->id_equipo; 
+                $equipo = new Equipos_model();
+                $data['equipo'] = $equipo->getEquipmentMovements($numero_equipo);
+                $data['remitos'] = $equipo->getLastRemitos($numero_equipo);
+                
+                var_dump($data);
+            }elseif($param == "guardar")
+            {
+                $button = $this->request->getPost('button');
+                $idOrden = $this->request->getPost('numero_orden');
+                $numeroRemito = $this->request->getPost('remitos');
+                $idEquipo = $this->request->getPost('equipo');
+                $equipo = new Equipos_model();
+                //----------Service done to an Available equipment----------------------- 
+                if(empty($numeroRemito))
+                {
+                    if ($button == 'Guardar'){
+                        $estado = 'abierta';
+                    }else
+                    {
+                        $estado = 'cerrada';
+                        $equipo->setEstadoOnly($idEquipo,'disponible');
+                    }
+                    $nuevaOrden = array(
+                                    'fecha' => $this->request->getPost('fecha') ,
+                                    'equipo' => $this->request->getPost('equipo'),
+                                    'descripcion' => $this->request->getPost('descripcion'),
+                                    'repuestos' => $this->request->getPost('repuestos'),
+                                    'cargos_cliente' => '',
+                                    'usuario' => $session->id,                            
+                                    'horas' => $this->request->getPost('horas'),
+                                    'remito' => '',
+                                    'estado' => $estado
+                                    );
+                    $orden = new Ordenes_model();
+                    $orden->updateOrder($idOrden,$nuevaOrden);
+                    $mensaje = "La orden fue guardada correctamente!";
+                    $session->setFlashdata('message',$mensaje);
+                    return redirect()->to('/equipo/ordenes_abiertas/');
+                    
+
+                }else
+                //----------Service done to a returned equipment-----------------------
+                {
+                    $remito = new Remitos_model();
+                    if ($button == 'Guardar'){
+                        $estado = 'abierta';
+                    }else
+                    {
+                        $estado = 'cerrada';
+                        $remito->setEstadoRemito($numeroRemito,'facturar');
+                        $equipo->setEstadoOnly($idEquipo,'disponible');
+                    }
+                    $remito = new Remitos_model();
+                    $cargos = " ".$this->request->getPost('cargos');
+                    $remito->setCargosRemito($numeroRemito,$cargos);
+
+                    $nuevaOrden = array(
+                                    'fecha' => $this->request->getPost('fecha') ,
+                                    'equipo' => $this->request->getPost('equipo'),
+                                    'descripcion' => $this->request->getPost('descripcion'),
+                                    'repuestos' => $this->request->getPost('repuestos'),
+                                    'cargos_cliente' => $this->request->getPost('cargos'),
+                                    'usuario' => $session->id,                            
+                                    'horas' => $this->request->getPost('horas'),
+                                    'remito' => $numeroRemito,
+                                    'estado' => $estado
+                                    );
+                    
+                    $orden = new Ordenes_model();
+                    $orden->updateOrder($idOrden,$nuevaOrden);
+                    $mensaje = "La orden fue guardada correctamente!";
+                    $session->setFlashdata('message',$mensaje);
+                    return redirect()->to('/equipo/nueva_orden/');
+                }
             }
         }else{
             $mensaje = "Su sesion ha expirado!";
@@ -258,9 +409,9 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Ordenes_model();
-            $array['ordenes'] = $listado->getOrders(); 
+            $array['ordenes'] = $listado->getOrdersView(); 
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subEquipos');

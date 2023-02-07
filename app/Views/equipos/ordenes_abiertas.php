@@ -5,31 +5,35 @@
 		}
 
 	?>	
-	<form method="POST" action="<?php echo site_url('equipo/nueva_orden/guardar'); ?>" id="nuevaOrden">
+	<form method="POST" action="<?php echo site_url('equipo/ordenes_abiertas/guardar'); ?>" id="nuevaOrden">
 		<div class="grid2x1">
 		<div class="container registros">
 			<div class="column">
 				<div class="register_title">
-					<h3><i class="fas fa-tasks"></i>  NUEVA ORDEN DE MANTENIMIENTO: </h3>
+					<h3><i class="fas fa-tasks"></i>  CERRAR ORDEN: </h3>
 				</div>
 			</div>
 
 			<div class="column">
 				<div class="input-container">
+					<i class="fa-solid fa-hashtag icon"></i>
+					<input type="number" form="nuevaOrden" name="numero_orden" id="numero_orden" value="" readonly>
+				</div>
+				<div class="input-container">
 					<i class="fa-regular fa-calendar icon"></i>
 					<input type="date" class="input-field" placeholder="Fecha:" form="nuevaOrden" id="fecha" name="fecha" maxlength="300" value="<?php echo $today ?>" required>
-
+					<input type="hidden" class="input-field" id="equipo" name="equipo" value="">
 					
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-charging-station icon"></i>
-					<select name="equipo" id="equipo" autofocus>
+					<select name="id_orden" id="orden" autofocus>
 						<option value="">Seleccione el equipo.....</option>
 					  	<?php
-					  	$arrayLength = count($equipos);
+					  	$arrayLength = count($ordenes);
 						$i = 0;
 						while ($i < $arrayLength) {?>
-							<option value='<?php echo $equipos[$i]->id;?>'><?php echo "N°:".$equipos[$i]->numero." / ".$equipos[$i]->capacidad;?></option>
+							<option value='<?php echo $ordenes[$i]->id;?>'><?php echo "N°:".$ordenes[$i]->equipo." / ".$ordenes[$i]->marca;?></option>
 					 	<?php
 						$i++;
 						}
@@ -108,18 +112,31 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var equipo = document.getElementById("equipo");
+			var orden_element = document.getElementById("orden");
+			var numero_element = document.getElementById("numero_orden");
+			var descripcion_element = document.getElementById("descripcion");
+			var repuestos_element = document.getElementById("repuestos");
 			var remitos = document.getElementById("remitos");
-			equipo.addEventListener('input',function(){
+			var equipo_element = document.getElementById("equipo");
+			var horas_element = document.getElementById("horas");
+
+			orden_element.addEventListener('input',function(){
 				
-				var idEquipo = equipo.value;				
+				var idOrden = orden_element.value;				
 				$("#tablaEquipos>tbody").empty();
 				$("#remitos").empty();
-				$.post("nueva_orden/equipo",{idEquipo: idEquipo},function(result){	
+				$.post("ordenes_abiertas/equipo",{idOrden: idOrden},function(result){	
 								
 					var cont = 0;
 					var json = JSON.parse(result);
-
+					var orden = json.orden;
+					numero_element.value = orden[0].id;
+					descripcion_element.value = orden[0].descripcion;
+					repuestos_element.value = orden[0].repuestos;
+					equipo_element.value = orden[0].id_equipo;
+					horas_element.value = orden[0].horas;
+					horas_element.setAttribute("min",orden[0].horas);
+					console.log(json);
 					remitosList = json.remitos;
 					console.log(remitosList);
 					remitosList.forEach(function(value,label){

@@ -37,14 +37,14 @@ public $cargos;
 		$this->SetFont('Times','B',18);
 		// Título
 
-		$this->Cell(10,7,utf8_decode('R'),1,0,'C');
+		$this->Cell(10,7,utf8_decode('X'),1,0,'C');
 		$this->Cell(4,10,'',0,0,'R');
 		$this->Cell(40,7,'',0,0,'C');
 		$this->Cell(40,7,utf8_decode(' N°').$this -> num,1,0,'L');
 		$this->Ln(8);
 		$this->SetFont('Times','',10);
 		$this->SetTextColor(47,79,79);
-		$this->Cell(180,15,utf8_decode('REMITO'),0,0,'C');
+		$this->Cell(180,15,utf8_decode('ORDEN DE SERVICIO'),0,0,'C');
 		$this->Ln(4);
 		$this->Cell(180,15,utf8_decode('DOCUMENTO NO VÁLIDO'),0,0,'C');
 		$this->Ln(4);
@@ -167,7 +167,7 @@ public $cargos;
 	$pdf = new PDF("P","mm","A4");
 	$pdf-> AliasNbPages();
 	$pdf-> nombreCliente = strtoupper($cliente->nombre); 
-	$pdf-> num = str_pad($remito->id, 8, "0", STR_PAD_LEFT);
+	$pdf-> num = str_pad($remito->numero, 8, "0", STR_PAD_LEFT);
 	$pdf-> domicilio = $cliente->domicilio;
 	$pdf-> fecha = $remito->fecha;
 	$pdf-> hora = $remito->hora;

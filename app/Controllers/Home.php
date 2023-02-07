@@ -11,7 +11,7 @@ class Home extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $equipos = new Equipos_model();
             $disponible = $equipos->getAvailablePercentage('disponible');
             $servicio = $equipos->getAvailablePercentage('servicio');
@@ -48,7 +48,7 @@ class Home extends BaseController
               
                 $new_session = (array)$user_data[0];
                 $session->set($new_session);    
-                $data['nombre'] = ucfirst($session->usuario);
+                $data['nombre'] = ucfirst($session->nombre);
                 $equipos = new Equipos_model();
                 $disponible = $equipos->getAvailablePercentage('disponible');
                 $servicio = $equipos->getAvailablePercentage('servicio');

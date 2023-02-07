@@ -22,7 +22,7 @@ class Ventas extends BaseController
             $facturar = $remitos->getRemitosPercentage('facturar');
             $facturado = $remitos->getRemitosPercentage('facturado');
             $graph['remitos'] = array($inspeccion,$facturar,$facturado);
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             
             echo view('templates/head');
             echo view('templates/header');
@@ -47,9 +47,10 @@ class Ventas extends BaseController
             $listado = new Equipos_model();
             if ($param == NULL)
             {
+                $remito = new Remitos_model();
                 $data['today'] = date("Y-m-d");
-                $data['nombre'] = ucfirst($session->usuario);
-                
+                $data['nombre'] = ucfirst($session->nombre);
+                $data['ultimoRemito'] = $remito->getLastRemito();
                 $data['equipos'] = $listado->getAvailableEquipments(); 
                 $clientes = new Clientes_model();
                 $data['clientes'] = $clientes->getClients();  
@@ -102,6 +103,7 @@ class Ventas extends BaseController
                 $movimiento = new Movimientos_model();
                 $equipo = new Equipos_model();
                 $nuevoRemito = array('fecha' => $this->request->getPost('fecha'),
+                                    'numero' => $this->request->getPost('numero'),
                                     'punto_venta' => '01',
                                     'usuario' => $session->id,
                                     'cliente' => $this->request->getPost('cliente'),
@@ -167,7 +169,7 @@ class Ventas extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listadoRemitos = new Remitos_model();
             $array['remitos'] = $listadoRemitos->getRemitosView(); 
             echo view('templates/head');
@@ -206,7 +208,7 @@ class Ventas extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Equipos_model();
             $array['equipos'] = $listado->getEquipments(); 
             echo view('templates/head');
@@ -231,7 +233,7 @@ class Ventas extends BaseController
         {
             if(empty($numero))
             {
-                $data['nombre'] = ucfirst($session->usuario);
+                $data['nombre'] = ucfirst($session->nombre);
                 $listadoRemitos = new Remitos_model();
                 $array['remitos'] = $listadoRemitos->getRemitosView(); 
                 echo view('templates/head');
@@ -243,7 +245,7 @@ class Ventas extends BaseController
             }else{
                 $listadoClientes = new Clientes_model();
                 $data['clientes'] = $listadoClientes->getClients();
-                $data['nombre'] = ucfirst($session->usuario);
+                $data['nombre'] = ucfirst($session->nombre);
                 $remito = new Remitos_model();
                 $data['remito'] = $remito->getRemito($numero); 
                 echo view('templates/head');
@@ -308,7 +310,7 @@ class Ventas extends BaseController
                 $data['clientes'] = $listadoClientes->getClients();
                 $data['historial'] = $historialRemitos->getHistorialRemitos();
                 $data['equipos'] = $equipos->getEquipments();
-                $data['nombre'] = ucfirst($session->usuario);
+                $data['nombre'] = ucfirst($session->nombre);
                 echo view('templates/head');
                 echo view('templates/header');
                 echo view('templates/header_subVentas');
@@ -338,7 +340,7 @@ class Ventas extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
             echo view('templates/header');
             echo view('templates/header_subVentas');
@@ -393,7 +395,7 @@ class Ventas extends BaseController
         if ($session->has('usuario'))
         {
             
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Clientes_model();
             $array['clientes'] = $listado->getCustomer($id);
             if ($array['equipos'] == NULL)
@@ -413,7 +415,7 @@ class Ventas extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
-            $data['nombre'] = ucfirst($session->usuario);
+            $data['nombre'] = ucfirst($session->nombre);
             $listado = new Clientes_model();
             $array['clientes'] = $listado->getClients(); 
             echo view('templates/head');

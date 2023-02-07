@@ -56,13 +56,13 @@
 				</div>
 			</div>
 			<div class="column">
-				<div class="input-container">
-					<i class="fa-solid fa-money-check-dollar icon"></i>
-					<input type="text" class="input-field" placeholder="Sueldo:" form="altaPersonal" id="sueldo" name="sueldo" style="width: 320px;">	
-				</div>
+				
 				<div class="input-container">
 					<i class="fa-solid fa-clock icon"></i>
 					<input type="number" class="input-field" placeholder="Horas semanales:" form="altaPersonal" id="horas" name="horas" value="" required>
+				</div>
+				<div class="input-container">
+						
 				</div>
 			</div>
 			<div class="column">
