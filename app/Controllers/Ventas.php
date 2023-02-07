@@ -110,6 +110,7 @@ class Ventas extends BaseController
                                     'leyenda' => $this->request->getPost('leyenda'),
                                     'domicilio' => $this->request->getPost('domicilio'),
                                     'hora' => $this->request->getPost('hora'),
+                                    'kilometros' => $this->request->getPost('kilometros'),
                                     'estado' => $this->request->getPost('tipo')
                                     );
                 
@@ -280,6 +281,7 @@ class Ventas extends BaseController
                                         'leyenda' => $this->request->getPost('leyenda'),
                                         'domicilio' => $this->request->getPost('domicilio'),
                                         'hora' => $this->request->getPost('hora'),
+                                        'kilometros' => $this->request->getPost('kilometros'),
                                         'cargos' => $this->request->getPost('cargos'),
                                         'estado' => $this->request->getPost('tipo')
                                         );

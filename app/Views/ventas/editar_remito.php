@@ -34,8 +34,7 @@
 				</div>
 				
 				<div class="input-container">
-					<i class="fa-solid fa-location-dot icon"></i>
-					<input type="text" class="input-field" placeholder="Domicilio:" form="editarRemito" id="domicilio" name="domicilio" maxlength="300" value="">	
+					
 				</div>
 			</div>
 			<div class="column">
@@ -46,8 +45,8 @@
 			</div>
 			<div class="column">
 				<div class="input-container">
-					<i class="fa-solid fa-truck-moving icon"></i>
-					<input type="text" class="input-field" placeholder="Transportista:" form="editarRemito" id="transporte" name="transporte" style="width: 320px;">	
+					<i class="fa-solid fa-truck-arrow-right icon"></i>
+					<input type="number" class="input-field" placeholder="Kilometros:" form="ingresoRemito" id="kilometros" name="kilometros" value="<?php echo $remito->kilometros;?>">
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-clock icon"></i>
@@ -72,6 +71,7 @@
 						<option value="pagado">Cancelado</option>
 					</select>	
 				</div>
+				
 				<div class="input-container">
 					<!-- <i class="icon"></i> -->
 					<input type="submit" class="btn btn-register" form="editarRemito" style="margin-left: 40px; width: 120px;" value="Editar Remito">

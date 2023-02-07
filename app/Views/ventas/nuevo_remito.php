@@ -71,6 +71,10 @@
 					</select>	
 				</div>
 				<div class="input-container">
+					<i class="fa-solid fa-truck-arrow-right icon"></i>
+					<input type="number" class="input-field" placeholder="Kilometros:" form="ingresoRemito" id="kilometros" name="kilometros" required>
+				</div>
+				<div class="input-container">
 					<!-- <i class="icon"></i> -->
 					<input type="submit" class="btn btn-register" form="ingresoRemito" style="margin-left: 40px; width: 120px;" value="Generar Remito">
 				</div>

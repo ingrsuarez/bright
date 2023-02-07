@@ -12,6 +12,7 @@ public $domicilio;
 public $num;
 public $fecha;
 public $hora;
+public $kilometros;
 public $transporte;
 public $descripcion;
 public $cargos;
@@ -127,6 +128,11 @@ public $cargos;
 		$this->SetTextColor(47,79,79);
 		$this->Cell(10,7,utf8_decode($this->cargos),0,0,'L',false);
 		$this->Ln(10);
+		$this->SetTextColor(0,0,0);
+		$this->SetFont('Times','B',10);
+		$this->Cell(30,7,utf8_decode('Kilometros:'),0,0,'L',false);
+		$this->SetFont('Times','',10);
+		$this->Cell(10,7,utf8_decode($this->kilometros." km"),0,0,'L',false);
 
 		$this->Ln(10);
 		$this->SetLineWidth(0.4);
@@ -171,6 +177,7 @@ public $cargos;
 	$pdf-> domicilio = $cliente->domicilio;
 	$pdf-> fecha = $remito->fecha;
 	$pdf-> hora = $remito->hora;
+	$pdf-> kilometros = $remito->kilometros;
 	if (!empty($movimientos)){
 		$pdf-> transporte = $movimientos[0]->transporte;
 	}

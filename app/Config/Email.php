@@ -54,14 +54,14 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPUser = 'bright.soporte@admesys.com';
+    public $SMTPUser = '';
 
     /**
      * SMTP Password
      *
      * @var string
      */
-    public $SMTPPass = '&Right2023';
+    public $SMTPPass = '';
 
     /**
      * SMTP Port
