@@ -63,7 +63,8 @@ class Rrhh extends BaseController
                                 'fecha_nacimiento' => $this->request->getPost('fechaNacimiento'),
                                 'cuil' => $this->request->getPost('cuil'),
                                 'dni' => $this->request->getPost('dni'),
-                                'domicilio' => $this->request->getPost('domicilio')
+                                'domicilio' => $this->request->getPost('domicilio'),
+                                'estado' => 'inactivo'
                                 );
             $usuario->setNewUser($nuevoUsuario);
             return redirect()->to('/rrhh');
@@ -211,7 +212,7 @@ class Rrhh extends BaseController
                                 'puesto' => $puesto,
                                 'horas_semanales' => $horas,
                                 'estado' => 'activar');
-                $linkActivacion = hash('sha256',$usuario[0]->nombre.$emailTo);
+                $linkActivacion = site_url("activate/".$idPersonal."/").hash('sha256',$usuario[0]->nombre.$emailTo);
                 $personal->updateUser($idPersonal,$data);
 
                 $email = \Config\Services::email();
