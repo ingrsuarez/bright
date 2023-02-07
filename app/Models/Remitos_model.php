@@ -9,7 +9,7 @@ class Remitos_model extends Model
 {
     protected $table = 'remitos';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['fecha','numero','punto_venta','usuario','cliente','leyenda','cargos','domicilio','hora','estado'];
+    protected $allowedFields = ['fecha','numero','punto_venta','usuario','cliente','leyenda','cargos','domicilio','hora','kilometros','estado'];
 
     public function setNewRemito($data)
     {

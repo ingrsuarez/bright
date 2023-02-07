@@ -4,7 +4,7 @@
 		<div class="container registros">
 			<div class="column">
 				<div class="register_title">
-					<h3><i class="fas fa-tasks"></i>  EDITAR REMITO: </h3>
+					<h3><i class="fas fa-tasks"></i>  EDITAR REMITO: <?php echo $remito->numero;?></h3>
 				</div>
 			</div>
 
@@ -46,7 +46,7 @@
 			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-truck-arrow-right icon"></i>
-					<input type="number" class="input-field" placeholder="Kilometros:" form="ingresoRemito" id="kilometros" name="kilometros" value="<?php echo $remito->kilometros;?>">
+					<input type="number" class="input-field" placeholder="Kilometros:" form="editarRemito" id="kilometros" name="kilometros" value="<?php echo $remito->kilometros;?>">
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-clock icon"></i>

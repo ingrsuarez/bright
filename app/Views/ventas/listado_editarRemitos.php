@@ -18,7 +18,7 @@
 			$i = 0;
 			while ($i < $arrayLength) {?>
 				<tr class="listado__row">						
-					<td><a href="<?php echo site_url("/ventas/listado_editarRemitos/".$remitos[$i]->id);?>"><?php echo str_pad($remitos[$i]->id,4,"0",STR_PAD_LEFT);?></a> </td>
+					<td><a href="<?php echo site_url("/ventas/listado_editarRemitos/".$remitos[$i]->id);?>"><?php echo str_pad($remitos[$i]->numero,4,"0",STR_PAD_LEFT);?></a> </td>
 					<td class="listado__fecha"> <?php echo  $remitos[$i]->fecha;?></td>
 					<td> <?php echo strtoupper($remitos[$i]->cliente);?></a></td>
 					<td> <?php echo $remitos[$i]->usuario;?></td>

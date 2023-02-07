@@ -287,6 +287,7 @@ class Ventas extends BaseController
                                         );
                 $remito->updateRemito($numero,$nuevoRemito);
             }
+
             return redirect()->to('/ventas');
 
         }else{
