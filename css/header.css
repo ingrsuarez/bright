@@ -481,6 +481,26 @@ aside {
 	/*##########################################################################*/
 	/*############################## CONTAINERS ##################################*/
 
+	.input-container .tooltiptext {
+	  visibility: hidden;
+	  width: 120px;
+	  background-color: #555;
+	  color: #fff;
+	  text-align: center;
+	  border-radius: 6px;
+	  padding: 5px 0;
+	  
+	  /* Position the tooltip */
+	  position: absolute;
+	  z-index: 19;
+	  top: -5px;
+	  left: 30%;
+	}
+
+	.input-container:hover .tooltiptext {
+  	visibility: visible;
+	}
+
 	.register_title {
     height: 40px;
     background-color: #eb9500;

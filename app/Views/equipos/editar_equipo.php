@@ -15,16 +15,17 @@
 			
 			<div class="input-container">
 				<i class="fa-solid fa-tag icon"></i>
-				<input type="text" class="input-field" placeholder="Número:" form="editarEquipo" id="numero" name="numero" value="<?php echo $equipos[0]->numero;?>" maxlength="300" autofocus required>	
+				<input type="text" class="input-field" placeholder="Número:" form="editarEquipo" id="numero" name="numero" value="<?php echo $equipos[0]->numero;?>" maxlength="300" autofocus required>
+				<span class="tooltiptext">Número</span>	
 			</div>
 			
 		</div>
 		<div class="column">
 			
 			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
+				<i class="fa-regular fa-copyright icon"></i>
 				<input type="text" class="input-field" placeholder="Marca:" form="editarEquipo" id="marca" name="marca" value="<?php echo ucfirst($equipos[0]->marca);?>" maxlength="300" required>
-
+				<span class="tooltiptext">Marca</span>
 				
 			</div>
 			
@@ -32,9 +33,9 @@
 		<div class="column">
 			
 			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
+				<i class="fa-solid fa-gauge-high icon"></i>
 				<input type="text" class="input-field" placeholder="Horas:" form="editarEquipo" id="horas" name="horas" value="<?php echo ($equipos[0]->horas);?>" >
-
+				<span class="tooltiptext">Horas</span>
 				
 			</div>
 			
@@ -44,6 +45,7 @@
 			<div class="input-container">
 				<i class="fa-solid fa-battery-three-quarters icon"></i>
 				<input type="text" class="input-field" placeholder="Capacidad:" form="editarEquipo" id="capacidad" name="capacidad" value="<?php echo $equipos[0]->capacidad;?>" maxlength="300" required>
+				<span class="tooltiptext">Capacidad</span>
 			</div>
 			
 
@@ -51,7 +53,7 @@
 		<div class="column">
 			
 			<div class="input-container">
-				<i class="far fa-address-card icon"></i>
+				<i class="fa-solid fa-file-circle-exclamation icon"></i>
 				<select class="select-field" id="estado" name="estado" required>
 					<option selected value="<?php echo $equipos[0]->estado;?>"> <?php echo strtoupper($equipos[0]->estado);?> </option>
 					<?php if ($equipos[0]->estado <> "disponible"){
