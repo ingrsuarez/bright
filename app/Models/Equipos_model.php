@@ -28,7 +28,7 @@ class Equipos_model extends Model
     public function getEquipments()
     {
         $db = \Config\Database::connect();  
-        $query = $db->table('equipos')->get();
+        $query = $db->table('equipos')->orderBy('peso', 'DESC')->get();
         $result = $query->getResult();
         return $result;
     }
@@ -76,10 +76,29 @@ class Equipos_model extends Model
     public function getAvailableEquipments()
     {
         $db = \Config\Database::connect();  
-        $query = $db->table('equipos')->where('estado','disponible')->get();
+        $query = $db->table('equipos')->where('estado','disponible')->orderBy('peso', 'DESC')->get();
 
         $result = $query->getResult();
         return $result;
+    }
+
+
+    // UPDATE equipos SET equipos.peso = equipos.peso - 1 WHERE equipos.peso > 0 AND equipos.id <> 25
+
+    public function updatePeso($id)
+    {
+        $db = \Config\Database::connect();  
+        $query = $db->table('equipos')->where('id',$id)->get();
+        $result = $query->getRow();
+        $peso = $result->peso;
+        if ($peso < 100)
+        {
+            $query = $db->query("UPDATE equipos SET equipos.peso = equipos.peso + 1 WHERE equipos.id = ".$id);
+        }else
+        {
+            $query = $db->query("UPDATE equipos SET equipos.peso = equipos.peso - 1 WHERE equipos.peso > 0 AND equipos.id <> ".$id);
+        }
+
     }
 
     public function getInspectionEquipments()

@@ -72,7 +72,7 @@
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-truck-arrow-right icon"></i>
-					<input type="number" class="input-field" placeholder="Kilometros:" form="ingresoRemito" id="kilometros" name="kilometros" required>
+					<input type="number" class="input-field" placeholder="Kilometros:" form="ingresoRemito" id="kilometros" name="kilometros">
 				</div>
 				<div class="input-container">
 					<!-- <i class="icon"></i> -->

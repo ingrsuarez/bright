@@ -16,10 +16,16 @@ class Equipos extends BaseController
         if ($session->has('usuario'))
         {
             $data['nombre'] = ucfirst($session->nombre);
+            $equipos = new Equipos_model();
+            $disponible = $equipos->getAvailablePercentage('disponible');
+            $servicio = $equipos->getAvailablePercentage('servicio');
+            $revision = $equipos->getAvailablePercentage('inspeccionar');
+            $graph['equipos'] = array($disponible,$servicio,$revision);
             echo view('templates/head');
-            echo view('templates/header');
+            echo view('templates/headerImage');
             echo view('templates/header_subEquipos');
             echo view('templates/aside',$data);
+            echo view('templates/bar_graph',$graph);
             echo view('templates/footer');
         }else{
             $mensaje = "Su sesion ha expirado!";

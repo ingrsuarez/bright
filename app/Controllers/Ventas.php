@@ -25,7 +25,7 @@ class Ventas extends BaseController
             $data['nombre'] = ucfirst($session->nombre);
             
             echo view('templates/head');
-            echo view('templates/header');
+            echo view('templates/headerImage');
             echo view('templates/header_subVentas');
             echo view('templates/aside',$data);
             echo view('templates/remitos_graph.php',$graph);
@@ -115,11 +115,11 @@ class Ventas extends BaseController
                                     );
                 
                 $remito_id = $remito->setNewRemito($nuevoRemito);
-                foreach ($equipos_seleccionados as $key => $value)
+                foreach ($equipos_seleccionados as $key => $id)
                     {
                         $cliente = $remito->getClient($remito_id);
                         $ubicacion = $cliente->nombre;
-                        $numero_equipo = $equipo->getEquipmentNumber($value);
+                        $numero_equipo = $equipo->getEquipmentNumber($id);
                         if($this->request->getPost('tipo') == 'salida'){
                             $estado = 'servicio';
                         }else{
@@ -128,7 +128,7 @@ class Ventas extends BaseController
                         }
                         $nuevoMovimiento = array('fecha' => $this->request->getPost('fecha') ,
                                     'usuario' => $session->id,
-                                    'equipo' => $value,
+                                    'equipo' => $id,
                                     'numero_equipo' => $numero_equipo,
                                     'horas' => $horas[$key],
                                     'capacidad' => $capacidad[$key],
@@ -141,8 +141,8 @@ class Ventas extends BaseController
                                     );
                         $movimiento->setNewMovimiento($nuevoMovimiento);
                         
-
-                        $equipo->setEstado($value,$estado,$horas[$key],$ubicacion);                    
+                        $peso = $equipo->updatePeso($id);
+                        $equipo->setEstado($id,$estado,$horas[$key],$ubicacion);                    
                     } 
                     $data['remito_id'] = $remito_id;
                     echo view('ventas/generar_remito',$data);

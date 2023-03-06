@@ -81,9 +81,9 @@
 		<div class="column">
 			<div class="input-container">
 				<i class="icon"></i>
-				<input type="submit" class="btn btn-register" form="prevEquipo" style="margin-left: 40px; width: 100px;" value="<">
+				<input type="submit" class="btn btn-register" form="prevEquipo" style="margin-left: 40px; font-size:20px; width: 100px;" value="<">
 				<input type="submit" class="btn btn-register" form="editarEquipo" style="margin-left: 40px; width: 100px;" value="Editar">
-				<input type="submit" class="btn btn-register" form="nextEquipo" style="margin-left: 40px; width: 100px;" value=">">
+				<input type="submit" class="btn btn-register" form="nextEquipo" style="margin-left: 40px; width: 100px; font-size:20px;" value=">">
 			</div>
 			
 		</div>

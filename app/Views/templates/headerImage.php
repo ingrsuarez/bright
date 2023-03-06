@@ -1,4 +1,4 @@
-<body class="bodyGray">
+<body>
 		
 	<header class="header">
 		<nav class="menu">

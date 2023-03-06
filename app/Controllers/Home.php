@@ -18,7 +18,7 @@ class Home extends BaseController
             $revision = $equipos->getAvailablePercentage('inspeccionar');
             $graph['equipos'] = array($disponible,$servicio,$revision);
             echo view('templates/head');
-            echo view('templates/header');
+            echo view('templates/headerImage');
             echo view('templates/aside',$data);
             echo view('templates/bar_graph',$graph);
             echo view('templates/footer');
@@ -55,7 +55,7 @@ class Home extends BaseController
                 $revision = $equipos->getAvailablePercentage('inspeccionar');
                 $graph['equipos'] = array($disponible,$servicio,$revision);
                 echo view('templates/head');
-                echo view('templates/header');
+                echo view('templates/headerImage');
                 echo view('templates/aside',$data);
                 echo view('templates/bar_graph',$graph);
                 echo view('templates/footer');
