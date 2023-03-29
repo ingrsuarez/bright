@@ -85,7 +85,7 @@ class Remitos_model extends Model
     public function getLastRemito()
     {
         $db = \Config\Database::connect();
-        $query   = $db->query("SELECT MAX(remitos.numero) AS ultimo FROM `remitos`");
+        $query   = $db->query("SELECT MAX(cast(remitos.numero as unsigned)) AS ultimo FROM `remitos`");
         $remito = $query->getRow();
         return $remito;
 
