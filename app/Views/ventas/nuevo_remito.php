@@ -71,7 +71,6 @@
 					<select name="tipo" id="tipo" required>
 						<option value="salida">Salida</option>
 						<option value="retorno">Retorno</option>
-						<option value="retorno">Cambio</option>
 					</select>	
 				</div>
 				<div class="input-container">
