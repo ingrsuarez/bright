@@ -45,24 +45,28 @@
 				<div class="input-container">
 					<i class="fa-solid fa-tag icon"></i>
 					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="nuevaOrden" id="descripcion" name="descripcion"></textarea>	
+					<span class="tooltiptext">Observaciones</span>
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-gears icon"></i>
 					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Repuestos:" form="nuevaOrden" id="repuestos" name="repuestos"></textarea>	
+					<span class="tooltiptext">Repuestos</span>
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-file-invoice-dollar icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Cargos al Cliente:" form="nuevaOrden" id="cargos" name="cargos"></textarea>	
+					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Cargos al Cliente:" form="nuevaOrden" id="cargos" name="cargos"></textarea>
+					<span class="tooltiptext">Cargos al cliente</span>	
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-clock icon"></i>
-					<input type="number" name="horas" id="horas" step="1" min="" value="">	
+					<input type="number" name="horas" id="horas" step="1" min="" value="">
+					<span class="tooltiptext">Horas de trabajos</span>	
 				</div>
 			
 				<div class="input-container">

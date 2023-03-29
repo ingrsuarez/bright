@@ -30,7 +30,7 @@ class Ordenes_model extends Model
     public function getOrdersView()
     {
         $db = \Config\Database::connect();  
-        $query = $db->query("SELECT * FROM `ordenes_view`");
+        $query = $db->query("SELECT * FROM `ordenes_view` ORDER BY ordenes_view.fecha DESC");
         $result = $query->getResult();
         return $result;
     }

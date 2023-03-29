@@ -488,12 +488,12 @@ aside {
 	.input-container .tooltiptext {
 	  visibility: hidden;
 	  width: 120px;
-	  background-color: #555;
+	  background-color: #999;
 	  color: #fff;
 	  text-align: center;
 	  border-radius: 6px;
 	  padding: 5px 0;
-	  
+	  opacity: 0.9;
 	  /* Position the tooltip */
 	  position: absolute;
 	  z-index: 19;

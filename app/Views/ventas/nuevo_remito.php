@@ -39,17 +39,20 @@
 				
 				<div class="input-container">
 					<i class="fa-solid fa-hashtag icon"></i>
-					<input type="number" class="input-field" placeholder="Número:" form="ingresoRemito" id="numero" name="numero" value="<?php echo (1 + intval($ultimoRemito->ultimo));?>" required>	
+					<input type="number" class="input-field" placeholder="Número:" form="ingresoRemito" id="numero" name="numero" value="<?php echo (1 + intval($ultimoRemito->ultimo));?>" required>
+					<span class="tooltiptext">Número de orden</span>	
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-location-dot icon"></i>
-					<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoRemito" id="domicilio" name="domicilio" maxlength="300">	
+					<input type="text" class="input-field" placeholder="Domicilio:" form="ingresoRemito" id="domicilio" name="domicilio" maxlength="300">
+					<span class="tooltiptext">Ubicación del equipo</span>	
 				</div>
 			</div>
 			<div class="column">
 				<div class="input-container">
 					<i class="fa-solid fa-tag icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="ingresoRemito" id="leyenda" name="leyenda"></textarea>	
+					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="ingresoRemito" id="leyenda" name="leyenda"></textarea>
+					<span class="tooltiptext">Observaciones</span>	
 				</div>
 			</div>
 			<div class="column">
@@ -68,11 +71,13 @@
 					<select name="tipo" id="tipo" required>
 						<option value="salida">Salida</option>
 						<option value="retorno">Retorno</option>
+						<option value="retorno">Cambio</option>
 					</select>	
 				</div>
 				<div class="input-container">
 					<i class="fa-solid fa-truck-arrow-right icon"></i>
 					<input type="number" class="input-field" placeholder="Kilometros:" form="ingresoRemito" id="kilometros" name="kilometros">
+					<span class="tooltiptext">Kilometros a facturar</span>
 				</div>
 				<div class="input-container">
 					<!-- <i class="icon"></i> -->
