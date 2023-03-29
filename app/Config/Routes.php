@@ -74,6 +74,7 @@ $routes->get('ventas/editar_remito/(:any)', 'Ventas::editarRemito/$1');
 $routes->post('ventas/editar_remito/(:any)', 'Ventas::editarRemito/$1');
 $routes->post('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
 $routes->get('ventas/pdfRemito/(:any)', 'Ventas::pdf_remito/$1');
+$routes->get('ventas/nuevo_cambio', 'Ventas::nuevo_cambio');
 
 $routes->get('ventas/saldos_clientes', 'Ventas::saldosClientes');
 $routes->post('ventas/saldos_clientes/(:any)', 'Ventas::saldosClientes/$1');

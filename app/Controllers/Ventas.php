@@ -200,7 +200,49 @@ class Ventas extends BaseController
     }
 
 
+    public function nuevo_cambio($param = NULL) //CAMBIO DE EQUIPO
+    {
+        $session = \Config\Services::session();
+        if ($session->has('usuario'))
+        {
+            $listado = new Equipos_model();
+            if ($param == NULL)
+            {
+                $remito = new Remitos_model();
+                $data['today'] = date("Y-m-d");
+                $data['nombre'] = ucfirst($session->nombre);
+                $data['ultimoRemito'] = $remito->getLastRemito();
+                $data['equipos'] = $listado->getAvailableEquipments(); 
+                $clientes = new Clientes_model();
+                $data['clientes'] = $clientes->getClients();  
+                $data['hora'] = date('H:i');
+                echo view('templates/head');
+                echo view('templates/header');
+                echo view('templates/header_subVentas');
+                echo view('templates/aside',$data);
+                echo view('ventas/nuevo_cambio');
+                echo view('templates/footer');
+            }elseif ($param == "salida")
+                {
+                    $tipoRemito = $this->request->getPost('tipoRemito');  
+                    if ($tipoRemito == 'salida'){
+                        $array['equipos'] = $listado->getAvailableEquipments();
+                    }elseif ($tipoRemito == 'retorno')
+                    {
+                        $array['equipos'] = $listado->getWorkingEquipments();
+                    }
 
+                    print_r(json_encode($array['equipos']));
+
+
+                }
+            
+        }else{
+            $mensaje = "Su sesion ha expirado!";
+            $session->setFlashdata('message',$mensaje);
+            return redirect()->to('/login');
+        }
+    }
 
 
 

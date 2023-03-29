@@ -68,7 +68,7 @@ class Equipos_model extends Model
     public function getLastRemitos($id=1)
     {
         $db = \Config\Database::connect();
-        $query = $db->query("SELECT remitos.id, movimientos.equipo, remitos.estado FROM remitos INNER JOIN movimientos ON remitos.id = movimientos.remito WHERE remitos.estado = 'retorno' AND movimientos.equipo = ".$id." ORDER BY remitos.id DESC");
+        $query = $db->query("SELECT remitos.id, movimientos.equipo, remitos.numero, remitos.estado FROM remitos INNER JOIN movimientos ON remitos.id = movimientos.remito WHERE remitos.estado = 'retorno' AND movimientos.equipo = ".$id." ORDER BY remitos.id DESC");
         $result = $query->getResult();
         return $result;
     }
@@ -82,8 +82,6 @@ class Equipos_model extends Model
         return $result;
     }
 
-
-    // UPDATE equipos SET equipos.peso = equipos.peso - 1 WHERE equipos.peso > 0 AND equipos.id <> 25
 
     public function updatePeso($id)
     {

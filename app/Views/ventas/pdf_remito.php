@@ -187,15 +187,16 @@ public $cargos;
 	$pdf-> AddPage();
 	
 
-	$w = array(40, 80, 50);
-	$h = array(40, 80, 50, 30);
-	$header = array('Equipo',utf8_decode('Horas'),'Capacidad',utf8_decode('Tipo'));
+	$w = array(45, 40, 40, 40, 40);
+	$h = array(40, 30, 30, 30, 20);
+	$header = array('Fecha','Equipo',utf8_decode('Horas'),'Capacidad',utf8_decode('Tipo'));
 	// $pdf->SetFont('Arial','B',11);
 	// // Cabecera
-	$pdf->Cell($h[0],7,$header[0],0,0,'L',false);
-	$pdf->Cell($h[1],7,$header[1],0,0,'L',false);
-	$pdf->Cell($h[2],7,$header[2],0,0,'L',false);
-	$pdf->Cell($h[3],7,$header[3],0,0,'L',false);
+	$pdf->Cell($w[0],7,$header[0],0,0,'L',false);
+	$pdf->Cell($w[1],7,$header[1],0,0,'L',false);
+	$pdf->Cell($w[2],7,$header[2],0,0,'L',false);
+	$pdf->Cell($w[3],7,$header[3],0,0,'L',false);
+	$pdf->Cell($w[4],7,$header[4],0,0,'L',false);
 	$pdf->Ln(7);	
 	$pdf->SetLineWidth(0.4);
 	$pdf->SetDrawColor(0,0,0);
@@ -205,11 +206,11 @@ public $cargos;
 	
 	if (!empty($movimientos)){
 		foreach ($movimientos as $fila){
-
-			$pdf->Cell($w[0],6,"      ".$fila->numero_equipo,0,0,'L',false);
-			$pdf->Cell($w[1],6,substr($fila->horas,0,40),0,0,'L',false);
-			$pdf->Cell($w[2],6,substr($fila->capacidad,0,40),0,0,'L',false);
-			$pdf->Cell($w[2],6,$fila->tipo,0,0,'L',false);
+			$pdf->Cell($w[0],6,$fila->fecha,0,0,'L',false);
+			$pdf->Cell($w[1],6,"      ".$fila->numero_equipo,0,0,'L',false);
+			$pdf->Cell($w[2],6,substr($fila->horas,0,40),0,0,'L',false);
+			$pdf->Cell($w[3],6,substr($fila->capacidad,0,40),0,0,'L',false);
+			$pdf->Cell($w[4],6,$fila->tipo,0,0,'L',false);
 			$pdf->Ln();
 							
 		}

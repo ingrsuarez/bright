@@ -20,6 +20,9 @@
 						<li class="inside__item">
 							<a href="<?php echo base_url(); ?>/ventas/listado_editarRemitos/">Editar Orden de Servicio</a>
 						</li>
+						<li class="inside__item">
+							<a href="<?php echo base_url(); ?>/ventas/nuevo_cambio/">Cambio de Equipo</a>
+						</li>
 					</ul>
 				</li>
 				<li class="dropdown__item2" id="presupuesto">
