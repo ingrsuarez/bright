@@ -62,7 +62,7 @@ class Home extends BaseController
             }else
             {
 
-                $mensaje = "Introduzca un usario y clve válida!";
+                $mensaje = "Introduzca un usuario y clave válida!";
                 $session->setFlashdata('message',$mensaje);
                 return redirect()->to('/login');
             }            
