@@ -72,4 +72,3 @@
 			<div class="menu__logo" ></div>
 		</nav>
 <script type = 'text/javascript' src = "<?php echo base_url();?>/js/menuEquiposJava.js"></script>	
-</header>

@@ -3,18 +3,18 @@
 	<header class="header">
 		<nav class="menu">
 			<ul class="menu__logo" ><img src="<?php echo base_url(); ?>/images/logo.jpg"></ul>
-			<ul class="menu__item" >
-				<li class="dropdown__item dropdown__item--active" id="home"><a href="<?php echo base_url(); ?>/home">INICIO</a></li> 
-				<li class="dropdown__item" id="compras">
+			<ul class="menu__item" id="menuItems" >
+				<li class="dropdown__item dropdown__item--active" id="home"><i class="fa-solid fa-house"></i><a href="<?php echo base_url(); ?>/home">INICIO</a></li> 
+				<li class="dropdown__item" id="equipos">
 					<i class="fa-solid fa-bolt"></i><a href="<?php echo base_url(); ?>/equipos/" >  EQUIPOS</a>
 				</li>
-				<li class="dropdown__item" id="contacto">
+				<li class="dropdown__item" id="ventas">
 					<i class="fa-solid fa-money-check-dollar"></i><a href="<?php echo base_url(); ?>/ventas/">VENTAS</a>
 				</li>
-				<li class="dropdown__item" id="contacto">
+				<li class="dropdown__item" id="rrhh">
 					<i class="fa-solid fa-people-group"></i><a href="<?php echo base_url(); ?>/rrhh/">RRHH</a>
 				</li>
-				<div class="dropdown__toggle" id="toggle">
+				<div class="dropdown__toggle" id="toggleNav">
 					<i class="fa-solid fa-bars"></i>
 				</div>
 			</ul>

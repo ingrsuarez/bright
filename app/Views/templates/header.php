@@ -8,13 +8,13 @@
 				<li class="dropdown__item" id="compras">
 					<i class="fa-solid fa-bolt"></i><a href="<?php echo base_url(); ?>/equipos/" >  EQUIPOS</a>
 				</li>
-				<li class="dropdown__item" id="contacto">
+				<li class="dropdown__item" id="ventas">
 					<i class="fa-solid fa-money-check-dollar"></i><a href="<?php echo base_url(); ?>/ventas/">VENTAS</a>
 				</li>
-				<li class="dropdown__item" id="contacto">
+				<li class="dropdown__item" id="rrhh">
 					<i class="fa-solid fa-people-group"></i><a href="<?php echo base_url(); ?>/rrhh/">RRHH</a>
 				</li>
-				<div class="dropdown__toggle" id="toggle">
+				<div class="dropdown__toggle" id="toggleNav">
 					<i class="fa-solid fa-bars"></i>
 				</div>
 			</ul>

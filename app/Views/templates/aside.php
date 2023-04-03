@@ -1,3 +1,4 @@
+</header>
 	<div class="main">
 		<aside>
 			<nav class="menu__horiz">
@@ -52,3 +53,4 @@
 				
 			</nav>
 		</aside>
+

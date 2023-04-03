@@ -62,7 +62,7 @@ class Home extends BaseController
             }else
             {
 
-                $mensaje = "Su sesion ha expirado!";
+                $mensaje = "Introduzca un usario y clve válida!";
                 $session->setFlashdata('message',$mensaje);
                 return redirect()->to('/login');
             }            
