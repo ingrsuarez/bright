@@ -38,7 +38,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Secure::login');
 $routes->get('home', 'Home::index');
 $routes->get('secure', 'Secure::index');
-$routes->add('home', 'Home::index');
+$routes->post('home', 'Home::index');
 
 $routes->get('login', 'Secure::login');
 $routes->add('logout', 'Secure::logout');
