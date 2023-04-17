@@ -6,11 +6,13 @@ use App\Models\Equipos_model;
 
 class Home extends BaseController
 {
+    private $activeMenu = array('dropdown__item--active','','','');
     public function index()
     {
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             $equipos = new Equipos_model();
             $disponible = $equipos->getAvailablePercentage('disponible');
@@ -18,7 +20,7 @@ class Home extends BaseController
             $revision = $equipos->getAvailablePercentage('inspeccionar');
             $graph['equipos'] = array($disponible,$servicio,$revision);
             echo view('templates/head');
-            echo view('templates/headerImage');
+            echo view('templates/headerImage',$data);
             echo view('templates/aside',$data);
             echo view('templates/bar_graph',$graph);
             echo view('templates/footer');
@@ -45,7 +47,7 @@ class Home extends BaseController
             $user_data = $user->getUserPassword($name,$password);
             if (!empty($user_data))
             {
-              
+                $data['active'] = $this->activeMenu;
                 $new_session = (array)$user_data[0];
                 $session->set($new_session);    
                 $data['nombre'] = ucfirst($session->nombre);
@@ -55,7 +57,7 @@ class Home extends BaseController
                 $revision = $equipos->getAvailablePercentage('inspeccionar');
                 $graph['equipos'] = array($disponible,$servicio,$revision);
                 echo view('templates/head');
-                echo view('templates/headerImage');
+                echo view('templates/headerImage',$data);
                 echo view('templates/aside',$data);
                 echo view('templates/bar_graph',$graph);
                 echo view('templates/footer');

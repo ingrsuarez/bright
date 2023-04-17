@@ -18,10 +18,7 @@ menu1.addEventListener("click", function(){
 		resto4.style.opacity = "0";
 		submenu.style.opacity = "1";
 		submenu.style.cursor = "pointer";
-		submenu.style.top = "35px";
 		submenu.style.display = "block";
-		submenu.style.transition = ".5s";
-		submenu.style.transitionTimingFunction = "cubic-bezier(0,0,0,1)";
 	}else{
 		submenu.style.opacity = "0";
 		submenu.style.cursor = "none";
@@ -41,10 +38,8 @@ menu2.addEventListener("click", function(){
 		resto4.style.opacity = "0";
 		submenu.style.opacity = "1";
 		submenu.style.cursor = "pointer";
-		submenu.style.top = "35px";
 		submenu.style.display = "block";
-		submenu.style.transition = ".5s";
-		submenu.style.transitionTimingFunction = "cubic-bezier(0,0,0,1)";
+
 	}else{
 		submenu.style.opacity = "0";
 		submenu.style.cursor = "none";
@@ -66,10 +61,8 @@ menu4.addEventListener("click", function(){
 
 		submenu.style.opacity = "1";
 		submenu.style.cursor = "pointer";
-		submenu.style.top = "35px";
 		submenu.style.display = "block";
-		submenu.style.transition = ".5s";
-		submenu.style.transitionTimingFunction = "cubic-bezier(0,0,0,1)";
+
 	}else{
 		submenu.style.opacity = "0";
 		submenu.style.cursor = "none";

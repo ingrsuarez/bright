@@ -1,13 +1,10 @@
-body{
-  background-color: #ededed;
-}
 .board2{
-    margin: auto;
-    margin-top: 110px;
-    width: 55%;
+    position: relative;
+    margin: 4px 0;
+    width: 95%;
     height: 450px;
     background-color: #e2e2e2;
-    padding: 10px;
+    padding: 0px;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -300,4 +297,16 @@ footer{
     text-align: center;
     font-size: 12px;
     font-family: sans-serif;
+}
+
+
+@media only screen and (min-width: 650px) {
+.board2{
+    max-width: 800px;
+    margin: 16px 0;
+    width: 90%;
+    height: 450px;
+    background-color: #e2e2e2;
+    padding: 10px;
+
 }
