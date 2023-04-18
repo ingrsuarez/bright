@@ -9,12 +9,13 @@ use App\Models\Remitos_model;
 
 class Equipos extends BaseController
 {
-    
+    private $activeMenu = array('','dropdown__item--active','','');
     public function index()
     {
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             $equipos = new Equipos_model();
             $disponible = $equipos->getAvailablePercentage('disponible');
@@ -22,9 +23,9 @@ class Equipos extends BaseController
             $revision = $equipos->getAvailablePercentage('inspeccionar');
             $graph['equipos'] = array($disponible,$servicio,$revision);
             echo view('templates/head');
-            echo view('templates/headerImage');
-            echo view('templates/header_subEquipos');
+            echo view('templates/headerImage',$data);
             echo view('templates/aside',$data);
+            echo view('templates/header_subEquipos');
             echo view('templates/bar_graph',$graph);
             echo view('templates/footer');
         }else{
@@ -43,11 +44,12 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subEquipos');
+            echo view('templates/header',$data);
             echo view('templates/aside',$data);
+            echo view('templates/header_subEquipos');
             echo view('equipos/nuevo_equipo');
             echo view('templates/footer');
         }else{
@@ -89,13 +91,14 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             $listado = new Equipos_model();
             $array['equipos'] = $listado->getEquipments(); 
             echo view('templates/head');
-            echo view('templates/header');
+            echo view('templates/header',$data);
+            echo view('templates/aside',$data);            
             echo view('templates/header_subEquipos');
-            echo view('templates/aside',$data);
             echo view('equipos/listado_equipos',$array);
             echo view('templates/footer');
         }else{
@@ -117,6 +120,7 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $next = $this->request->getPost('next'); 
             $data['nombre'] = ucfirst($session->nombre);
             $listado = new Equipos_model();
@@ -143,9 +147,9 @@ class Equipos extends BaseController
                 
             }    
             echo view('templates/head');
-            echo view('templates/header');
+            echo view('templates/header',$data);
+            echo view('templates/aside',$data);            
             echo view('templates/header_subEquipos');
-            echo view('templates/aside',$data);
             echo view('equipos/editar_equipo',$array);
             echo view('templates/footer');
         }else{
@@ -192,6 +196,7 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         { 
+            $data['active'] = $this->activeMenu;
             if ($param == NULL)
             { 
                 $data['message'] = $session->getFlashdata('message');
@@ -200,9 +205,9 @@ class Equipos extends BaseController
                 $listado = new Equipos_model();
                 $data['equipos'] = $listado->getEquipments();
                 echo view('templates/head');
-                echo view('templates/header');
+                echo view('templates/header',$data);
+                echo view('templates/aside',$data);                
                 echo view('templates/header_subEquipos');
-                echo view('templates/aside',$data);
                 echo view('equipos/nueva_orden',$data);
                 echo view('templates/footer');
             }elseif($param == "equipo")
@@ -297,15 +302,16 @@ class Equipos extends BaseController
         { 
             if ($param == NULL)
             { 
+                $data['active'] = $this->activeMenu;
                 $data['message'] = $session->getFlashdata('message');
                 $data['today'] = date("Y-m-d");
                 $data['nombre'] = ucfirst($session->nombre);
                 $listado = new Ordenes_model();
                 $data['ordenes'] = $listado->getOpenOrders();
                 echo view('templates/head');
-                echo view('templates/header');
+                echo view('templates/header',$data);
+                echo view('templates/aside',$data);                
                 echo view('templates/header_subEquipos');
-                echo view('templates/aside',$data);
                 echo view('equipos/ordenes_abiertas',$data);
                 echo view('templates/footer');
             }elseif($param == "equipo")
@@ -415,13 +421,14 @@ class Equipos extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             $listado = new Ordenes_model();
             $array['ordenes'] = $listado->getOrdersView(); 
             echo view('templates/head');
-            echo view('templates/header');
+            echo view('templates/header',$data);
+            echo view('templates/aside',$data);            
             echo view('templates/header_subEquipos');
-            echo view('templates/aside',$data);
             echo view('equipos/listado_ordenes',$array);
             echo view('templates/footer');
         }else{

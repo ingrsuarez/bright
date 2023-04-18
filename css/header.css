@@ -17,15 +17,19 @@ body {
 	background-position: right bottom, left top;
 	background-size: cover,550px;
 	background-attachment: fixed;
-
-
+	display: flex;
+	flex-direction: column;
 }
 
 header {
-	position: fixed;
-  top: 0;
+	position: static;
   width: 100vw;
   z-index: 200;
+  height: 100%;
+}
+
+img {
+	max-width: 100%;
 }
 
 .login {
@@ -80,7 +84,7 @@ header {
 	display: flex;
 	flex-direction: row;
 	width: 100vw;
-	height: 50px;
+	height: auto;
 	justify-content: space-between;
 	flex: 4;
 	box-shadow: 1px 3px 20px lightblue;
@@ -235,11 +239,19 @@ aside {
 /*###########################################  DESKTOP  #################################*/
 
 @media only screen and (min-width: 600px) {
-  	body {
+  body {
 	  background-image: url("../images/fondo1.webp");
 		background-repeat: no-repeat, repeat;
 		background-position: right bottom, left top;
 		background-size: 1250px;  
+
+	}
+
+	header {
+		position: fixed;
+		
+		width: 100vw;
+		height: 50px;
 	}
 
 	.bodyGray {
@@ -345,6 +357,8 @@ aside {
     box-shadow: 1px 3px 20px lightblue;
     z-index: 0;
 	}
+
+
 	.dropdown__item2 {
     display: flex;
     color: #fefefe;
@@ -478,9 +492,7 @@ aside {
 		background-color: #c7dbda;
 		height: 100%;
 	}
-	.grid-item{
 
-	}
 
 	/*##########################################################################*/
 	/*############################## CONTAINERS ##################################*/
@@ -493,16 +505,18 @@ aside {
 	  text-align: center;
 	  border-radius: 6px;
 	  padding: 5px 0;
-	  opacity: 0.9;
+	  opacity: 0.8;
 	  /* Position the tooltip */
-	  position: absolute;
+	  position: relative;
 	  z-index: 19;
-	  top: -5px;
-	  left: 30%;
+	  top: 30px;
+	  left:-100px;
 	}
 
 	.input-container:hover .tooltiptext {
   	visibility: visible;
+  	top:20px;
+  	right: -100px;
 	}
 
 	.register_title {

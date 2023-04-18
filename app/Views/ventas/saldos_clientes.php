@@ -1,14 +1,13 @@
 	
-<form method="POST" action="<?php echo site_url('ventas/saldos_clientes'); ?>" id="saldoCliente">
-	<div class="grid2x1">
-		<div class="container registros">
-			<div class="column">
-				<div class="register_title">
-					<h3><i class="fas fa-tasks"></i>  ESTADOS DE CUENTA: </h3>
-				</div>
+
+	
+<div class="container_registro large">
+	<form method="POST" action="<?php echo site_url('ventas/saldos_clientes'); ?>" id="saldoCliente">
+			<div class="titulo">
+				<h3><i class="fas fa-tasks"></i>  ESTADOS DE CUENTA: </h3>
 			</div>
 
-			<div class="column">
+			<div class="row">
 				
 				<div class="input-container">
 					<i class="fa-solid fa-building-flag icon"></i>
@@ -18,7 +17,7 @@
 					  	$arrayLength = count($clientes);
 						$i = 0;
 						while ($i < $arrayLength) {?>
-							<option value='<?php echo $clientes[$i]->id;?>'><?php echo strtoupper($clientes[$i]->nombre);?></option>
+							<option value='<?php echo $clientes[$i]->id;?>'><?php echo strtoupper(substr($clientes[$i]->nombre,0,22));?></option>
 					 	<?php
 						$i++;
 						}
@@ -28,31 +27,18 @@
 
 				</div>
 				
-				<div class="input-container">
-<!-- 					<i class="fa-solid fa-building-flag icon"></i>
-					<select name="tipo" id="tipo" required>
-						<option value="salida">Salida</option>
-						<option value="retorno">Retorno</option>
-					</select> -->	
-				</div>
 			</div>
-			<div class="column">
-				
-				<div class="input-container">
-					<!-- <i class="icon"></i> -->
-					<!-- <input type="submit" class="btn btn-register" form="ingresoRemito" style="margin-left: 40px; width: 120px;" value="Generar Remito"> -->
-				</div>
-				
-			</div>
-			
-		</div>
+	</form>		
+</div>
 
-		<div class="container registros2">
+		<div class="container_tabla">
+			<div class="titulo">
+				<h3><i class="fas fa-tasks"></i>  HISTORICO: </h3>
+			</div>
 			<table class='listado' id="tablaSaldo">
 			<thead>
 				<tr class="listado__encabezado">
-					<th class="listado__fecha" style="width: 40px;">#</th>
-					<th class="listado__fecha">Fecha </th>
+					<th class="center">Fecha </th>
 					<th class="listado__fecha">Remito </th>
 					<th scope='col'>Cliente </th>
 					<th scope='col'>Precio</th>
@@ -64,22 +50,20 @@
 			$arrayLength = count($historial);
 			$i = 0;
 			while ($i < $arrayLength) {?>
-				<tr class="listado__row">	
-					<td><input class='ingresoRemito' type='checkbox' id="<?php echo $historial[$i]->remito ?>" name='equipos_seleccionados[]' value="<?php echo $historial[$i]->remito ?>"><input type="hidden" name="equipos[]" value="<?php echo $historial[$i]->remito; ?>"></td>					
-					<td class="listado__fecha" style="width: 380px;"> <?php echo $historial[$i]->fecha;?></td>
-					<td><input type='hidden' name='capacidad[]'value="<?php echo $historial[$i]->remito; ?>"> <?php echo $historial[$i]->remito; ?></td>
-					<!--<td><input class='price' type='number' value='<?php ?>' step='any' name='horas[]' style='width: 80px;' readonly></td> -->
-					<td style="width: 150px;"> <?php echo strtoupper($historial[$i]->cliente); ?></td>
-					<td style="width: 150px;"> <?php echo $historial[$i]->precio;?></td>
-					<td style="width: 150px;"> <?php echo strtoupper($historial[$i]->estado);?></td>				
+				<tr class="listado__row">						
+					<td class="center"> <?php echo $historial[$i]->fecha;?></td>
+					<td class="center"><input type='hidden' name='capacidad[]'value="<?php echo $historial[$i]->remito; ?>"> <?php echo $historial[$i]->remito; ?></td>
+					<td> <?php echo strtoupper($historial[$i]->cliente); ?></td>
+					<td> <?php echo $historial[$i]->precio;?></td>
+					<td> <?php echo strtoupper($historial[$i]->estado);?></td>				
 				</tr><?php
 				$i++;
 				}
 				 ?>	  
 			</tbody>
 		</table>
-		</div>
 	</div>
+	
 
 	<script type="text/javascript">
 					$(document).ready(function(){
@@ -101,15 +85,12 @@
 
 								json.forEach(function(value,label){
 									cont++;
-									$("#tablaSaldo>tbody").append("<tr class='listado__row'><td><input class='ingresoRemito' type='checkbox' id="
-										+json[label].remito+" name='equipos_seleccionados[]' value="
-										+json[label].remito+"><input type='hidden' name='equipos[]' value="
-										+json[label].remito+"></td>"
-										+"<td class='listado__fecha'>"+json[label].fecha+"</td>"
-										+"<td><a href='"+window.location.href.slice(0,-15)+"pdfRemito/"+json[label].remito+"'>"+json[label].remito.padStart(4, '0')+"</a></td>"
-										+"<td style='width: 250px;'>"+json[label].cliente.toUpperCase()+"</td>"
-										+"<td style='width: 150px;'>"+json[label].precio+"</td>"
-										+"<td style='width: 150px;'>"+ json[label].estado.toUpperCase()+"</td>"
+									$("#tablaSaldo>tbody").append("<tr class='listado__row'>"
+										+"<td class='center'>"+json[label].fecha+"</td>"
+										+"<td class='center'><a href='"+window.location.href.slice(0,-15)+"pdfRemito/"+json[label].remito+"'>"+json[label].remito.padStart(4, '0')+"</a></td>"
+										+"<td>"+json[label].cliente.toUpperCase()+"</td>"
+										+"<td>"+json[label].precio+"</td>"
+										+"<td>"+ json[label].estado.toUpperCase()+"</td>"
 										+"</tr>");
 										
 									});		

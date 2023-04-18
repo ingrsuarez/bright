@@ -194,7 +194,6 @@ class Rrhh extends BaseController
                 echo view('templates/footer');  
             }elseif($param == "consulta")
             {
-
                 $idPersonal = $this->request->getPost('personal_id');  
     
                 $array['personal'] = $personal->getUser($idPersonal);
@@ -232,6 +231,7 @@ class Rrhh extends BaseController
                 {
                     echo ("<script>alert('Hubo un problema con la activación!')</script>");
                 }
+                return redirect()->to('rrhh/alta_personal/');
             }    
             
 

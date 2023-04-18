@@ -63,27 +63,7 @@ horiz3.addEventListener("click",function(){
 
 // RESPONSIVE EFECTS
 
-const toggle = document.getElementById("toggle");
 
-toggle.addEventListener("click",function(evt){
-
-	if (menu1.style.display === "none" || menu1.style.display === "") {
-		menu1.style.display = "block";
-	}else{
-		menu1.style.display = "none";
-	}
-	if (menu2.style.display === "none" || menu2.style.display === "") {
-		menu2.style.display = "block";
-	}else{
-		menu2.style.display = "none";
-	}
-	if (menu3.style.display === "none" || menu3.style.display === "") {
-		menu3.style.display = "block";
-	}else{
-		menu3.style.display = "none";
-	}
-
-})
 
 
 
