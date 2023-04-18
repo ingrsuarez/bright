@@ -1,14 +1,15 @@
 	
-<form method="POST" action="<?php echo site_url('ventas/editar_remito/'.$remito->id); ?>" id="editarRemito">
-	<div class="grid2x1">
-		<div class="container registros">
-			<div class="column">
+
+	
+<div class="container_registro medium">
+	<form method="POST" action="<?php echo site_url('ventas/editar_remito/'.$remito->id); ?>" id="editarRemito">
+			<div class="titulo">
 				<div class="register_title">
 					<h3><i class="fas fa-tasks"></i>  EDITAR REMITO: <?php echo $remito->numero;?></h3>
 				</div>
 			</div>
 
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-regular fa-calendar icon"></i>
 					<input type="date" class="input-field" placeholder="Fecha:" form="editarRemito" id="fecha" name="fecha" maxlength="300" value="<?php echo $remito->fecha?>" required>
@@ -23,7 +24,7 @@
 					  	$arrayLength = count($clientes);
 						$i = 0;
 						while ($i < $arrayLength) {?>
-							<option value='<?php echo $clientes[$i]->id;?>'><?php echo strtoupper($clientes[$i]->nombre);?></option>
+							<option value='<?php echo $clientes[$i]->id;?>'><?php echo strtoupper(substr($clientes[$i]->nombre,0,22));?></option>
 					 	<?php
 						$i++;
 						}
@@ -32,18 +33,14 @@
 					</select>
 
 				</div>
-				
-				<div class="input-container">
-					
-				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-tag icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="editarRemito" id="leyenda" name="leyenda"><?php echo $remito->leyenda;?></textarea>	
+					<textarea type="text" class="input-field" placeholder="Observaciones:" form="editarRemito" id="leyenda" name="leyenda"><?php echo $remito->leyenda;?></textarea>	
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-truck-arrow-right icon"></i>
 					<input type="number" class="input-field" placeholder="Kilometros:" form="editarRemito" id="kilometros" name="kilometros" value="<?php echo $remito->kilometros;?>">
@@ -53,13 +50,13 @@
 					<input type="time" class="input-field" placeholder="Hora:" form="editarRemito" id="hora" name="hora" value="<?php echo $remito->hora;?>">
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-file-invoice-dollar icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Cargos al Cliente:" form="editarRemito" id="cargos" name="cargos"><?php echo $remito->cargos;?></textarea>	
+					<textarea type="text" class="input-field" placeholder="Cargos al Cliente:" form="editarRemito" id="cargos" name="cargos"><?php echo $remito->cargos;?></textarea>	
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-building-flag icon"></i>
 					<select name="tipo" id="tipo" required>
@@ -78,11 +75,12 @@
 				</div>
 				
 			</div>
-			
-		</div>
-
-
+	
+		</form>		
 	</div>
+
+
+	
 
 	<script type="text/javascript">
 					$(document).ready(function(){
@@ -146,6 +144,6 @@
 					});
 		</script> 
 
-</form>					
+					
 
 

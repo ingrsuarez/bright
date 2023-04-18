@@ -1,5 +1,5 @@
-	<div class="container tabla">
-		<div class="container_title">
+	<div class="container_tabla medium">
+		<div class="titulo">
 			<h3><i class="fas fa-tasks"></i>  LISTADO DE REMITOS: </h3>
 		</div>
 		<table class='listado'>

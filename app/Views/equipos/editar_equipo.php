@@ -1,17 +1,13 @@
 
-<form method="POST" action="<?php echo site_url('equipo/modificar/'.$equipos[0]->id); ?>" id="editarEquipo">
-	<div class="container registros">
-		
-		<div class="column">
+
+<div class="container_registro medium">
+	<form method="POST" action="<?php echo site_url('equipo/modificar/'.$equipos[0]->id); ?>" id="editarEquipo">		
+		<div class="titulo">
 			
-			<div class="register_title">
-				
-				<h3> <i class="fa-solid fa-pen-to-square"></i> EDITAR EQUIPO: </h3>
-				<input type="hidden" form="editarEquipo" id="id" name="id" value="<?php echo $equipos[0]->id;?>">
-			</div>
-			
+			<h3> <i class="fa-solid fa-pen-to-square"></i> EDITAR EQUIPO: </h3>
+			<input type="hidden" form="editarEquipo" id="id" name="id" value="<?php echo $equipos[0]->id;?>">
 		</div>
-		<div class="column">
+		<div class="row">
 			
 			<div class="input-container">
 				<i class="fa-solid fa-tag icon"></i>
@@ -20,7 +16,7 @@
 			</div>
 			
 		</div>
-		<div class="column">
+		<div class="row">
 			
 			<div class="input-container">
 				<i class="fa-regular fa-copyright icon"></i>
@@ -30,7 +26,7 @@
 			</div>
 			
 		</div>
-		<div class="column">
+		<div class="row">
 			
 			<div class="input-container">
 				<i class="fa-solid fa-gauge-high icon"></i>
@@ -40,7 +36,7 @@
 			</div>
 			
 		</div>
-		<div class="column">
+		<div class="row">
 			
 			<div class="input-container">
 				<i class="fa-solid fa-battery-three-quarters icon"></i>
@@ -50,7 +46,7 @@
 			
 
 		</div>
-		<div class="column">
+		<div class="row">
 			
 			<div class="input-container">
 				<i class="fa-solid fa-file-circle-exclamation icon"></i>
@@ -78,7 +74,7 @@
 			
 
 		</div>
-		<div class="column">
+		<div class="row">
 			<div class="input-container">
 				<i class="icon"></i>
 				<input type="submit" class="btn btn-register" form="prevEquipo" style="margin-left: 40px; font-size:20px; width: 100px;" value="<">
@@ -87,9 +83,9 @@
 			</div>
 			
 		</div>
-		
-	</div>
-</form>	
+	</form>		
+</div>
+	
 <?php 
 $next = intval($equipos[0]->id)+1;
 $prev = intval($equipos[0]->id)-1;

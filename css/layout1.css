@@ -261,7 +261,7 @@ header .nav-bar .menu__logout {
   flex-direction: row;
   align-items: center;
   padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 5px 3px;
 }
 .container .container_registro .row .input-container i {
   color: #555;
@@ -276,19 +276,31 @@ header .nav-bar .menu__logout {
   box-sizing: border-box;
 }
 .container .container_registro .row .input-container input[type=text]:focus {
-  border: 2px solid #4e73df;
+  border: 3px solid #4e73df;
   outline: none;
 }
 .container .container_registro .row .input-container input[type=date]:focus {
-  border: 2px solid #4e73df;
+  border: 3px solid #4e73df;
   outline: none;
 }
 .container .container_registro .row .input-container input[type=number]:focus {
-  border: 2px solid #4e73df;
+  border: 3px solid #4e73df;
   outline: none;
 }
 .container .container_registro .row .input-container input[type=submit] {
   margin-right: 10px;
+  margin-left: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.container .container_registro .row .input-container input[type=submit]:active {
+  opacity: 0.5;
+  transform: scaleX(0.98) scaleY(0.9);
+  box-shadow: none;
+}
+.container .container_registro .row .input-container input[type=submit]:hover {
+  font-weight: bold;
+  font-size: 0.9rem;
+  border: 2px solid #4e73df;
 }
 .container .container_registro .row .input-container select {
   flex-grow: 1;
@@ -297,7 +309,7 @@ header .nav-bar .menu__logout {
   border-radius: 5px;
 }
 .container .container_registro .row .input-container select:focus {
-  border: 2px solid #4e73df;
+  border: 3px solid #4e73df;
   outline: none;
 }
 .container .container_registro .row .input-container textarea {
@@ -307,19 +319,17 @@ header .nav-bar .menu__logout {
   border-radius: 5px;
 }
 .container .container_registro .row .input-container textarea:focus {
-  border: 2px solid #4e73df;
+  border: 3px solid #4e73df;
   outline: none;
 }
 .container .container_registro .row .input-container .tooltiptext {
   display: none;
 }
 .container .container_tabla {
-  position: relative;
-  top: 10px;
-  width: fit-content;
-  padding-right: 2px;
+  display: flex;
+  flex-direction: column;
   padding-bottom: 5px;
-  margin-left: 10px;
+  margin: 13px 2px;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -333,6 +343,9 @@ header .nav-bar .menu__logout {
   border-bottom: 1px solid #aaa;
   padding-left: 10px;
   padding-top: 1px;
+}
+.container .container_tabla .listado {
+  flex-grow: 1;
 }
 .container .container_tabla .listado .extra {
   display: none;
@@ -351,6 +364,12 @@ header .nav-bar .menu__logout {
 }
 .container .container_tabla .listado tbody .upperCase {
   text-transform: uppercase;
+}
+.container .container_tabla .listado tbody tr input[type=number] {
+  max-width: 80px;
+}
+.container .container_tabla .listado tbody tr td {
+  padding: 3px 5px;
 }
 
 .invisible {
@@ -407,6 +426,7 @@ header .nav-bar .menu__logout {
     height: fit-content;
     padding-bottom: 50px;
     min-height: 85vh;
+    align-content: baseline;
   }
   .container .menu_sub {
     flex-direction: row;
@@ -420,9 +440,9 @@ header .nav-bar .menu__logout {
     display: flex;
     color: #fefefe;
     text-decoration: none;
-    min-width: 100px;
+    min-width: 200px;
     align-content: center;
-    margin-right: 50px;
+    margin: 0px;
     flex-wrap: wrap;
   }
   .container .menu_sub .menu__item .dropdown__item2 a {
@@ -447,14 +467,14 @@ header .nav-bar .menu__logout {
     color: #fff;
   }
   .container .container_tabla {
-    top: 30px;
-    left: 20px;
+    flex-grow: 1;
+    flex-basis: 520px;
   }
   .container .container_tabla .listado .extra {
     display: table-cell;
   }
-  .container .container_tabla .listado thead tr th {
-    min-width: 90px;
+  .container .container_tabla .listado tbody td input[type=number] {
+    max-width: 80px;
   }
   header {
     position: fixed;
@@ -537,12 +557,20 @@ header .nav-bar .menu__logout {
   }
   .container .small {
     max-width: 350px;
+    margin-left: 35px;
   }
   .container .medium {
     max-width: 650px;
   }
+  .container .large {
+    max-width: 850px;
+  }
   .container .container_registro {
     flex-grow: 1;
     flex-basis: 350px;
+    margin: 13px 13px;
+  }
+  .container .container_registro .row .input-container {
+    padding: 5px 3px;
   }
 }

@@ -5,7 +5,7 @@
 		}
 
 	?>
-	<div class="container_registro">	
+	<div class="container_registro medium">	
 		<form method="POST" action="<?php echo site_url('equipo/nueva_orden/guardar'); ?>" id="nuevaOrden">
 		
 			<div class="titulo">
@@ -82,15 +82,18 @@
 		</form>	
 	</div>
 	
-	<div class="container_registro">
+	<div class="container_tabla medium">
+		<div class="titulo">
+			<h3><i class="fas fa-tasks"></i>  MOVIMIENTOS: </h3>
+		</div>
 		<table class='listado' id="tablaEquipos">
 			<thead>
 				<tr class="listado__encabezado">
-					<th scope='col' style="width: 80px;">Fecha</th>
-					<th class="listado__fecha" scope='col'>Remito </th>
-					<th class="listado__usuario" scope='col'>Horas </th>
+					<th>Fecha</th>
+					<th scope='col'>Remito </th>
+					<th class='extra' scope='col'>Horas </th>
 					<th scope='col'>Cliente</th>
-					<th scope='col' style="width: 130px;">Transporte</th>
+					<th class='extra' scope='col'>Transporte</th>
 					<th scope='col'>Estado</th>
 				</tr>
 			</thead>
@@ -126,12 +129,12 @@
 					equipos.forEach(function(value,label){
 						// alert(equipos[label].fecha)
 						$("#tablaEquipos>tbody").append("<tr class='listado__row'>"
-							+"<td style='width: 120px;'>"+equipos[label].fecha+"</td>"
-							+"<td><a href='"+json.remitos_url+equipos[label].remito+"'>"+
+							+"<td>"+equipos[label].fecha+"</td>"
+							+"<td class='center'><a href='"+json.remitos_url+equipos[label].remito+"'>"+
 							equipos[label].remito+"</td>"
-							+"<td>"+equipos[label].horas+"</td>"
+							+"<td class='center extra'>"+equipos[label].horas+"</td>"
 							+"<td>"+ equipos[label].ubicacion+"</td>"
-							+"<td>"+ equipos[label].transporte+"</td>"
+							+"<td class='extra'>"+ equipos[label].transporte+"</td>"
 							+"<td>"+ equipos[label].tipo+"</td>"
 							+"</tr>");
 

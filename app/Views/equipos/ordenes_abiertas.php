@@ -5,16 +5,15 @@
 		}
 
 	?>	
-	<form method="POST" action="<?php echo site_url('equipo/ordenes_abiertas/guardar'); ?>" id="nuevaOrden">
-		<div class="grid2x1">
-		<div class="container registros">
-			<div class="column">
-				<div class="register_title">
-					<h3><i class="fas fa-tasks"></i>  CERRAR ORDEN: </h3>
-				</div>
+
+	<div class="container_registro medium">
+		<form method="POST" action="<?php echo site_url('equipo/ordenes_abiertas/guardar'); ?>" id="nuevaOrden">
+
+			<div class="titulo">
+				<h3><i class="fas fa-tasks"></i>  CERRAR ORDEN: </h3>
 			</div>
 
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-hashtag icon"></i>
 					<input type="number" form="nuevaOrden" name="numero_orden" id="numero_orden" value="" readonly>
@@ -42,28 +41,26 @@
 					</select>
 
 				</div>
-				
-
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-tag icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Observaciones:" form="nuevaOrden" id="descripcion" name="descripcion"></textarea>	
+					<textarea type="text" class="input-field"  placeholder="Observaciones:" form="nuevaOrden" id="descripcion" name="descripcion"></textarea>	
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-gears icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Repuestos:" form="nuevaOrden" id="repuestos" name="repuestos"></textarea>	
+					<textarea type="text" class="input-field"  placeholder="Repuestos:" form="nuevaOrden" id="repuestos" name="repuestos"></textarea>	
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-file-invoice-dollar icon"></i>
-					<textarea type="text" class="input-field" rows="4" cols="80" placeholder="Cargos al Cliente:" form="nuevaOrden" id="cargos" name="cargos"></textarea>	
+					<textarea type="text" class="input-field"  placeholder="Cargos al Cliente:" form="nuevaOrden" id="cargos" name="cargos"></textarea>	
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="fa-solid fa-clock icon"></i>
 					<input type="number" name="horas" id="horas" step="1" min="" value="">	
@@ -76,7 +73,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="column">
+			<div class="row">
 				<div class="input-container">
 					<i class="icon"></i>
 					<input type="submit" class="btn btn-register" form="nuevaOrden" style="margin-left: 40px; width: 120px;" name = "button" value="Guardar">
@@ -86,28 +83,29 @@
 					
 				</div>
 			</div>
-			
-		</div>
+		</form>
+	</div>
 
-		<div class="container registros2">
-			<table class='listado' id="tablaEquipos">
+	<div class="container_tabla">
+		<table class='listado' id="tablaEquipos">
 			<thead>
 				<tr class="listado__encabezado">
-					<th scope='col' style="width: 80px;">Fecha</th>
-					<th class="listado__fecha" scope='col'>Remito </th>
-					<th class="listado__usuario" scope='col'>Horas </th>
-					<th scope='col'>Cliente</th>
-					<th scope='col' style="width: 130px;">Transporte</th>
-					<th scope='col'>Estado</th>
+					<th>Fecha</th>
+					<th class="listado__fecha">Remito </th>
+					<th class="extra">Horas </th>
+					<th>Cliente</th>
+					<th class="extra">Transporte</th>
+					<th>Estado</th>
 				</tr>
 			</thead>
 			<tbody>
 			
 			</tbody>
 		</table>
-		</div>
 	</div>
-	</form>
+			
+	
+	
 
 
 	<script type="text/javascript">
@@ -147,12 +145,12 @@
 					equipos.forEach(function(value,label){
 						// alert(equipos[label].fecha)
 						$("#tablaEquipos>tbody").append("<tr class='listado__row'>"
-							+"<td style='width: 120px;'>"+equipos[label].fecha+"</td>"
+							+"<td>"+equipos[label].fecha+"</td>"
 							+"<td><a href='"+json.remitos_url+equipos[label].remito+"'>"+
 							equipos[label].remito+"</td>"
-							+"<td>"+equipos[label].horas+"</td>"
+							+"<td class='extra'>"+equipos[label].horas+"</td>"
 							+"<td>"+ equipos[label].ubicacion+"</td>"
-							+"<td>"+ equipos[label].transporte+"</td>"
+							+"<td class='extra'>"+ equipos[label].transporte+"</td>"
 							+"<td>"+ equipos[label].tipo+"</td>"
 							+"</tr>");
 
