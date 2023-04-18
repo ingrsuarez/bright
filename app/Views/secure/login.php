@@ -12,35 +12,35 @@ body {
 
 <body>
 	
-
-<form action="<?php echo site_url('home'); ?>" method="POST">
-	<div class="login">
-		
-		<div class="login__logo" >
-			<img src="<?php base_url(); ?>./images/logo.png">
-		</div>
-		<div login__content>
-			<h2>Login</h2>
-			<p>Por favor ingrese su nombre de usuario y contraseña:</p>
-		
-			<br>
-			<p>Usuario</p>
-			<!-- <div class="column">
+<div class="container log">
+	<form action="<?php echo site_url('home'); ?>" method="POST">
+		<div class="container_registro">
+			
+			<div class="login__logo" >
+				<img src="<?php base_url(); ?>./images/logo.png">
+			</div>
 			<div class="input-container">
-				<i class="fa-solid fa-user icon"></i> -->
-			<input type="text" name="username" value="" autofocus/>
-			<br><br>
-			<p>Password </p>
-			<input type="password" name="password" value="" />
+				<h2>Login</h2>
+				<div class="row">
+					<p>Por favor ingrese su nombre de usuario y contraseña:</p>
+				</div>
+				<div class="row">
+					<p>Usuario: .</p>	
+					<input type="text" name="username" value="" autofocus/>
+				</div>
+				<div class="row">
+					<p>Password: .</p>
 
-			<div><input class="submit" type="submit" value="Ingresar" /></div>
+					<input type="password" name="password" value="" />
+				</div>	
+				<div class="row"><input class="submit" type="submit" value="Ingresar" /></div>
 
+			</div>
+			
+			
 		</div>
-		
-		
-	</div>
-</form>
-
+	</form>
+</div>
 <?php
 		if (!empty($message)){
             echo ("<script>

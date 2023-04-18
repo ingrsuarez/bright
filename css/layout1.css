@@ -574,3 +574,39 @@ header .nav-bar .menu__logout {
     padding: 5px 3px;
   }
 }
+
+ .log {
+  background: none;
+  background-color: none;
+  display: flex;
+  flex-direction: column wrap;
+}
+
+.login {
+  /*background: #1dcad3;*/
+  background: #ffffff;
+  color: #021d49;
+  display: flex;
+  flex-flow: row wrap;
+  width: 300px;
+  margin: 20px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  border-radius: 3%;
+  box-shadow: 5px 5px 5px #555;
+
+}
+
+.login__logo{
+  display: flex;
+  background: #ffffff;
+  margin: 0px;
+  border-top-left-radius: 68%;
+  border-bottom-right-radius: 56%;
+  padding: 10px;
+  height: 100%;
+}
+
+.login__logo img {
+  width: 50%;
+}
