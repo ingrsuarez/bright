@@ -459,6 +459,7 @@ class Ventas extends BaseController
             echo view('templates/aside',$data);
             echo view('templates/header_subVentas');
             echo view('ventas/editar_cliente',$array);
+            echo view('templates/footer');
         }
     }
 
