@@ -440,7 +440,7 @@ class Ventas extends BaseController
     {
         if ($id < 1)
         {
-           return redirect()->to('/ventas/editarCliente/1');
+           return redirect()->to('/ventas/editar_cliente/1');
 
         }
         $session = \Config\Services::session();
@@ -449,17 +449,36 @@ class Ventas extends BaseController
             $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             $listado = new Clientes_model();
-            $array['clientes'] = $listado->getCustomer($id);
-            if ($array['equipos'] == NULL)
+            $array['cliente'] = $listado->getCliente($id);
+            if ($array['cliente'] == NULL)
             {
-            return redirect()->to('/equipos/editar/1');
+            return redirect()->to('/ventas/editar_cliente/1');
             }    
             echo view('templates/head');
             echo view('templates/header',$data);
             echo view('templates/aside',$data);
-            echo view('templates/header_subEquipos');
-            echo view('equipos/editar_equipo',$array);
+            echo view('templates/header_subVentas');
+            echo view('ventas/editar_cliente',$array);
         }
+    }
+
+    public function modificarCliente(){
+
+        // var_dump($_POST);
+        if (!empty($_POST))
+            {
+                $idCliente = $this->request->getPost('id');
+                $cliente = new Clientes_model();
+                $clienteEditado = array('nombre' => $this->request->getPost('nombre'),
+                                        'cuit' => $this->request->getPost('cuit'),
+                                        'email' => $this->request->getPost('email'),
+                                        'telefono' => $this->request->getPost('telefono'),
+                                        'iva' => $this->request->getPost('iva'),
+                                        'domicilio' => $this->request->getPost('domicilio'),
+                                        );
+                $cliente->updateCliente($idCliente,$clienteEditado);
+            }
+            return redirect()->to('/ventas/editar_cliente/'.$idCliente);
     }
 
     public function listadoClientes()

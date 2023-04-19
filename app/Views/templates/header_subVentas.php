@@ -65,7 +65,7 @@
 							<a href="<?php echo base_url(); ?>/ventas/nuevo_cliente/">Nuevo cliente</a>
 						</li>
 						<li class="inside__item">
-							<a href="#">Editar cliente</a>
+							<a href="<?php echo base_url();?>/ventas/editar_cliente">Editar cliente</a>
 						</li>
 					</ul>
 				</li>

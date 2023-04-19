@@ -82,6 +82,11 @@ $routes->get('ventas/saldos_clientes/(:any)', 'Ventas::saldosClientes/$1');
 $routes->get('ventas/nuevo_cliente', 'Ventas::nuevo_cliente');
 $routes->post('ventas/ingresar_cliente', 'Ventas::ingresar_cliente');
 $routes->get('ventas/listado_clientes', 'Ventas::listadoClientes');
+$routes->get('ventas/editar_cliente', 'Ventas::editar_cliente');
+$routes->get('ventas/editar_cliente/(:any)', 'Ventas::editar_cliente/$1');
+$routes->post('ventas/editar_cliente/(:any)', 'Ventas::editar_cliente/$1');
+$routes->post('ventas/modificar_cliente', 'Ventas::modificarCliente/');
+$routes->post('ventas/modificar_cliente/(:any)', 'Ventas::modificarCliente/$1');
 
 $routes->get('rrhh', 'Rrhh::index');
 $routes->get('rrhh/email1', 'Rrhh::email1');

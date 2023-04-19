@@ -35,4 +35,12 @@ class Clientes_model extends Model
         $result = $query->getResult();
         return $result;
     }
+
+    public function updateCliente($id,$data)
+    {
+
+        $db = \Config\Database::connect();
+        $db->table('clientes')->where('id', $id)->update($data);
+
+    }
 }
