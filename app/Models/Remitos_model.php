@@ -32,15 +32,16 @@ class Remitos_model extends Model
     public function setCargosRemito($id,$cargos)
     {
         $db = \Config\Database::connect();
-        $query = $db->query("UPDATE `remitos` SET `cargos` = CONCAT(`cargos`,' -".$cargos."') WHERE `id`=".$id);
+        $query = $db->query("UPDATE `remitos` SET `cargos` = CONCAT(`cargos`,' - ".$cargos."') WHERE `id`=".$id);
 
     }
+
 
     public function updateRemito($id,$data)
     {
 
         $db = \Config\Database::connect();
-        $db->table('remitos')->where('id', $id)->update($data);
+        $db->table('remitos')->update($data,['id' => $id]);
 
     }
 

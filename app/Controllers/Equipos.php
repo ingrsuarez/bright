@@ -265,10 +265,11 @@ class Equipos extends BaseController
                         $remito->setEstadoRemito($numeroRemito,'facturar');
                         $equipo->setEstadoOnly($idEquipo,'disponible');
                     }
-                    $remito = new Remitos_model();
-                    $cargos = " ".$this->request->getPost('cargos');
-                    $remito->setCargosRemito($numeroRemito,$cargos);
-
+                    $idRemito = $this->request->getPost('remitos');
+                    $cargos = $this->request->getPost('cargos');
+                    $remito->setCargosRemito($idRemito,$cargos);
+                    $actualizoRemito = array('estado' => 'facturar');
+                    $remito->updateRemito($idRemito,$actualizoRemito);
                     $nuevaOrden = array(
                                     'fecha' => $this->request->getPost('fecha') ,
                                     'equipo' => $this->request->getPost('equipo'),
@@ -279,7 +280,7 @@ class Equipos extends BaseController
                                     'horas' => $this->request->getPost('horas'),
                                     'remito' => $numeroRemito,
                                     'estado' => $estado
-                                    );
+                                    ); 
                     $orden = new Ordenes_model();
                     $orden->setNewOrder($nuevaOrden);
                     $mensaje = "La orden fue guardada correctamente!";

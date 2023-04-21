@@ -120,9 +120,10 @@
 					var json = JSON.parse(result);
 
 					remitosList = json.remitos;
-					// console.log(remitosList);
+					
 					remitosList.forEach(function(value,label){
-						$("#remitos").append("<option>"+value.numero+"</option>");
+						$("#remitos").append("<option value='"+value.id+"'>"+value.numero+"</option>");
+						console.log(value.id);
 
 					});
 					equipos = json.equipo;
