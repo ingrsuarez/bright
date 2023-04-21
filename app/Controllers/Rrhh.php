@@ -6,17 +6,21 @@ use App\Models\Users_model;
 
 class Rrhh extends BaseController
 {
-    
+    private $activeMenu = array('','','','dropdown__item--active');
     public function index()
     {
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
+            $nomina = new Users_model();
+            $array['usuarios'] = $nomina->getUsers(); 
             echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subRrhh');
+            echo view('templates/header',$data);
             echo view('templates/aside',$data);
+            echo view('templates/header_subRrhh');
+            echo view('rrhh/listado_usuarios',$array);
             echo view('templates/footer');
         }else{
             $mensaje = "Su sesion ha expirado!";
@@ -32,11 +36,12 @@ class Rrhh extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subRrhh');
+            echo view('templates/header',$data);
             echo view('templates/aside',$data);
+            echo view('templates/header_subRrhh');
             echo view('rrhh/nuevo_personal');
             echo view('templates/footer');
         }else{
@@ -81,13 +86,14 @@ class Rrhh extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['nombre'] = ucfirst($session->nombre);
             $nomina = new Users_model();
             $array['usuarios'] = $nomina->getUsers(); 
             echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subRrhh');
+            echo view('templates/header',$data);
             echo view('templates/aside',$data);
+            echo view('templates/header_subRrhh');
             echo view('rrhh/listado_usuarios',$array);
             echo view('templates/footer');
         }else{
@@ -110,6 +116,7 @@ class Rrhh extends BaseController
         $session = \Config\Services::session();
         if ($session->has('usuario'))
         {
+            $data['active'] = $this->activeMenu;
             $data['message'] = $session->getFlashdata('message');
             $data['nombre'] = ucfirst($session->nombre);
             $listado = new Users_model();
@@ -128,9 +135,9 @@ class Rrhh extends BaseController
                 
             }    
             echo view('templates/head');
-            echo view('templates/header');
-            echo view('templates/header_subRrhh');
+            echo view('templates/header',$data);
             echo view('templates/aside',$data);
+            echo view('templates/header_subRrhh');
             echo view('rrhh/editar_personal',$array);
             echo view('templates/footer');
         }else{
@@ -182,12 +189,13 @@ class Rrhh extends BaseController
         {
             $personal = new Users_model();
             if (empty($param))
-            {     
+            {   
+                $data['active'] = $this->activeMenu;  
                 $data['nombre'] = ucfirst($session->nombre);
                 $data['personal'] = $personal->getUsersInactivos();
                 $data['puestos'] = $personal->getPuestos();
                 echo view('templates/head');
-                echo view('templates/header');
+                echo view('templates/header',$data);
                 echo view('templates/header_subRrhh');
                 echo view('templates/aside',$data);
                 echo view('rrhh/alta_personal',$data);

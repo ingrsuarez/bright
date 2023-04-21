@@ -64,29 +64,3 @@ horiz3.addEventListener("click",function(){
 // RESPONSIVE EFECTS
 
 
-
-
-
-
-
-// --------BOARD NEW NOTE -------------------------------//
-
-const btn_note = document.getElementById("btn_note");
-
-btn_note.addEventListener("click",function(evt){
-	evt.preventDefault();
-	var nota = prompt("Ingrese su anotación:", "Nota");
-
-		if (nota!=null && nota!="")
-		{
-			
-			$.post("insert_task", {nota: nota}, function(result){
-				//This is for reload de new register!
-				window.location.href = "index";
-			});
-			//To avoid reload of the page return false
-			return false;
-			
-		}
-})
-
