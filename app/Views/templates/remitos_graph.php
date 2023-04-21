@@ -4,7 +4,7 @@
 
 
 
-    <div class="board2">
+    <div class="board2 medium">
         <div class="titulo_grafica">
             <h3 class="t_grafica">Estado Ordenes</h3>
         </div>

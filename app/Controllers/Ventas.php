@@ -23,12 +23,15 @@ class Ventas extends BaseController
             $facturado = $remitos->getRemitosPercentage('facturado');
             $graph['remitos'] = array($inspeccion,$facturar,$facturado);
             $data['nombre'] = ucfirst($session->nombre);
-            
+            $listadoRemitos = new Remitos_model();
+            $array['remitos'] = $listadoRemitos->getSalesView();
+
             echo view('templates/head');
             echo view('templates/headerImage',$data);
             echo view('templates/aside',$data);
             echo view('templates/header_subVentas');
-            echo view('templates/remitos_graph.php',$graph);
+            echo view('templates/remitos_graph',$graph);
+            echo view('ventas/listado_remitos',$array);
             echo view('templates/footer');
         }else{
             $mensaje = "Su sesion ha expirado!";
