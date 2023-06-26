@@ -148,7 +148,8 @@
 							+"<td><input class='ingresoRemito' form='ingresoRemito' type='checkbox' id="+json[label].id+" name='equipos_seleccionados[]' value="
 							+json[label].id+"><input type='hidden' name='equipos[]' form='ingresoRemito' value="+json[label].id+"></td>"
 							+"<td>"+json[label].numero+"</td>"
-							+"<td>"+json[label].capacidad+"<input type='hidden' form='ingresoRemito' name='capacidad[]'value="+json[label].capacidad+"></td>"
+							+"<td>"+json[label].capacidad+"<input type='hidden' "+
+							+" form='ingresoRemito' name='capacidad[]'value="+json[label].capacidad+"></td>"
 							+"<td><input class='right' form='ingresoRemito' type='number' min='"
 							+json[label].horas+"' step='any' name='horas[]' value='"
 							+json[label].horas+"' readonly></td>"
@@ -163,9 +164,9 @@
 						json.forEach(function(value,label){
 						cont++;
 						$("#tablaEquipos>tbody").append("<tr class='listado__row'>"
-							+"<td><input class='ingresoRemito' type='checkbox' id="+json[label].id+"form='ingresoRemito' name='equipos_seleccionados[]' value="+json[label].id+"><input type='hidden' form='ingresoRemito' name='equipos[]' value="+json[label].id+"></td>"
+							+"<td><input class='ingresoRemito' type='checkbox' id="+json[label].id+" form='ingresoRemito' name='equipos_seleccionados[]' value="+json[label].id+"><input type='hidden' form='ingresoRemito' name='equipos[]' value="+json[label].id+"></td>"
 							+"<td>"+json[label].numero+"</td>"
-							+"<td>"+json[label].capacidad+"<input type='hidden' name='capacidad[]'value="+json[label].capacidad+"></td>"
+							+"<td>"+json[label].capacidad+"<input type='hidden' form='ingresoRemito' name='capacidad[]' value="+json[label].capacidad+"></td>"
 							+"<td><input class='right' form='ingresoRemito' type='number' min='"+json[label].horas+"' step='any' name='horas[]' value='"+json[label].horas+"'></td>"
 							+"<td class='extra'>"+ json[label].marca+"</td>"
 							+"<td class='extra'>"+ json[label].ubicacion.toUpperCase()+"</td>"
